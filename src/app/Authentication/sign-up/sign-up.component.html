@@ -1,0 +1,51 @@
+<div class="p-8 w-full flex flex-col h-screen justify-center items-center content-center">
+    <div class="w-full xl:w-3/12">
+        <form class="bg-white border-solid border-2 border-black-900 px-4 py-4" [formGroup]="signUpForm">
+            <div style="font-family: Arial;font-style: normal;font-weight: normal;font-size: 36px;line-height: 48px;letter-spacing: 0.2px;color: #0A2540;" class="mb-4">
+                Sign Up
+            </div>
+            <div>
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input required matInput type="text" [formControlName]="'name'">
+                <mat-error *ngIf="checkError('required')">Required</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="w-full" appearance="outline" >
+                    <mat-label>Mobile Number</mat-label>
+                    <input required matInput type="text" [formControlName]="'mobileNumber'">
+                    <mat-error *ngIf="checkError('min')">Enter a valid Mobile Number</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="w-full" appearance="outline" >
+                    <mat-label>Username</mat-label>
+                    <input required matInput type="text" [formControlName]="'username'">
+                    <mat-error *ngIf="checkError('minLength') || checkError('maxLength')">Username must have 6 to 10 characters</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="w-full" appearance="outline" >
+                    <mat-label>Password</mat-label>
+                    <input [(ngModel)]="password" required matInput type="password" [formControlName]="'password'">
+                    <mat-error *ngIf="checkError('required')">Required</mat-error>
+                    <mat-hint class="text-red-600" *ngIf="passwordMatch">Password should match</mat-hint>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="w-full" appearance="outline" >
+                    <mat-label>Confirm Password</mat-label>
+                    <input [(ngModel)]="confirmPassword" required matInput type="password" [formControlName]="'confirmPassword'">
+                    <mat-error *ngIf="checkError('required')">Required</mat-error>
+                    <mat-hint class="text-red-600" *ngIf="passwordMatch">Password should match</mat-hint>
+                </mat-form-field>
+            </div>
+            <div>
+                <button (click)="signUp()" mat-raised-button class="w-full" color="primary">Sign Up</button>
+            </div>
+            <div [routerLink]="['../../admin/sign-in']" class="mt-4 text-indigo-600 cursor-pointer"> Already have an account? Sign In.</div>
+        </form>
+    </div>
+    
+</div>
