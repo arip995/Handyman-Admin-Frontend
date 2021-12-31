@@ -1,6 +1,6 @@
-<div class="p-8 w-full flex flex-col h-screen justify-center items-center content-center">
+<div class="bg-blue-50 p-8 p-8 w-full flex flex-col h-screen justify-center items-center content-center">
     <div class="w-full xl:w-3/12">
-        <form class="bg-white border-solid border-2 border-black-900 px-4 py-4" [formGroup]="signUpForm">
+        <form class="shadow-2xl rounded-lg bg-white border border-2 px-4 py-4" [formGroup]="signUpForm">
             <div style="font-family: Arial;font-style: normal;font-weight: normal;font-size: 36px;line-height: 48px;letter-spacing: 0.2px;color: #0A2540;" class="mb-4">
                 Sign Up
             </div>
@@ -16,6 +16,13 @@
                     <mat-label>Mobile Number</mat-label>
                     <input required matInput type="text" [formControlName]="'mobileNumber'">
                     <mat-error *ngIf="checkError('min')">Enter a valid Mobile Number</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="w-full" appearance="outline" >
+                    <mat-label>Email</mat-label>
+                    <input required matInput type="text" [formControlName]="'email'">
+                    <mat-error *ngIf="checkError('required') || checkError('email')">Enter a valid Email</mat-error>
                 </mat-form-field>
             </div>
             <div>
