@@ -18,6 +18,7 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = _formBuilder.group({
       name: new FormControl("",[Validators.required]),
       mobileNumber : new FormControl("",[Validators.required,Validators.maxLength(10),Validators.minLength(10)]),
+      email: new FormControl("",[Validators.required,Validators.email]),
       username : new FormControl("",[Validators.required,Validators.minLength(6),Validators.maxLength(10)]),
       password : new FormControl("",[Validators.required]),
       confirmPassword : new FormControl("",[Validators.required])
@@ -37,6 +38,7 @@ checkError(errorName:any){
     return()=>{
       this.signUpForm.controls['name'].hasError(errorName);
       this.signUpForm.controls['mobileNumber'].hasError(errorName);
+      this.signUpForm.controls['email'].hasError(errorName);
       this.signUpForm.controls['username'].hasError(errorName);
       this.signUpForm.controls['password'].hasError(errorName);
       this.signUpForm.controls['confirmPassword'].hasError(errorName);
