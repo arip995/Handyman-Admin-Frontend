@@ -1,3 +1,5 @@
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { TuiRootModule, TuiDialogModule, TuiNotificationsModule, TUI_SANITIZER } from "@taiga-ui/core";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,13 +17,24 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { TuiSvgModule } from '@taiga-ui/core';
+import { TuiActionModule } from '@taiga-ui/kit';
+import { TuiIslandModule } from '@taiga-ui/kit';
+import { TuiLineChartModule } from '@taiga-ui/addon-charts';
+import { TuiArcChartModule } from '@taiga-ui/addon-charts';
+import { TuiPieChartModule } from '@taiga-ui/addon-charts';
+import { TuiBarChartModule } from '@taiga-ui/addon-charts';
+import { DashboardComponent } from "./Home/Dashboard/dashboard.component";
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     SignInComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +49,19 @@ import { MatDividerModule } from '@angular/material/divider';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatDividerModule
-  ],
-  providers: [],
+    MatDividerModule,
+    TuiRootModule,
+    TuiDialogModule,
+    TuiNotificationsModule,
+    TuiSvgModule,
+    TuiActionModule,
+    TuiIslandModule,
+    TuiLineChartModule,
+    TuiArcChartModule,
+    TuiPieChartModule,
+    TuiBarChartModule
+],
+  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,49 +1,93 @@
-<mat-toolbar class="mat-elevation-z8">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-        <mat-icon *ngIf="!sidenav.opened">
-            menu
-        </mat-icon>
-        <mat-icon *ngIf="sidenav.opened">
-            close
-        </mat-icon>
-    </button>
-    Responsive side navigation
-</mat-toolbar>
+<ng-container>
+    <div [style.background-color]="'rgb(250, 252, 255)'" class="w-full h-screen grid grid-cols-6 gap-4 ">
+        <!-- [style.background-color]="'rgba(1,1,1,1)'" -->
+        <!-- [style.background-color]="'#000300'" -->
+        <!-- [ngClass]="{'border-l-4 border-indigo-500' : content==='Dashboard'}" -->
 
-<mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+        <!-- Sidenav -->
+        <div class="col-span-1" >
+            <div class="flex justify-center mt-2 font-semibold text-4xl font-mono tracking-wide text-blue-600">
+                HANDYMAN
+            </div>
 
-        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+            <!-- Sidenav contents -->
+            <div class="mt-12">
+                <div (click)="contentChange('Dashboard')"  class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                    <div class="">
+                        <mat-icon [style.color]="content==='Dashboard' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">dashboard_outline</mat-icon>
+                    </div>
+                    <span [ngClass]="{'text-blue-800' : content==='Dashboard'}" class="content-text text-center font-light text-lg">Dashboard</span>
+                </div>
+            </div>
 
-        <h4 class="name">John Smith</h4>
-        <p class="designation">Software Engineer</p>
+            <div class="mt-12">
+                <div (click)="contentChange('Customers')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                    <div class="">
+                        <mat-icon [style.color]="content==='Customers' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
+                    </div>
+                    <span [ngClass]="{'text-blue-800' : content==='Customers'}" class="content-text text-center font-light text-lg">Customers</span>
+                </div>
+            </div>
 
-        <mat-divider></mat-divider>
+            <div class="mt-12">
+                <div (click)="contentChange('Workers')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                    <div class="">
+                        <mat-icon [style.color]="content==='Workers' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
+                    </div>
+                    <span [ngClass]="{'text-blue-800' : content==='Workers'}" class="content-text text-center font-light text-lg">Workers</span>
+                </div>
+            </div>
 
-        <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <span>Home</span>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>person</mat-icon>
-            <span>Profile</span>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>info</mat-icon>
-            <span>About</span>
-        </button>
+            <div class="mt-12">
+                <div (click)="contentChange('Analytics')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                    <div class="">
+                        <mat-icon [style.color]="content==='Analytics' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">analytics</mat-icon>
+                    </div>
+                    <span [ngClass]="{'text-blue-800' : content==='Analytics'}" class="content-text text-center font-light text-lg">Analytics</span>
+                </div>
+            </div>
 
-        <mat-divider></mat-divider>
+            <div class="mt-12">
+                <div (click)="contentChange('Products')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                    <div class="">
+                        <mat-icon [style.color]="content==='Products' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">shopping_cart</mat-icon>
+                    </div>
+                    <span [ngClass]="{'text-blue-800' : content==='Products'}" class="content-text text-center font-light text-lg">Products</span>
+                </div>
+            </div>
 
-        <button mat-button class="menu-button">
-            <mat-icon>help</mat-icon>
-            <span>Help</span>
-        </button>
-
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <div class="content mat-elevation-z8">
-            Main content here!
+            <div class="mt-12">
+                <div (click)="contentChange('Reports')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                    <div class="">
+                        <mat-icon [style.color]="content==='Reports' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">report</mat-icon>
+                    </div>
+                    <span [ngClass]="{'text-blue-800' : content==='Reports'}" class="content-text text-center font-light text-lg">Reports</span>
+                </div>
+            </div>
         </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+
+
+
+        <!-- Main Content -->
+        <div class="col-span-5">
+            <div class="flex">
+                <div class="mt-2 ml-2 font-bold text-4xl font-mono tracking-tight text-slate-500">
+                    {{content}}
+                </div>
+                <div class="ml-auto">
+                    <div class="text-medium font-light mt-2 mr-2 text-base font-roboto tracking-tight">
+                        Arindam Panda
+                    </div>
+                    <div class="text-right text-light mr-2 text-xs font-roboto tracking-tight">
+                        Admin
+                    </div>
+                </div>
+            </div>
+        <ng-container *ngIf="content==='Dashboard'">
+            <dashboard></dashboard>
+        </ng-container>
+
+
+        </div>
+    </div>
+</ng-container>

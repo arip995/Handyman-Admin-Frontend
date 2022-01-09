@@ -1,0 +1,110 @@
+<div class="mt-10 w-full flex">
+    <div class="tui-col_md-4">
+        <a
+            size="l"
+            tuiIsland
+            target="_blank"
+            [hoverable]="true"
+        >
+            <div >
+                <div>
+                    <h3 class="tui-island__title">New Workers</h3>
+                    <div class="flex justify-between">
+                        <div class="text-5xl font-bold font-roboto text-blue-800">121</div>
+                        <mat-icon style="font-size: 50px;" class="mr-6">people_outline</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <div class="tui-col_md-4">
+        <a
+            size="l"
+            tuiIsland
+            target="_blank"
+            [hoverable]="true"
+        >
+        <div >
+            <div>
+                <h3 class="tui-island__title">New Customers</h3>
+                <div class="flex justify-between">
+                    <div class="text-5xl font-bold font-roboto text-blue-800">8966</div>
+                    <mat-icon style="font-size: 50px;" class="mr-6">people_outline</mat-icon>
+                </div>
+            </div>
+        </div>
+        </a>
+    </div>
+    
+    <div class="tui-col_md-4">
+        <a
+            size="l"
+            tuiIsland
+            target="_blank"
+            [hoverable]="true"
+        >
+        <div >
+            <div>
+                <h3 class="tui-island__title">Total Workers</h3>
+                <div class="flex justify-between">
+                    <div class="text-5xl font-bold font-roboto text-blue-800">1286</div>
+                    <mat-icon style="font-size: 50px;" class="mr-6">people_outline</mat-icon>
+                </div>
+            </div>
+        </div>
+        </a>
+    </div>
+    
+    <div class="tui-col_md-4">
+        <a
+            size="l"
+            tuiIsland
+            target="_blank"
+            [hoverable]="true"
+        >
+        <div >
+            <div>
+                <h3 class="tui-island__title">Total Customers</h3>
+                <div class="flex justify-between">
+                    <div class="text-5xl font-bold font-roboto text-blue-800">75986</div>
+                    <mat-icon style="font-size: 50px;" class="mr-6">people_outline</mat-icon>
+                </div>
+            </div>
+        </div>
+        </a>
+    </div>
+</div>
+
+
+<div style="margin-top: 200px;" class="flex justify-around ml-2">
+<div class="font-bold text-4xl font-mono tracking-tight text-slate-500">
+    Customers Progress
+    <div class="wrapper">
+        <tui-arc-chart size="xl" class="tui-space_right-4 mt-12" [value]="value">
+            <div>Not bad!</div>
+        </tui-arc-chart>
+    </div>
+    
+</div>
+<div class="font-bold text-4xl font-mono tracking-tight text-slate-500">
+    Workers Progress
+    <!-- <div class="wrapper">
+        <tui-pie-chart
+            size="xl"
+            class="tui-space_right-4 mt-12"
+            [value]="value"
+        >
+    </tui-pie-chart> -->
+        <tui-bar-chart  [max]="10000" [value]="values"></tui-bar-chart>
+        <!-- <tui-line-chart
+        [x]="0"
+        [y]="0"
+        [width]="400"
+        [height]="200"
+        [smoothingFactor]="50"
+        [value]="value1"
+        [filled]="true"
+    ></tui-line-chart> -->
+</div>
+</div>
