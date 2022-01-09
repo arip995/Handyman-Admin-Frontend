@@ -3,12 +3,12 @@ import { ceil } from '@taiga-ui/cdk';
 import { TUI_DEFAULT_STRINGIFY } from '@taiga-ui/cdk';
 
 @Component({
-  selector: 'view-home',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss'],
+  selector: 'dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
+export class DashboardComponent {
     content: 'Dashboard'| 'Customers' | 'Workers' | 'Analytics' | 'Products' | 'Reports' = "Dashboard";
     readonly value = [40, 30, 20, 10];
     readonly values = [
@@ -37,12 +37,6 @@ export class HomeComponent {
 
 readonly stringify = TUI_DEFAULT_STRINGIFY;
 
-
-    contentChange(value:any){
-      this.content = value;
-    }
-    
-    
 
   getHeight(max: number): number {
       return (max / ceil(max, -3)) * 100;

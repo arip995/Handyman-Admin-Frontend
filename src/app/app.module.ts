@@ -20,6 +20,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TuiSvgModule } from '@taiga-ui/core';
 import { TuiActionModule } from '@taiga-ui/kit';
 import { TuiIslandModule } from '@taiga-ui/kit';
+import { TuiLineChartModule } from '@taiga-ui/addon-charts';
+import { TuiArcChartModule } from '@taiga-ui/addon-charts';
+import { TuiPieChartModule } from '@taiga-ui/addon-charts';
+import { TuiBarChartModule } from '@taiga-ui/addon-charts';
+import { DashboardComponent } from "./Home/Dashboard/dashboard.component";
+
 
 
 @NgModule({
@@ -27,7 +33,8 @@ import { TuiIslandModule } from '@taiga-ui/kit';
     AppComponent,
     SignUpComponent,
     SignInComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +55,11 @@ import { TuiIslandModule } from '@taiga-ui/kit';
     TuiNotificationsModule,
     TuiSvgModule,
     TuiActionModule,
-    TuiIslandModule
+    TuiIslandModule,
+    TuiLineChartModule,
+    TuiArcChartModule,
+    TuiPieChartModule,
+    TuiBarChartModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]

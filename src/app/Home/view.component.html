@@ -1,65 +1,67 @@
 <ng-container>
     <div [style.background-color]="'rgb(250, 252, 255)'" class="w-full h-screen grid grid-cols-6 gap-4 ">
         <!-- [style.background-color]="'rgba(1,1,1,1)'" -->
+        <!-- [style.background-color]="'#000300'" -->
+        <!-- [ngClass]="{'border-l-4 border-indigo-500' : content==='Dashboard'}" -->
 
         <!-- Sidenav -->
-        <div class="col-span-1">
+        <div class="col-span-1" >
             <div class="flex justify-center mt-2 font-semibold text-4xl font-mono tracking-wide text-blue-600">
                 HANDYMAN
             </div>
 
             <!-- Sidenav contents -->
             <div class="mt-12">
-                <div (click)="contentChange('Dashboard')" [ngClass]="{'bg-indigo-200 border-l-4 border-indigo-500' : content==='Dashboard'}" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Dashboard')"  class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Dashboard' ? '#6366f1' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">dashboard_outline</mat-icon>
+                        <mat-icon [style.color]="content==='Dashboard' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">dashboard_outline</mat-icon>
                     </div>
-                    <span [ngClass]="{'text-indigo-500' : content==='Dashboard'}" class="content-text text-center font-light text-lg">Dashboard</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Dashboard'}" class="content-text text-center font-light text-lg">Dashboard</span>
                 </div>
             </div>
 
             <div class="mt-12">
-                <div (click)="contentChange('Customers')" [ngClass]="{'bg-indigo-200 border-l-4 border-indigo-500' : content==='Customers'}" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Customers')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Customers' ? '#6366f1' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
+                        <mat-icon [style.color]="content==='Customers' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
                     </div>
-                    <span [ngClass]="{'text-indigo-500' : content==='Customers'}" class="content-text text-center font-light text-lg">Customers</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Customers'}" class="content-text text-center font-light text-lg">Customers</span>
                 </div>
             </div>
 
             <div class="mt-12">
-                <div (click)="contentChange('Workers')" [ngClass]="{'bg-indigo-200 border-l-4 border-indigo-500' : content==='Workers'}" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Workers')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Workers' ? '#6366f1' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
+                        <mat-icon [style.color]="content==='Workers' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
                     </div>
-                    <span [ngClass]="{'text-indigo-500' : content==='Workers'}" class="content-text text-center font-light text-lg">Workers</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Workers'}" class="content-text text-center font-light text-lg">Workers</span>
                 </div>
             </div>
 
             <div class="mt-12">
-                <div (click)="contentChange('Analytics')" [ngClass]="{'bg-indigo-200 border-l-4 border-indigo-500' : content==='Analytics'}" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Analytics')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Analytics' ? '#6366f1' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">analytics</mat-icon>
+                        <mat-icon [style.color]="content==='Analytics' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">analytics</mat-icon>
                     </div>
-                    <span [ngClass]="{'text-indigo-500' : content==='Analytics'}" class="content-text text-center font-light text-lg">Analytics</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Analytics'}" class="content-text text-center font-light text-lg">Analytics</span>
                 </div>
             </div>
 
             <div class="mt-12">
-                <div (click)="contentChange('Products')" [ngClass]="{'bg-indigo-200 border-l-4 border-indigo-500' : content==='Products'}" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Products')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Products' ? '#6366f1' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">shopping_cart</mat-icon>
+                        <mat-icon [style.color]="content==='Products' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">shopping_cart</mat-icon>
                     </div>
-                    <span [ngClass]="{'text-indigo-500' : content==='Products'}" class="content-text text-center font-light text-lg">Products</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Products'}" class="content-text text-center font-light text-lg">Products</span>
                 </div>
             </div>
 
             <div class="mt-12">
-                <div (click)="contentChange('Reports')" [ngClass]="{'bg-indigo-200 border-l-4 border-indigo-500' : content==='Reports'}" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Reports')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Reports' ? '#6366f1' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">report</mat-icon>
+                        <mat-icon [style.color]="content==='Reports' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">report</mat-icon>
                     </div>
-                    <span [ngClass]="{'text-indigo-500' : content==='Reports'}" class="content-text text-center font-light text-lg">Reports</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Reports'}" class="content-text text-center font-light text-lg">Reports</span>
                 </div>
             </div>
         </div>
@@ -81,90 +83,11 @@
                     </div>
                 </div>
             </div>
+        <ng-container *ngIf="content==='Dashboard'">
+            <dashboard></dashboard>
+        </ng-container>
 
-            <div class="mt-10 w-full flex gap-2">
-                <div class="tui-col_md-4">
-                    <a
-                        size="l"
-                        tuiIsland
-                        target="_blank"
-                        [hoverable]="true"
-                    >
-                        <div class="tui-island__content">
-                            <div>
-                                <h3 class="tui-island__title">Credit card</h3>
-                                <p class="tui-island__paragraph">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                    elit, sed do eiusmod tempor incididunt ut labore et
-                                    dolore magna aliqua.
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
 
-                <div class="tui-col_md-4">
-                    <a
-                        size="l"
-                        tuiIsland
-                        target="_blank"
-                        [hoverable]="true"
-                    >
-                        <div class="tui-island__content">
-                            <div>
-                                <h3 class="tui-island__title">Credit card</h3>
-                                <p class="tui-island__paragraph">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                    elit, sed do eiusmod tempor incididunt ut labore et
-                                    dolore magna aliqua.
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="tui-col_md-4">
-                    <a
-                        size="l"
-                        tuiIsland
-                        target="_blank"
-                        [hoverable]="true"
-                    >
-                        <div class="tui-island__content">
-                            <div>
-                                <h3 class="tui-island__title">Credit card</h3>
-                                <p class="tui-island__paragraph">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                    elit, sed do eiusmod tempor incididunt ut labore et
-                                    dolore magna aliqua.
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="tui-col_md-4">
-                    <a
-                        size="l"
-                        tuiIsland
-                        target="_blank"
-                        [hoverable]="true"
-                    >
-                        <div class="tui-island__content">
-                            <div>
-                                <h3 class="tui-island__title">Credit card</h3>
-                                <p class="tui-island__paragraph">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                    elit, sed do eiusmod tempor incididunt ut labore et
-                                    dolore magna aliqua.
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            
         </div>
     </div>
 </ng-container>
