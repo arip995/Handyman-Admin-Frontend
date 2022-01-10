@@ -25,6 +25,7 @@ import { TuiArcChartModule } from '@taiga-ui/addon-charts';
 import { TuiPieChartModule } from '@taiga-ui/addon-charts';
 import { TuiBarChartModule } from '@taiga-ui/addon-charts';
 import { DashboardComponent } from "./Home/Dashboard/dashboard.component";
+import { HttpClientModule } from "@angular/common/http";
 
 
 
@@ -59,7 +60,8 @@ import { DashboardComponent } from "./Home/Dashboard/dashboard.component";
     TuiLineChartModule,
     TuiArcChartModule,
     TuiPieChartModule,
-    TuiBarChartModule
+    TuiBarChartModule,
+    HttpClientModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
