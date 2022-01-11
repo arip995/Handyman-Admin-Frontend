@@ -13,11 +13,12 @@ const routes: Routes = [
     redirectTo     : '/admin/sign-in',
     data           : {title: 'sign-in'}
 },
-// {
-//   path             : 'admin/sign-up',
-//   pathMatch        : 'full',
-//   component        : SignUpComponent,
-// },
+{
+  path             : 'admin/sign-up',
+  pathMatch        : 'full',
+  canActivate      : [AuthenticationGuard],
+  component        : SignUpComponent,
+},
 {
   path             : 'admin/sign-in',
   canActivate      : [EntryAuthenticationGuard],

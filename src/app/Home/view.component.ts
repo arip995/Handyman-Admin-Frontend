@@ -2,6 +2,10 @@ import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { ceil } from '@taiga-ui/cdk';
 import { TUI_DEFAULT_STRINGIFY } from '@taiga-ui/cdk';
 import { Router,ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { data } from 'autoprefixer';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { switchMap,tap,catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'view-home',
@@ -11,11 +15,33 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 
 export class HomeComponent {
-
+  public _refresh:any = new BehaviorSubject(null);
+  public user$: any;
+  userData:any;
   constructor(
     private _router:Router,
-    private _activatedRoute: ActivatedRoute
-  ){}
+    private _activatedRoute: ActivatedRoute,
+    private _httpClient:HttpClient
+  ){
+    const adminAccessToken:any = localStorage.getItem('adminAccessToken');
+    console.log((adminAccessToken))
+    const data = {
+      "accessToken" : adminAccessToken
+    }
+    this.user$ = this._refresh.pipe(
+      (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
+      .pipe(
+        tap((res:any)=>{
+          this.userData = res;
+          console.log(res)
+        })
+        ,catchError((error)=>{
+          throw new Error(error);
+          
+        })
+      )))
+    )
+  }
     content: 'Dashboard'| 'Customers' | 'Workers' | 'Analytics' | 'Products' | 'Reports' = "Dashboard";
     readonly value = [40, 30, 20, 10];
     readonly values = [
@@ -59,4 +85,5 @@ readonly stringify = TUI_DEFAULT_STRINGIFY;
     localStorage.clear();
     this._router.navigate(['../sign-in'],{relativeTo: this._activatedRoute})
   }
+
 }

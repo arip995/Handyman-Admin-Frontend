@@ -29,6 +29,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-service.service";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from "./Loader/interceptor.service";
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -63,9 +64,10 @@ import { InterceptorService } from "./Loader/interceptor.service";
     TuiPieChartModule,
     TuiBarChartModule,
     HttpClientModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatMenuModule
 ],
-  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer,multi : true},AuthGuardServiceService,
+  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer,multi : true},
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi : true}],
   bootstrap: [AppComponent]
 })
