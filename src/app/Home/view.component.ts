@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { ceil } from '@taiga-ui/cdk';
 import { TUI_DEFAULT_STRINGIFY } from '@taiga-ui/cdk';
+import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'view-home',
@@ -8,7 +9,13 @@ import { TUI_DEFAULT_STRINGIFY } from '@taiga-ui/cdk';
   styleUrls: ['./view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class HomeComponent {
+
+  constructor(
+    private _router:Router,
+    private _activatedRoute: ActivatedRoute
+  ){}
     content: 'Dashboard'| 'Customers' | 'Workers' | 'Analytics' | 'Products' | 'Reports' = "Dashboard";
     readonly value = [40, 30, 20, 10];
     readonly values = [
@@ -46,5 +53,10 @@ readonly stringify = TUI_DEFAULT_STRINGIFY;
 
   getHeight(max: number): number {
       return (max / ceil(max, -3)) * 100;
+  }
+
+  logout(){
+    localStorage.clear();
+    this._router.navigate(['../sign-in'],{relativeTo: this._activatedRoute})
   }
 }

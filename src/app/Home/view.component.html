@@ -15,54 +15,63 @@
             <div class="mt-12">
                 <div (click)="contentChange('Dashboard')"  class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Dashboard' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">dashboard_outline</mat-icon>
+                        <mat-icon [style.color]="content==='Dashboard' ? '#1e40af' : ''" class="icon" >dashboard_outline</mat-icon>
                     </div>
                     <span [ngClass]="{'text-blue-800' : content==='Dashboard'}" class="content-text text-center font-light text-lg">Dashboard</span>
                 </div>
             </div>
 
-            <div class="mt-12">
+            <div class="mt-6">
                 <div (click)="contentChange('Customers')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Customers' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
+                        <mat-icon [style.color]="content==='Customers' ? '#1e40af' : ''" class="icon" >people_outline</mat-icon>
                     </div>
                     <span [ngClass]="{'text-blue-800' : content==='Customers'}" class="content-text text-center font-light text-lg">Customers</span>
                 </div>
             </div>
 
-            <div class="mt-12">
+            <div class="mt-6">
                 <div (click)="contentChange('Workers')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Workers' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">people_outline</mat-icon>
+                        <mat-icon [style.color]="content==='Workers' ? '#1e40af' : ''" class="icon" >people_outline</mat-icon>
                     </div>
                     <span [ngClass]="{'text-blue-800' : content==='Workers'}" class="content-text text-center font-light text-lg">Workers</span>
                 </div>
             </div>
 
-            <div class="mt-12">
+            <div class="mt-6">
                 <div (click)="contentChange('Analytics')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Analytics' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">analytics</mat-icon>
+                        <mat-icon [style.color]="content==='Analytics' ? '#1e40af' : ''" class="icon" >analytics</mat-icon>
                     </div>
                     <span [ngClass]="{'text-blue-800' : content==='Analytics'}" class="content-text text-center font-light text-lg">Analytics</span>
                 </div>
             </div>
 
-            <div class="mt-12">
+            <div class="mt-6">
                 <div (click)="contentChange('Products')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Products' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">shopping_cart</mat-icon>
+                        <mat-icon [style.color]="content==='Products' ? '#1e40af' : ''" class="icon" >shopping_cart</mat-icon>
                     </div>
                     <span [ngClass]="{'text-blue-800' : content==='Products'}" class="content-text text-center font-light text-lg">Products</span>
                 </div>
             </div>
 
-            <div class="mt-12">
+            <div class="mt-6">
                 <div (click)="contentChange('Reports')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Reports' ? '#1e40af' : ''" class="icon" aria-hidden="false" aria-label="Example home icon">report</mat-icon>
+                        <mat-icon [style.color]="content==='Reports' ? '#1e40af' : ''" class="icon" >report</mat-icon>
                     </div>
                     <span [ngClass]="{'text-blue-800' : content==='Reports'}" class="content-text text-center font-light text-lg">Reports</span>
+                </div>
+            </div>
+
+            <div class="logout ml-2">
+                <div (click)="logout()" class="flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                    <div class="">
+                        <tui-svg class="out" src="tuiIconLoginLarge" ></tui-svg>
+                    </div>
+                    <span class="ml-6 font-light text-lg">Logout</span>
                 </div>
             </div>
         </div>

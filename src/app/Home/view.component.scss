@@ -20,6 +20,15 @@
     // background-color: #d1fdff;
     color: #1e40af;
 }
-.left-nav{
-    // position: fixed;
+.logout :hover{
+    color: red;
+    .out{
+    color: red;
+    }
+}
+
+.logout{
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 30px;
 }

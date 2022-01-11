@@ -4,6 +4,7 @@ import { SignInComponent } from './Authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { HomeComponent } from './Home/view.component';
 import { AuthenticationGuard } from './Authentication/AuthGuard/authentication.guard';
+import { EntryAuthenticationGuard } from './Authentication/AuthGuard/entry.guard';
 
 const routes: Routes = [
   {
@@ -12,13 +13,14 @@ const routes: Routes = [
     redirectTo     : '/admin/sign-in',
     data           : {title: 'sign-in'}
 },
-{
-  path             : 'admin/sign-up',
-  pathMatch        : 'full',
-  component        : SignUpComponent,
-},
+// {
+//   path             : 'admin/sign-up',
+//   pathMatch        : 'full',
+//   component        : SignUpComponent,
+// },
 {
   path             : 'admin/sign-in',
+  canActivate      : [EntryAuthenticationGuard],
   pathMatch        : 'full',
   component        : SignInComponent,
 },{

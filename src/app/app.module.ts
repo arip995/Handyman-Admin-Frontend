@@ -25,10 +25,10 @@ import { TuiArcChartModule } from '@taiga-ui/addon-charts';
 import { TuiPieChartModule } from '@taiga-ui/addon-charts';
 import { TuiBarChartModule } from '@taiga-ui/addon-charts';
 import { DashboardComponent } from "./Home/Dashboard/dashboard.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-service.service";
-
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { InterceptorService } from "./Loader/interceptor.service";
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-s
     SignUpComponent,
     SignInComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,9 +62,11 @@ import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-s
     TuiArcChartModule,
     TuiPieChartModule,
     TuiBarChartModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressBarModule
 ],
-  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},AuthGuardServiceService],
+  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer,multi : true},AuthGuardServiceService,
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi : true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
