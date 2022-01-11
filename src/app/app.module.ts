@@ -29,7 +29,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-service.service";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from "./Loader/interceptor.service";
-import { LoaderComponent } from "./Loader/loader.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +37,6 @@ import { LoaderComponent } from "./Loader/loader.component";
     SignInComponent,
     HomeComponent,
     DashboardComponent,
-    LoaderComponent
   ],
   imports: [
     BrowserModule,

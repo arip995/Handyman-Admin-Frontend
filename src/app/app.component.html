@@ -1,3 +1,5 @@
 <tui-root>
-<router-outlet></router-outlet>
+<router-outlet>
+<mat-progress-bar class="mb-auto" *ngIf="loader.isLoading | async" mode="indeterminate"></mat-progress-bar>
+</router-outlet>
 </tui-root>
