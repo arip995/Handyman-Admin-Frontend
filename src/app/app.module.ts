@@ -26,6 +26,7 @@ import { TuiPieChartModule } from '@taiga-ui/addon-charts';
 import { TuiBarChartModule } from '@taiga-ui/addon-charts';
 import { DashboardComponent } from "./Home/Dashboard/dashboard.component";
 import { HttpClientModule } from "@angular/common/http";
+import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-service.service";
 
 
 
@@ -63,7 +64,7 @@ import { HttpClientModule } from "@angular/common/http";
     TuiBarChartModule,
     HttpClientModule
 ],
-  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
+  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},AuthGuardServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
