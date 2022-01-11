@@ -3,27 +3,30 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './Authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
 import { HomeComponent } from './Home/view.component';
+import { AuthenticationGuard } from './Authentication/AuthGuard/authentication.guard';
 
 const routes: Routes = [
   {
-    path       : '',
-    pathMatch  : 'full',
-    redirectTo : '/admin/sign-in',
-    data       : {title: 'sign-in'}
+    path           : '',
+    pathMatch      : 'full',
+    redirectTo     : '/admin/sign-in',
+    data           : {title: 'sign-in'}
 },
 {
-  path       : 'admin/sign-up',
-  pathMatch  : 'full',
-  component  : SignUpComponent,
+  path             : 'admin/sign-up',
+  pathMatch        : 'full',
+  component        : SignUpComponent,
 },
 {
-  path       : 'admin/sign-in',
-  pathMatch  : 'full',
-  component  : SignInComponent,
+  path             : 'admin/sign-in',
+  pathMatch        : 'full',
+  component        : SignInComponent,
 },{
-  path       : 'admin/home',
-  pathMatch  : 'full',
-  component  : HomeComponent,
+  path             : 'admin/home',
+  pathMatch        : 'full',
+  canActivate      : [AuthenticationGuard],
+  canActivateChild : [AuthenticationGuard],
+  component        : HomeComponent,
 }
 ];
 

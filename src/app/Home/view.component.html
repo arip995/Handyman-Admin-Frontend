@@ -6,7 +6,7 @@
         <!-- [style.background-color]="'black' -->
         
         <!-- Sidenav -->
-        <div class="col-span-1" [style.background-color]="'black'" >
+        <div style="position: fixed;" class="h-screen left-nav col-span-1" >
             <div class="flex justify-center mt-2 font-semibold text-4xl font-mono tracking-wide text-blue-600">
                 HANDYMAN
             </div>
@@ -65,6 +65,9 @@
                     <span [ngClass]="{'text-blue-800' : content==='Reports'}" class="content-text text-center font-light text-lg">Reports</span>
                 </div>
             </div>
+        </div>
+
+        <div class="col-span-1">
         </div>
 
 

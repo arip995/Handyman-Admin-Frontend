@@ -45,13 +45,11 @@ export class SignInComponent implements OnInit {
       this._httpClient.post(`http://127.0.0.1:8000/handymanadmin/signin/`,data).subscribe
       ((res:any)=>{
         console.log(res);
-        const localitem:any = localStorage.getItem('accessToken');
-        const localid:any = localStorage.getItem('id');
-        if(localitem && localid){
+        const localitem:any = localStorage.getItem('adminAccessToken');
+        if(localitem ){
           
         }else{
-          localStorage.setItem('accessToken', res.accessToken)
-          localStorage.setItem('id', res.id)
+          localStorage.setItem('adminAccessToken', res.accessToken)
         }
         this._router.navigate(['../home'],{relativeTo : this._activeRoute});
       })
