@@ -81,7 +81,6 @@
 
 
 
-        <!-- Main Content -->
         <div class="col-span-5" *ngIf="(user$ |async);else loading">
             <div class="flex">
                 <div class="mt-2 ml-2 font-bold text-4xl font-mono tracking-tight text-slate-500">
@@ -117,7 +116,7 @@
             </ng-container>
         </div>
         <ng-template #loading>
-            <div style="position:fixed" class="h-screen w-screen flex text-gray-400 justify-center items-center">
+            <div class="col-span-5 h-screen w-full flex text-gray-400 justify-center items-center">
                 Loading...
             </div>
         </ng-template>
@@ -125,4 +124,5 @@
     
     
 </ng-container>
+
 
