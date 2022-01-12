@@ -51,9 +51,7 @@ export class SignInComponent implements OnInit {
         if(localitem ){
           
         }else{
-          this.myDate = this._datePipe.transform(this.myDate, 'yyyy-MM-dd');
           localStorage.setItem('adminAccessToken', res.accessToken);
-          localStorage.setItem('adminDate', this.myDate);
         }
         this._router.navigate(['../home'],{relativeTo : this._activeRoute});
       })

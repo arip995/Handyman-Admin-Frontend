@@ -26,18 +26,18 @@ export class HomeComponent {
     private _activatedRoute: ActivatedRoute,
     private _httpClient:HttpClient
   ){
-    this.currentDate = this._datePipe.transform(this.currentDate, 'yyyy-MM-dd');
-    this.adminDate = localStorage.getItem("adminDate");
-    var date1 = new Date(this.adminDate); 
-	  var date2 = new Date(this.currentDate); 
+    // this.currentDate = this._datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+    // this.adminDate = localStorage.getItem("adminDate");
+    // var date1 = new Date(this.adminDate); 
+	  // var date2 = new Date(this.currentDate); 
   
-    var Time = date2.getTime() - date1.getTime(); 
-    var Days = Time / (86400000);
-    if(Days > 0){
-      localStorage.clear();
-      this._router.navigate(['../sign-in'],{relativeTo : this._activatedRoute})
-    }
-    console.log(Days)
+    // var Time = date2.getTime() - date1.getTime(); 
+    // var Days = Time / (86400000);
+    // if(Days > 0){
+    //   localStorage.clear();
+    //   this._router.navigate(['../sign-in'],{relativeTo : this._activatedRoute})
+    // }
+    // console.log(Days)
     const adminAccessToken:any = localStorage.getItem('adminAccessToken');
     const data = {
       "accessToken" : adminAccessToken
@@ -46,12 +46,14 @@ export class HomeComponent {
       (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
       .pipe(
         tap((res:any)=>{
+          if(!res){
+          }
           this.userData = res;
-          // console.log(res)
+          console.log(res)
         })
         ,catchError((error)=>{
+          alert("please logout and sign in again")
           throw new Error(error);
-          
         })
       )))
     )
