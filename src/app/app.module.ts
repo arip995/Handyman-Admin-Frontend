@@ -24,7 +24,7 @@ import { TuiLineChartModule } from '@taiga-ui/addon-charts';
 import { TuiArcChartModule } from '@taiga-ui/addon-charts';
 import { TuiPieChartModule } from '@taiga-ui/addon-charts';
 import { TuiBarChartModule } from '@taiga-ui/addon-charts';
-import { DashboardComponent } from "./Home/Dashboard/dashboard.component";
+import { DashboardComponent } from "./Home/Contents/Dashboard/dashboard.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-service.service";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
