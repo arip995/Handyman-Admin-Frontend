@@ -30,6 +30,8 @@ import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-s
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from "./Loader/interceptor.service";
 import { MatMenuModule } from '@angular/material/menu';
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -68,7 +70,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer,multi : true},
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi : true}],
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi : true},
+    DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

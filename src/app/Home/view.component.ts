@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ceil } from '@taiga-ui/cdk';
 import { TUI_DEFAULT_STRINGIFY } from '@taiga-ui/cdk';
 import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { data } from 'autoprefixer';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { switchMap,tap,catchError } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'view-home',
@@ -18,13 +18,27 @@ export class HomeComponent {
   public _refresh:any = new BehaviorSubject(null);
   public user$: any;
   userData:any;
+  currentDate:any = new Date();
+  adminDate: any;
   constructor(
+    private _datePipe: DatePipe,
     private _router:Router,
     private _activatedRoute: ActivatedRoute,
     private _httpClient:HttpClient
   ){
+    this.currentDate = this._datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+    this.adminDate = localStorage.getItem("adminDate");
+    var date1 = new Date(this.adminDate); 
+	  var date2 = new Date(this.currentDate); 
+  
+    var Time = date2.getTime() - date1.getTime(); 
+    var Days = Time / (86400000);
+    if(Days > 0){
+      localStorage.clear();
+      this._router.navigate(['../sign-in'],{relativeTo : this._activatedRoute})
+    }
+    console.log(Days)
     const adminAccessToken:any = localStorage.getItem('adminAccessToken');
-    console.log((adminAccessToken))
     const data = {
       "accessToken" : adminAccessToken
     }
@@ -33,7 +47,7 @@ export class HomeComponent {
       .pipe(
         tap((res:any)=>{
           this.userData = res;
-          console.log(res)
+          // console.log(res)
         })
         ,catchError((error)=>{
           throw new Error(error);

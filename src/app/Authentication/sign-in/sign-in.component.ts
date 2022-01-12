@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'sign-up',
@@ -9,12 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
     signInForm: FormGroup;
+    myDate:any = new Date();
     //Constructor
     constructor(
       private _formBuilder: FormBuilder,
       private _httpClient: HttpClient,
       private _activeRoute: ActivatedRoute,
       private _router: Router,
+      private _datePipe: DatePipe
       ){
         this.signInForm = _formBuilder.group({
             username : new FormControl("",[Validators.required,Validators.minLength(6),Validators.maxLength(10)]),
@@ -24,7 +27,6 @@ export class SignInComponent implements OnInit {
 
     //OnInit method
     ngOnInit() {
-
     }
 
     checkError(errorName:any){
@@ -49,7 +51,9 @@ export class SignInComponent implements OnInit {
         if(localitem ){
           
         }else{
-          localStorage.setItem('adminAccessToken', res.accessToken)
+          this.myDate = this._datePipe.transform(this.myDate, 'yyyy-MM-dd');
+          localStorage.setItem('adminAccessToken', res.accessToken);
+          localStorage.setItem('adminDate', this.myDate);
         }
         this._router.navigate(['../home'],{relativeTo : this._activeRoute});
       })
