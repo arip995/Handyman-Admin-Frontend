@@ -26,11 +26,13 @@ import { TuiPieChartModule } from '@taiga-ui/addon-charts';
 import { TuiBarChartModule } from '@taiga-ui/addon-charts';
 import { DashboardComponent } from "./Home/Contents/Dashboard/dashboard.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { AuthGuardServiceService } from "./Authentication/AuthGuard/auth-guard-service.service";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from "./Loader/interceptor.service";
 import { MatMenuModule } from '@angular/material/menu';
 import { DatePipe } from '@angular/common';
+import { workerComponent } from "./Home/Contents/Worker/worker.component";
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { DatePipe } from '@angular/common';
     SignInComponent,
     HomeComponent,
     DashboardComponent,
+    workerComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,9 @@ import { DatePipe } from '@angular/common';
     TuiBarChartModule,
     HttpClientModule,
     MatProgressBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer,multi : true},
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi : true},

@@ -114,6 +114,9 @@
             <ng-container *ngIf="content==='Dashboard'">
                 <dashboard></dashboard>
             </ng-container>
+            <ng-container *ngIf="content==='Workers'">
+                <worker></worker>
+            </ng-container>
         </div>
         <ng-template #loading>
             <div class="col-span-5 h-screen w-full flex text-gray-400 justify-center items-center">

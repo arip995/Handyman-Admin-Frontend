@@ -1,0 +1,48 @@
+<ng-container *ngIf="(worker$ |async);else loading">
+    <div class="mt-12 mb-12 flex w-10/12 justify-center">
+        <div class="w-full">
+            <table class="w-full" mat-table [dataSource]="tableDatasource">
+
+                <!-- Username -->
+                <ng-container class="w-1/6" matColumnDef="Username">
+                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Username </th>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> {{user.username}} </td>
+                </ng-container>
+    
+                <!-- Name -->
+                <ng-container class="w-1/6" matColumnDef="Name">
+                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Name </th>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user">{{user.firstName}} {{user.lastName}}</td>
+                </ng-container>
+    
+                <!-- Work Type -->
+                <ng-container class="w-1/6" matColumnDef="Worktype">
+                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Work Type </th>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> {{user.worktype}} </td>
+                </ng-container>
+    
+                <!-- Status -->
+                <ng-container class="w-1/6" matColumnDef="Status">
+                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Status </th>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> {{user.status ? user.status : "Created"}} </td>
+                </ng-container>
+    
+                <!-- Created On -->
+                <ng-container class="w-1/6" matColumnDef="CreatedOn">
+                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Created On </th>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> {{user.createdOn}} </td>
+                </ng-container>
+    
+                <!-- Define what the rows will look like -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr class="cells" mat-row *matRowDef="let tableDatasource; columns: displayedColumns"></tr>
+            </table>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #loading>
+    <div class="h-screen w-full flex text-gray-400 justify-center items-center">
+        Loading...
+    </div>
+</ng-template>
