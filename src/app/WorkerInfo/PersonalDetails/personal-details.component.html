@@ -1,0 +1,28 @@
+<ng-container>
+    <div class="w-full m-4">
+        <form class="w-1/2" [formGroup]="signInForm">
+            
+            <label tuiLabel>
+                <tui-input
+                class="b-form"
+                    required
+                    formControlName="'username'"
+                    tuiTextfieldSize="m"
+                >
+                    Username
+                </tui-input>
+            </label>
+
+            <label tuiLabel>
+                <tui-input
+                required
+                    formControlName="'password'"
+                    tuiTextfieldSize="m"
+                >
+                    Password
+                </tui-input>
+            </label>
+            
+        </form>
+    </div>
+</ng-container>

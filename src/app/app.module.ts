@@ -35,6 +35,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { WorkerInfoComponent } from "./WorkerInfo/view.component";
 import { PersonalDetailsComponent } from "./WorkerInfo/PersonalDetails/personal-details.component";
+import { TuiInputModule } from '@taiga-ui/kit';
+import { TuiLabelModule } from '@taiga-ui/core';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { PersonalDetailsComponent } from "./WorkerInfo/PersonalDetails/personal-
     MatProgressBarModule,
     MatMenuModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    TuiInputModule,
+    TuiLabelModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer,multi : true},
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi : true},
