@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
 })
 
 export class HomeComponent {
-  public _refresh:any = new BehaviorSubject(null);
+  public _refreshToken$:any = new BehaviorSubject(null);
   public user$: any;
   userData:any;
   currentDate:any = new Date();
@@ -42,7 +42,7 @@ export class HomeComponent {
     const data = {
       "accessToken" : adminAccessToken
     }
-    this.user$ = this._refresh.pipe(
+    this.user$ = this._refreshToken$.pipe(
       (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
       .pipe(
         tap((res:any)=>{

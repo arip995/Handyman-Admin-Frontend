@@ -33,7 +33,11 @@ import { DatePipe } from '@angular/common';
 import { workerComponent } from "./Home/Contents/Worker/worker.component";
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from "@angular/material/paginator";
-
+import { WorkerInfoComponent } from "./WorkerInfo/view.component";
+import { PersonalDetailsComponent } from "./WorkerInfo/PersonalDetails/personal-details.component";
+import { TuiInputModule } from '@taiga-ui/kit';
+import { TuiLabelModule } from '@taiga-ui/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,9 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     SignInComponent,
     HomeComponent,
     DashboardComponent,
-    workerComponent
+    workerComponent,
+    WorkerInfoComponent,
+    PersonalDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -72,11 +78,16 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatProgressBarModule,
     MatMenuModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    TuiInputModule,
+    TuiLabelModule
+],schemas: [
+  CUSTOM_ELEMENTS_SCHEMA
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer,multi : true},
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi : true},
-    DatePipe],
+    DatePipe
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
