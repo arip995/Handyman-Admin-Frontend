@@ -34,7 +34,7 @@ import { workerComponent } from "./Home/Contents/Worker/worker.component";
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { WorkerInfoComponent } from "./WorkerInfo/view.component";
-
+import { PersonalDetailsComponent } from "./WorkerInfo/PersonalDetails/personal-details.component";
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { WorkerInfoComponent } from "./WorkerInfo/view.component";
     HomeComponent,
     DashboardComponent,
     workerComponent,
-    WorkerInfoComponent
+    WorkerInfoComponent,
+    PersonalDetailsComponent
   ],
   imports: [
     BrowserModule,
