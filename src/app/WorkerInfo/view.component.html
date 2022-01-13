@@ -1,7 +1,7 @@
 <ng-container>
     <div class="w-full h-screen grid grid-cols-12">
         <!-- Workflow steps -->
-        <div class="col-span-2 border-r-2 border-blue-800">
+        <div class="col-span-2 border-r-2 border-blue-800 h-full">
             <div class="flex justify-center h-1/6 items-center font-extrabold 2xl:text-3xl text-2xl font-mono tracking-wide text-blue-800">
                 Authentication
             </div>
@@ -31,6 +31,7 @@
             </div>
         </div>
 
+        <!-- <div class="col-span-2"></div> -->
 
         <!-- Main pages -->
         <div class="col-span-10">
@@ -39,6 +40,26 @@
                     <div class="flex items-center p-4 h-full">
                         <div class="w-28 h-28 border-4 border-gray-400 rounded-full bg">
                             <mat-icon style="color: #9ca3af;font-size: 104px;">person_outline</mat-icon>
+                        </div>
+                        <div *ngIf="(workerDetail$ |async) as data">
+                            <div class="flex font-light text-black text-lg ml-2">
+                                <div class="text-gray-500 text-base font-semibold pr-2">
+                                    Name:
+                                </div>
+                                {{workerDetail.firstName}} {{workerDetail.lastName}}
+                            </div>
+                            <div class="flex font-light text-black text-lg ml-2">
+                                <div class="text-gray-500 text-base font-semibold pr-2">
+                                    Username:
+                                </div>
+                                {{workerDetail.username}}
+                            </div>
+                            <div class="flex font-light text-black text-lg ml-2">
+                                <div class="text-gray-500 text-base font-semibold pr-2">
+                                    Mobile Number:
+                                </div>
+                                {{workerDetail.mobileNumber}}
+                            </div>
                         </div>
                     </div>
                 </div>
