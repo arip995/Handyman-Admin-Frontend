@@ -1,3 +1,52 @@
-<h1>
-    Arindam
-</h1>
+<ng-container>
+    <div class="w-full h-screen grid grid-cols-12">
+        <!-- Workflow steps -->
+        <div class="col-span-2 border-r-2 border-blue-800">
+            <div class="flex justify-center h-1/6 items-center font-extrabold 2xl:text-3xl text-2xl font-mono tracking-wide text-blue-800">
+                Authentication
+            </div>
+
+            <div (click)="onContentChange('personalDetails')" [style.background-color]="authenticationSteps === 'personalDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+                Personal Details
+            </div>
+
+            <div (click)="onContentChange('familyDetails')" [style.background-color]="authenticationSteps === 'familyDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+                Family Details
+            </div>
+
+            <div (click)="onContentChange('residenceDetails')" [style.background-color]="authenticationSteps === 'residenceDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+                Residence Details
+            </div>
+
+            <div (click)="onContentChange('workDetails')" [style.background-color]="authenticationSteps === 'workDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+                Work Details
+            </div>
+
+            <div (click)="onContentChange('kyc')" [style.background-color]="authenticationSteps === 'kyc' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+                KYC
+            </div>
+
+            <div (click)="onContentChange('bankDetails')" [style.background-color]="authenticationSteps === 'bankDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+                Bank Details
+            </div>
+        </div>
+
+
+        <!-- Main pages -->
+        <div class="col-span-10">
+            <ng-container>
+                <div class="h-1/6 border-b-2 border-blue-800">
+                    <div class="flex items-center p-4 h-full">
+                        <div class="w-28 h-28 border-4 border-gray-400 rounded-full bg">
+                            <mat-icon style="color: #9ca3af;font-size: 104px;">person_outline</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container>
+
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
