@@ -6,28 +6,32 @@
                 Authentication
             </div>
 
-            <div (click)="onContentChange('personalDetails')" [style.background-color]="authenticationSteps === 'personalDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+            <div (click)="onContentChange('personalDetails')" [ngClass]="{'text-blue-800' : authenticationSteps==='personalDetails'}" [style.background-color]="authenticationSteps === 'personalDetails' ? '#f3f9fd' : ''" class="content text-gray-500 pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
                 Personal Details
             </div>
 
-            <div (click)="onContentChange('familyDetails')" [style.background-color]="authenticationSteps === 'familyDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+            <div (click)="onContentChange('familyDetails')" [ngClass]="{'text-blue-800' : authenticationSteps==='familyDetails'}" [style.background-color]="authenticationSteps === 'familyDetails' ? '#f3f9fd' : ''" class="content text-gray-500 pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
                 Family Details
             </div>
 
-            <div (click)="onContentChange('residenceDetails')" [style.background-color]="authenticationSteps === 'residenceDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+            <div (click)="onContentChange('residenceDetails')" [ngClass]="{'text-blue-800' : authenticationSteps==='residenceDetails'}" [style.background-color]="authenticationSteps === 'residenceDetails' ? '#f3f9fd' : ''" class="content text-gray-500 pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
                 Residence Details
             </div>
 
-            <div (click)="onContentChange('workDetails')" [style.background-color]="authenticationSteps === 'workDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+            <div (click)="onContentChange('workDetails')" [ngClass]="{'text-blue-800' : authenticationSteps==='workDetails'}" [style.background-color]="authenticationSteps === 'workDetails' ? '#f3f9fd' : ''" class="content text-gray-500 pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
                 Work Details
             </div>
 
-            <div (click)="onContentChange('kyc')" [style.background-color]="authenticationSteps === 'kyc' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+            <div (click)="onContentChange('kyc')" [ngClass]="{'text-blue-800' : authenticationSteps==='kyc'}" [style.background-color]="authenticationSteps === 'kyc' ? '#f3f9fd' : ''" class="content text-gray-500 pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
                 KYC
             </div>
 
-            <div (click)="onContentChange('bankDetails')" [style.background-color]="authenticationSteps === 'bankDetails' ? '#f3f9fd' : ''" class="content pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+            <div (click)="onContentChange('bankDetails')" [ngClass]="{'text-blue-800' : authenticationSteps==='bankDetails'}" [style.background-color]="authenticationSteps === 'bankDetails' ? '#f3f9fd' : ''" class="content text-gray-500 pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
                 Bank Details
+            </div>
+
+            <div (click)="onContentChange('activate')" [ngClass]="{'text-blue-800' : authenticationSteps==='activate'}" [style.background-color]="authenticationSteps === 'activate' ? '#f3f9fd' : ''" class="content text-gray-500 pt-2 pb-2 cursor-pointer text-xl font-light font-serif text-start flex justify-center mt-10 ml-4 mr-4">
+                Activate
             </div>
         </div>
 
@@ -65,8 +69,9 @@
                 </div>
             </ng-container>
 
+            <!-- Authentication Steps -->
             <ng-container>
-
+                
             </ng-container>
         </div>
     </div>

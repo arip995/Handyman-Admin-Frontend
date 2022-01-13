@@ -18,7 +18,7 @@ export class WorkerInfoComponent implements OnInit {
     workerDetail$:any;
     workerDetail:any;
     public _refreshToken$:any = new BehaviorSubject(null);
-    authenticationSteps: "personalDetails" | "familyDetails"| "residenceDetails" | "workDetails" | "kyc" | "bankDetails" = "personalDetails";
+    authenticationSteps: "personalDetails" | "familyDetails"| "residenceDetails" | "workDetails" | "kyc" | "bankDetails" | "activate" = "personalDetails";
     onContentChange(content:any){
       this.authenticationSteps = content;
     }
