@@ -33,6 +33,7 @@ import { DatePipe } from '@angular/common';
 import { workerComponent } from "./Home/Contents/Worker/worker.component";
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { WorkerInfoComponent } from "./WorkerInfo/view.component";
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     SignInComponent,
     HomeComponent,
     DashboardComponent,
-    workerComponent
+    workerComponent,
+    WorkerInfoComponent
   ],
   imports: [
     BrowserModule,
