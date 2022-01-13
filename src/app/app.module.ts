@@ -37,6 +37,7 @@ import { WorkerInfoComponent } from "./WorkerInfo/view.component";
 import { PersonalDetailsComponent } from "./WorkerInfo/PersonalDetails/personal-details.component";
 import { TuiInputModule } from '@taiga-ui/kit';
 import { TuiLabelModule } from '@taiga-ui/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -80,10 +81,13 @@ import { TuiLabelModule } from '@taiga-ui/core';
     MatPaginatorModule,
     TuiInputModule,
     TuiLabelModule
+],schemas: [
+  CUSTOM_ELEMENTS_SCHEMA
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer,multi : true},
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi : true},
-    DatePipe],
+    DatePipe
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

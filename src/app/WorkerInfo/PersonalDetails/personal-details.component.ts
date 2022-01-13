@@ -7,6 +7,7 @@ import { switchMap,tap,catchError } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'personal-details',
   templateUrl: './personal-details.component.html',
@@ -16,7 +17,7 @@ import { environment } from 'src/environments/environment';
 
 export class PersonalDetailsComponent implements OnInit {
   signInForm: FormGroup;
-  
+
   constructor(
     private _formBuilder: FormBuilder,
       private _httpClient: HttpClient,

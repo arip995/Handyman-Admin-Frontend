@@ -1,25 +1,25 @@
 <ng-container>
     <div class="w-full m-4">
-        <form class="w-1/2" [formGroup]="signInForm">
+        <form class="w-1/3" [formGroup]="signInForm">
             
-            <label tuiLabel>
+            <label tuiLabel label="Username">
                 <tui-input
-                class="b-form"
-                    required
-                    formControlName="'username'"
-                    tuiTextfieldSize="m"
-                >
-                    Username
-                </tui-input>
+                        tuiTextfieldSize="m"
+                        tuiTextfieldExampleText="Ivan Ivanov"
+                        formControlName="'username'"
+                        [tuiTextfieldLabelOutside]="true"
+                    >
+                        Name
+                    </tui-input>
             </label>
 
-            <label tuiLabel>
+            <label tuiLabel label="Password">
                 <tui-input
-                required
                     formControlName="'password'"
                     tuiTextfieldSize="m"
+                    [tuiTextfieldLabelOutside]="true"
                 >
-                    Password
+                    
                 </tui-input>
             </label>
             
