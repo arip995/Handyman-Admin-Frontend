@@ -54,6 +54,6 @@ import { MatTableDataSource } from '@angular/material/table';
 
 
     workerProfile(id:any){
-        console.log(id)
+        this._router.navigate(['../workerinfo/',id],{relativeTo: this._activatedRoute})
     }
   }

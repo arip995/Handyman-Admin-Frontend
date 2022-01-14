@@ -11,7 +11,7 @@
                     >
                     <tui-data-list-wrapper
                         *tuiDataList
-                        [items]="items"
+                        [items]="salutation"
                     ></tui-data-list-wrapper>
                 </tui-select>
                 <tui-field-error formControlName="salutation"></tui-field-error>
@@ -84,7 +84,7 @@
                     >
                     <tui-data-list-wrapper
                         *tuiDataList
-                        [items]="items"
+                        [items]="gender"
                     ></tui-data-list-wrapper>
                 </tui-select>
             </label>
@@ -111,6 +111,8 @@
                     </tui-input>
             </label>
             <button
+            [disabled]="personalDetailsForm.invalid"
+                (click)="update()"
                 class="mb-5"
                 tuiButton
                 type="submit"

@@ -16,7 +16,7 @@ import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
   styleUrls: ['./personal-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    {provide: TUI_DATE_FORMAT, useValue: 'YMD'},
+    {provide: TUI_DATE_FORMAT, useValue: 'DMY'},
     {provide: TUI_DATE_SEPARATOR, useValue: '-'},
 ],
 })
@@ -27,11 +27,16 @@ export class PersonalDetailsComponent implements OnInit {
   personalDetailsForm: FormGroup;
   workerId:any;
   date:any;
-  items:any = [
+  salutation:any = [
         'Mr',
         'Mrs',
         'Ms'
     ]
+  gender:any = [
+      'Male',
+      'Female',
+      'Others'
+  ]
 
   constructor(
       private _formBuilder: FormBuilder,
@@ -43,7 +48,7 @@ export class PersonalDetailsComponent implements OnInit {
     this.date=new Date();
     this.date = this._datePipe.transform(this.date, 'yyyy-MM-dd');
     this.date = this.date.split("-").map(Number);
-
+    console.log(this.date)
     this.personalDetailsForm = _formBuilder.group({
         firstName                : new FormControl("",[Validators.required]),
         lastName                 : new FormControl("",[Validators.required]),
@@ -66,7 +71,7 @@ export class PersonalDetailsComponent implements OnInit {
             console.log(this.totalWorkerData)
             this.date = this.totalWorkerData.personalDetails.dateOfBirth;
             this.date = this.date.split("-").map(Number);
-            console.log(res)
+            console.log(this.date)
           }),catchError((error)=>{
             throw new Error(error)
           })
@@ -77,19 +82,39 @@ export class PersonalDetailsComponent implements OnInit {
           tap((res:any)=>{
             this.personaldata = res;
             console.log(this.personaldata)
-            this.personalDetailsForm.reset({
-              "firstName" : this.personaldata.firstName,
-              "mobileNumber" : this.personaldata.mobileNumber,
-              "lastName" : this.personaldata.lastName,
-              "salutation" : this.totalWorkerData.personalDetails.salutation,
-              "alternateMobileNumber" : this.totalWorkerData.personalDetails.alternateMobileNumber,
-              "dateOfBirth" : new TuiDay(this.date[0], this.date[1]-1, this.date[2]),
-              "nationality" : this.totalWorkerData.personalDetails.nationality,
-              "educationalQualification" : this.totalWorkerData.personalDetails.educationalQualification
-            })
+            if(this.totalWorkerData){
+              this.personalDetailsForm.reset({
+                "firstName" : this.personaldata.firstName,
+                "mobileNumber" : this.personaldata.mobileNumber,
+                "lastName" : this.personaldata.lastName,
+                "salutation" : this.totalWorkerData.personalDetails.salutation,
+                "alternateMobileNumber" : this.totalWorkerData.personalDetails.alternateMobileNumber,
+                "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
+                "nationality" : this.totalWorkerData.personalDetails.nationality,
+                "educationalQualification" : this.totalWorkerData.personalDetails.educationalQualification
+              })
+            }else{
+              this.personalDetailsForm.reset({
+                "firstName" : this.personaldata.firstName,
+                "mobileNumber" : this.personaldata.mobileNumber,
+                "lastName" : this.personaldata.lastName,
+              })
+            }
           })
         ).subscribe((res:any)=>{
 
         })
     }
+
+
+    update(){
+      let updateDate = this.personalDetailsForm.get('dateOfBirth')?.value
+      // updateDate = updateDate._datePipe.transform(this.date, 'yyyy-MM-dd');
+      console.log(updateDate)
+      // console.log(this.personalDetailsForm.get('dateOfBirth')?.value)
+      const data = {
+
+      }
+    }
+
 }
