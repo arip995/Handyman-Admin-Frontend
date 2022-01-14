@@ -22,21 +22,19 @@ import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
 })
 
 export class PersonalDetailsComponent implements OnInit {
+  totalWorkerData:any;
+  personaldata:any;
   personalDetailsForm: FormGroup;
   workerId:any;
   date:any;
   items:any = [
-        'Donations',
-        'Product placement',
-        'Sponsorship',
-        'Found on the street',
-        'Unexpected inheritance',
-        'Investments',
-        'Color copier',
+        'Mr',
+        'Mrs',
+        'Ms'
     ]
 
   constructor(
-    private _formBuilder: FormBuilder,
+      private _formBuilder: FormBuilder,
       private _httpClient: HttpClient,
       private _activatedRoute:ActivatedRoute,
       private _router: Router,
@@ -44,7 +42,7 @@ export class PersonalDetailsComponent implements OnInit {
   ){
     this.date=new Date();
     this.date = this._datePipe.transform(this.date, 'yyyy-MM-dd');
-    this.date = this.date.split("-");
+    this.date = this.date.split("-").map(Number);
 
     this.personalDetailsForm = _formBuilder.group({
         firstName                : new FormControl("",[Validators.required]),
@@ -52,7 +50,7 @@ export class PersonalDetailsComponent implements OnInit {
         mobileNumber             : new FormControl("",[Validators.required]),
         salutation               : new FormControl("",[Validators.required]),
         alternateMobileNumber    : new FormControl(""),
-        dateOfBirth              : new FormControl(new TuiDay(this.date[0], this.date[1], this.date[2]),[Validators.required]),
+        dateOfBirth              : new FormControl(new TuiDay(this.date[0], this.date[1]-1, this.date[2]),[Validators.required]),
         gender                   : new FormControl("",[Validators.required]),
         educationalQualification : new FormControl("",[Validators.required]),
         nationality              : new FormControl("",[Validators.required]),
@@ -64,9 +62,31 @@ export class PersonalDetailsComponent implements OnInit {
         //Get the personal details
         this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`).pipe(
           tap((res:any)=>{
+            this.totalWorkerData = res;
+            console.log(this.totalWorkerData)
+            this.date = this.totalWorkerData.personalDetails.dateOfBirth;
+            this.date = this.date.split("-").map(Number);
             console.log(res)
           }),catchError((error)=>{
             throw new Error(error)
+          })
+        ).subscribe((res:any)=>{
+
+        })
+        this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
+          tap((res:any)=>{
+            this.personaldata = res;
+            console.log(this.personaldata)
+            this.personalDetailsForm.reset({
+              "firstName" : this.personaldata.firstName,
+              "mobileNumber" : this.personaldata.mobileNumber,
+              "lastName" : this.personaldata.lastName,
+              "salutation" : this.totalWorkerData.personalDetails.salutation,
+              "alternateMobileNumber" : this.totalWorkerData.personalDetails.alternateMobileNumber,
+              "dateOfBirth" : new TuiDay(this.date[0], this.date[1]-1, this.date[2]),
+              "nationality" : this.totalWorkerData.personalDetails.nationality,
+              "educationalQualification" : this.totalWorkerData.personalDetails.educationalQualification
+            })
           })
         ).subscribe((res:any)=>{
 
