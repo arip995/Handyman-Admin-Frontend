@@ -30,12 +30,20 @@ export class PersonalDetailsComponent implements OnInit {
   salutation:any = [
         'Mr',
         'Mrs',
-        'Ms'
+        'Ms',
     ]
   gender:any = [
       'Male',
       'Female',
-      'Others'
+      'Other',
+  ]
+  educationalQualification:any = [
+      'Below 10th',
+      '10 th pass',
+      '12 th pass',
+      'Diploma',
+      'Bachelors',
+      'Other',
   ]
 
   constructor(
@@ -90,6 +98,7 @@ export class PersonalDetailsComponent implements OnInit {
                 "salutation" : this.totalWorkerData.personalDetails.salutation,
                 "alternateMobileNumber" : this.totalWorkerData.personalDetails.alternateMobileNumber,
                 "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
+                "gender" : this.totalWorkerData.personalDetails.gender,
                 "nationality" : this.totalWorkerData.personalDetails.nationality,
                 "educationalQualification" : this.totalWorkerData.personalDetails.educationalQualification
               })
@@ -108,12 +117,46 @@ export class PersonalDetailsComponent implements OnInit {
 
 
     update(){
-      let updateDate = this.personalDetailsForm.get('dateOfBirth')?.value
-      // updateDate = updateDate._datePipe.transform(this.date, 'yyyy-MM-dd');
-      console.log(updateDate)
-      // console.log(this.personalDetailsForm.get('dateOfBirth')?.value)
+      let updateDate:any = this.personalDetailsForm.get('dateOfBirth')?.value
+      updateDate = updateDate.toString()
+      updateDate = updateDate.replaceAll(".","-")
       const data = {
-
+        "foreignId" : this.workerId,
+        "personalDetails":{
+            "salutation": this.personalDetailsForm.get('salutation')?.value,
+            "alternateMobileNumber": this.personalDetailsForm.get('alternateMobileNumber')?.value,
+            "dateOfBirth": updateDate,
+            "gender": this.personalDetailsForm.get('gender')?.value,
+            "nationality": this.personalDetailsForm.get('nationality')?.value,
+            "educationalQualification" : this.personalDetailsForm.get('educationalQualification')?.value
+        }
+      }
+      if(this.totalWorkerData){
+        const totalData = {
+          "foreignId" : this.workerId,
+          "personalDetails" : data.personalDetails,
+          "familyDetails" : this.totalWorkerData?.familyDetails,
+          "residenceDetails" : this.totalWorkerData?.residenceDetails,
+          "workDetails" : this.totalWorkerData?.workDetails,
+          "kyc" : this.totalWorkerData?.kyc,
+          "bankDetails" : this.totalWorkerData?.bankDetails,
+        };
+        console.log(totalData);
+        this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,totalData)
+        .subscribe((res:any)=>{
+          console.log(res)
+        })
+      }
+      else{
+        this._httpClient.post(`${environment.workerBasePath}/add/information/`,data)
+        .subscribe((res:any)=>{
+          console.log(res)
+          this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
+          .subscribe((res:any)=>{
+            this.totalWorkerData = res;
+            console.log(res)
+          })
+        })
       }
     }
 

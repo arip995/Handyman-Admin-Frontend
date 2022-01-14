@@ -90,14 +90,17 @@
             </label>
 
             <label tuiLabel label="Educational Qualification *">
-                <tui-input 
+                <tui-select 
                         class="mb-5"
                         tuiTextfieldSize="l"
                         formControlName="educationalQualification"
                         [tuiTextfieldLabelOutside]="true"
                     >
-                        
-                    </tui-input>
+                    <tui-data-list-wrapper
+                        *tuiDataList
+                        [items]="educationalQualification"
+                    ></tui-data-list-wrapper>
+                </tui-select>
             </label>
 
             <label tuiLabel label="Nationality *">
