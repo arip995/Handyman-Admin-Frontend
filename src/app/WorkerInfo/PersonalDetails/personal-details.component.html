@@ -1,28 +1,127 @@
 <ng-container>
     <div class="w-full m-4">
-        <form class="w-1/3" [formGroup]="signInForm">
+        <form class="w-4/12" [formGroup]="personalDetailsForm">
             
-            <label tuiLabel label="Username">
-                <tui-input
-                        tuiTextfieldSize="m"
-                        tuiTextfieldExampleText="Ivan Ivanov"
-                        formControlName="'username'"
+            <label tuiLabel label="Salutation *">
+                <tui-select 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="salutation"
                         [tuiTextfieldLabelOutside]="true"
                     >
-                        Name
+                    <tui-data-list-wrapper
+                        *tuiDataList
+                        [items]="salutation"
+                    ></tui-data-list-wrapper>
+                </tui-select>
+                <tui-field-error formControlName="salutation"></tui-field-error>
+            </label>
+
+            <label tuiLabel label="First Name *">
+                <tui-input 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="firstName"
+                        [tuiTextfieldLabelOutside]="true"
+                        [readOnly]="true"
+                    >
+                        
+                    </tui-input>
+            </label>
+            
+            <label tuiLabel label="Last Name *">
+                <tui-input 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="lastName"
+                        [tuiTextfieldLabelOutside]="true"
+                        [readOnly]="true"
+                    >
+                        
                     </tui-input>
             </label>
 
-            <label tuiLabel label="Password">
-                <tui-input
-                    formControlName="'password'"
-                    tuiTextfieldSize="m"
-                    [tuiTextfieldLabelOutside]="true"
-                >
-                    
-                </tui-input>
+            <label tuiLabel label="Mobile Number *">
+                <tui-input 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="mobileNumber"
+                        [tuiTextfieldLabelOutside]="true"
+                        [readOnly]="true"
+                    >
+                        
+                    </tui-input>
             </label>
             
+            <label tuiLabel label="Alternate Mobile Number">
+                <tui-input 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="alternateMobileNumber"
+                        [tuiTextfieldLabelOutside]="true"
+                    >
+                        
+                    </tui-input>
+            </label>
+
+            <label tuiLabel label="Date Of Birth *">
+                <tui-input-date 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="dateOfBirth"
+                        [tuiTextfieldLabelOutside]="true"
+                    >
+                        
+                    </tui-input-date>
+            </label>
+
+            <label tuiLabel label="Gender *">
+                <tui-select 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="gender"
+                        [tuiTextfieldLabelOutside]="true"
+                    >
+                    <tui-data-list-wrapper
+                        *tuiDataList
+                        [items]="gender"
+                    ></tui-data-list-wrapper>
+                </tui-select>
+            </label>
+
+            <label tuiLabel label="Educational Qualification *">
+                <tui-select 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="educationalQualification"
+                        [tuiTextfieldLabelOutside]="true"
+                    >
+                    <tui-data-list-wrapper
+                        *tuiDataList
+                        [items]="educationalQualification"
+                    ></tui-data-list-wrapper>
+                </tui-select>
+            </label>
+
+            <label tuiLabel label="Nationality *">
+                <tui-input 
+                        class="mb-5"
+                        tuiTextfieldSize="l"
+                        formControlName="nationality"
+                        [tuiTextfieldLabelOutside]="true"
+                    >
+                        
+                    </tui-input>
+            </label>
+            <button
+            [disabled]="personalDetailsForm.invalid"
+                (click)="update()"
+                class="mb-5"
+                tuiButton
+                type="submit"
+                appearance="primary">
+                Update
+            </button>
         </form>
     </div>
 </ng-container>
