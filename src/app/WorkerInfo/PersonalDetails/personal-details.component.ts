@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { TuiDay } from '@taiga-ui/cdk';
 import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
+import { WorkerDataService } from 'src/assets/Shared/workerData.service';
 
 
 @Component({
@@ -59,7 +60,8 @@ export class PersonalDetailsComponent implements OnInit {
       private _httpClient: HttpClient,
       private _activatedRoute:ActivatedRoute,
       private _router: Router,
-      private _datePipe: DatePipe
+      private _datePipe: DatePipe,
+      private _workerData:WorkerDataService
   ){
     this.date=new Date();
     this.date = this._datePipe.transform(this.date, 'yyyy-MM-dd');
@@ -84,6 +86,9 @@ export class PersonalDetailsComponent implements OnInit {
         //Get the personal details
         this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`).pipe(
           tap((res:any)=>{
+            if(res){
+              this._workerData.setWorkerData(res)
+            }
             this.totalWorkerData = res.personalDetails;
             this.familyDetailsdata = res.familyDetails;
             console.log(this.totalWorkerData)
@@ -174,12 +179,14 @@ export class PersonalDetailsComponent implements OnInit {
       if(this.totalWorkerData){
         this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
         .subscribe((res:any)=>{
+          this._workerData.setWorkerData(res)
           this.updatestep.emit("familyDetails");
         })
       }
       else{
         this._httpClient.post(`${environment.workerBasePath}/add/information/`,data)
         .subscribe((res:any)=>{
+          this._workerData.setWorkerData(res)
           this.updatestep.emit("familyDetails");
           // this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
           // .subscribe((res:any)=>{
