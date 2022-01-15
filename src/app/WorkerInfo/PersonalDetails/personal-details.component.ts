@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -22,6 +22,7 @@ import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
 })
 
 export class PersonalDetailsComponent implements OnInit {
+  @Output() updatestep: EventEmitter<any> = new EventEmitter<any>();
   totalWorkerData:any;
   personaldata:any;
   personalDetailsForm: FormGroup;
@@ -134,18 +135,17 @@ export class PersonalDetailsComponent implements OnInit {
       if(this.totalWorkerData){
         this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
         .subscribe((res:any)=>{
-          console.log(res)
+          this.updatestep.emit("familyDetails");
         })
       }
       else{
         this._httpClient.post(`${environment.workerBasePath}/add/information/`,data)
         .subscribe((res:any)=>{
-          console.log(res)
-          this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
-          .subscribe((res:any)=>{
-            this.totalWorkerData = res;
-            console.log(res)
-          })
+          this.updatestep.emit("familyDetails");
+          // this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
+          // .subscribe((res:any)=>{
+          //   this.totalWorkerData = res;
+          // })
         })
       }
     }

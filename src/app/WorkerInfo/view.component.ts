@@ -47,4 +47,10 @@ export class WorkerInfoComponent implements OnInit {
           ))
         )
     }
+
+
+    nextStep(nextStepValue:any){
+      console.log("HIIII");
+      this.authenticationSteps = nextStepValue;
+    }
   }

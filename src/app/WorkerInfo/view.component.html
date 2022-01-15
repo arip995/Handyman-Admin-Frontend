@@ -71,7 +71,7 @@
 
             <!-- Authentication Steps -->
             <ng-container>
-                <personal-details></personal-details>
+                <personal-details (updatestep)="nextStep($event)"></personal-details>
             </ng-container>
         </div>
     </div>
