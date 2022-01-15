@@ -33,6 +33,7 @@ import { PersonalDetailsComponent } from "./WorkerInfo/PersonalDetails/personal-
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FamilyDetailsComponent } from './WorkerInfo/FamilyDetails/family-details.component';
 import { ResidenceDetailsComponent } from './WorkerInfo/ResidenceDetilas/residence-details.component';
+import { WorkDetailsComponent } from './WorkerInfo/WorkDetails/work-details.component';
 import {
   TUI_SANITIZER,
   TuiActiveZoneModule,
@@ -150,7 +151,8 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     WorkerInfoComponent,
     PersonalDetailsComponent,
     FamilyDetailsComponent,
-    ResidenceDetailsComponent
+    ResidenceDetailsComponent,
+    WorkDetailsComponent
   ],
   imports: [
     BrowserModule,

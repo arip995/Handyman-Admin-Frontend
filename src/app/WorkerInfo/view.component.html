@@ -83,7 +83,7 @@
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'workDetails'">
-                <personal-details (updatestep)="nextStep($event)"></personal-details>
+                <work-details (updatestep)="nextStep($event)"></work-details>
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'kyc'">

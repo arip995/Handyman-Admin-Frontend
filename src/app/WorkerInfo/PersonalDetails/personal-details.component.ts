@@ -135,7 +135,6 @@ export class PersonalDetailsComponent implements OnInit {
         
         console.log(this.date)
       }),catchError((error)=>{
-        this.getDetails()
         throw new Error(error)
       })
     ).subscribe((res:any)=>{
@@ -144,10 +143,6 @@ export class PersonalDetailsComponent implements OnInit {
     
   }
     ngOnInit(): void {
-      
-    }
-
-    getDetails(){
       
     }
 
