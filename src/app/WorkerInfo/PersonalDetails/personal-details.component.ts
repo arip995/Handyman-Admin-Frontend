@@ -46,6 +46,12 @@ export class PersonalDetailsComponent implements OnInit {
       'Bachelors',
       'Other',
   ]
+  martialStatus:any = [
+    'Married',
+    'Bachelor',
+    'Divorced',
+    'Widowed'
+]
 
   constructor(
       private _formBuilder: FormBuilder,
@@ -67,6 +73,7 @@ export class PersonalDetailsComponent implements OnInit {
         dateOfBirth              : new FormControl(new TuiDay(this.date[0], this.date[1]-1, this.date[2]),[Validators.required]),
         gender                   : new FormControl("",[Validators.required]),
         educationalQualification : new FormControl("",[Validators.required]),
+        martialStatus            : new FormControl("",[Validators.required]),
         nationality              : new FormControl("",[Validators.required]),
     });
     this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
@@ -76,9 +83,9 @@ export class PersonalDetailsComponent implements OnInit {
         //Get the personal details
         this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`).pipe(
           tap((res:any)=>{
-            this.totalWorkerData = res;
+            this.totalWorkerData = res.personalDetails;
             console.log(this.totalWorkerData)
-            this.date = this.totalWorkerData.personalDetails.dateOfBirth;
+            this.date = this.totalWorkerData.dateOfBirth;
             this.date = this.date.split("-").map(Number);
             console.log(this.date)
           }),catchError((error)=>{
@@ -96,12 +103,13 @@ export class PersonalDetailsComponent implements OnInit {
                 "firstName" : this.personaldata.firstName,
                 "mobileNumber" : this.personaldata.mobileNumber,
                 "lastName" : this.personaldata.lastName,
-                "salutation" : this.totalWorkerData.personalDetails.salutation,
-                "alternateMobileNumber" : this.totalWorkerData.personalDetails.alternateMobileNumber,
+                "salutation" : this.totalWorkerData.salutation,
+                "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
                 "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
-                "gender" : this.totalWorkerData.personalDetails.gender,
-                "nationality" : this.totalWorkerData.personalDetails.nationality,
-                "educationalQualification" : this.totalWorkerData.personalDetails.educationalQualification
+                "gender" : this.totalWorkerData.gender,
+                "martialStatus": this.totalWorkerData.martialStatus,
+                "nationality" : this.totalWorkerData.nationality,
+                "educationalQualification" : this.totalWorkerData.educationalQualification
               })
             }else{
               this.personalDetailsForm.reset({
@@ -129,7 +137,8 @@ export class PersonalDetailsComponent implements OnInit {
             "dateOfBirth": updateDate,
             "gender": this.personalDetailsForm.get('gender')?.value,
             "nationality": this.personalDetailsForm.get('nationality')?.value,
-            "educationalQualification" : this.personalDetailsForm.get('educationalQualification')?.value
+            "educationalQualification" : this.personalDetailsForm.get('educationalQualification')?.value,
+            "martialStatus" : this.personalDetailsForm.get('martialStatus')?.value,
         }
       }
       if(this.totalWorkerData){
