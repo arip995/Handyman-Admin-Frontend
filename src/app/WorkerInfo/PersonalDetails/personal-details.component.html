@@ -54,13 +54,13 @@
             
             <label tuiLabel label="Alternate Mobile Number">
                 <tui-input 
-                        class="mb-5"
                         tuiTextfieldSize="l"
                         formControlName="alternateMobileNumber"
                         [tuiTextfieldLabelOutside]="true"
                     >
                         
                     </tui-input>
+                    <tui-field-error class="mb-5" formControlName="alternateMobileNumber"></tui-field-error>
             </label>
 
             <label tuiLabel label="Date Of Birth *">

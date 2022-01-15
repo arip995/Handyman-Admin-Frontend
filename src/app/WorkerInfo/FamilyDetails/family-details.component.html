@@ -7,24 +7,24 @@
             <form class="w-5/12" [formGroup]="familyDetailsForm">
                 <label tuiLabel label="Father's First Name *">
                     <tui-input 
-                            class="mb-5"
                             tuiTextfieldSize="l"
                             formControlName="fatherFirstName"
                             [tuiTextfieldLabelOutside]="true"
                         >
                             
                         </tui-input>
+                <tui-field-error class="mb-5" formControlName="fatherFirstName"></tui-field-error>
                 </label>
 
                 <label tuiLabel label="Father's Last Name *">
                     <tui-input 
-                            class="mb-5"
                             tuiTextfieldSize="l"
                             formControlName="fatherLastName"
                             [tuiTextfieldLabelOutside]="true"
                         >
                             
                         </tui-input>
+                <tui-field-error class="mb-5" formControlName="fatherLastName"></tui-field-error>
                 </label>
             </form>
         </div>
@@ -36,24 +36,24 @@
             <form class="w-5/12" [formGroup]="familyDetailsForm">
                 <label tuiLabel label="Mother's First Name *">
                     <tui-input 
-                            class="mb-5"
                             tuiTextfieldSize="l"
                             formControlName="motherFirstName"
                             [tuiTextfieldLabelOutside]="true"
                         >
                             
                         </tui-input>
+                <tui-field-error class="mb-5" formControlName="motherFirstName"></tui-field-error>
                 </label>
 
                 <label tuiLabel label="Mother's Last Name *">
                     <tui-input 
-                            class="mb-5"
                             tuiTextfieldSize="l"
                             formControlName="motherLastName"
                             [tuiTextfieldLabelOutside]="true"
                         >
                             
                         </tui-input>
+                <tui-field-error class="mb-5" formControlName="motherLastName"></tui-field-error>
                 </label>
             </form>
         </div>

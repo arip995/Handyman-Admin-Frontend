@@ -9,13 +9,22 @@ import { environment } from 'src/environments/environment';
 import { TuiDay } from '@taiga-ui/cdk';
 import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
 import { WorkerDataService } from 'src/assets/Shared/workerData.service';
+import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
 @Component({
   selector: 'family-details',
   templateUrl: './family-details.component.html',
   styleUrls: ['./family-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
+  providers: [ {
+    provide: TUI_VALIDATION_ERRORS,
+    useValue: {
+        required: 'This is a required field!',
+        email: 'Enter a valid email',
+        maxlength: maxLengthValidator,
+        minlength: minLengthValidator,
+    },
+},
     {provide: TUI_DATE_FORMAT, useValue: 'DMY'},
     {provide: TUI_DATE_SEPARATOR, useValue: '-'},
 ],
@@ -91,4 +100,13 @@ export class FamilyDetailsComponent implements OnInit {
             this.updatestep.emit("residenceDetails");
         })
     }
+}
+
+
+export function maxLengthValidator(context: {requiredLength: string}): string {
+    return `Maximum length — ${context.requiredLength}!`;
+}
+ 
+export function minLengthValidator(context: {requiredLength: string}): string {
+    return `Minimum length — ${context.requiredLength}!`;
 }

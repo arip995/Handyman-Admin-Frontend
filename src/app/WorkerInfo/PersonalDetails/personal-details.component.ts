@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { TuiDay } from '@taiga-ui/cdk';
 import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
 import { WorkerDataService } from 'src/assets/Shared/workerData.service';
+import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
 
 @Component({
@@ -16,7 +17,15 @@ import { WorkerDataService } from 'src/assets/Shared/workerData.service';
   templateUrl: './personal-details.component.html',
   styleUrls: ['./personal-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
+  providers: [ {
+    provide: TUI_VALIDATION_ERRORS,
+    useValue: {
+        required: 'This is a required field!',
+        email: 'Enter a valid email',
+        maxlength: maxLengthValidator,
+        minlength: minLengthValidator,
+    },
+},
     {provide: TUI_DATE_FORMAT, useValue: 'DMY'},
     {provide: TUI_DATE_SEPARATOR, useValue: '-'},
 ],
@@ -72,7 +81,7 @@ export class PersonalDetailsComponent implements OnInit {
         lastName                 : new FormControl("",[Validators.required]),
         mobileNumber             : new FormControl("",[Validators.required]),
         salutation               : new FormControl("",[Validators.required]),
-        alternateMobileNumber    : new FormControl(""),
+        alternateMobileNumber    : new FormControl("",[Validators.maxLength(10),Validators.minLength(10)]),
         dateOfBirth              : new FormControl(new TuiDay(this.date[0], this.date[1]-1, this.date[2]),[Validators.required]),
         gender                   : new FormControl("",[Validators.required]),
         educationalQualification : new FormControl("",[Validators.required]),
@@ -93,34 +102,10 @@ export class PersonalDetailsComponent implements OnInit {
         console.log(this.totalWorkerData)
         this.date = this.totalWorkerData.dateOfBirth;
         this.date = this.date.split("-").map(Number);
-        this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
-          tap((res:any)=>{
-            this.personaldata = res;
-            console.log(this.personaldata)
-            if(this.totalWorkerData){
-              this.personalDetailsForm.reset({
-                "firstName" : this.personaldata.firstName,
-                "mobileNumber" : this.personaldata.mobileNumber,
-                "lastName" : this.personaldata.lastName,
-                "salutation" : this.totalWorkerData.salutation,
-                "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
-                "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
-                "gender" : this.totalWorkerData.gender,
-                "martialStatus": this.totalWorkerData.martialStatus,
-                "nationality" : this.totalWorkerData.nationality,
-                "educationalQualification" : this.totalWorkerData.educationalQualification
-              })
-            }else{
-              this.personalDetailsForm.reset({
-                "firstName" : this.personaldata.firstName,
-                "mobileNumber" : this.personaldata.mobileNumber,
-                "lastName" : this.personaldata.lastName,
-              })
-            }
-          })
-        ).subscribe((res:any)=>{
-    
-        })
+        if(this.totalWorkerData){
+          this.getDetails()
+        }
+        
         console.log(this.date)
       }),catchError((error)=>{
         throw new Error(error)
@@ -132,6 +117,37 @@ export class PersonalDetailsComponent implements OnInit {
   }
     ngOnInit(): void {
         
+    }
+
+    getDetails(){
+      this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
+        tap((res:any)=>{
+          this.personaldata = res;
+          console.log(this.personaldata)
+          if(this.totalWorkerData){
+            this.personalDetailsForm.reset({
+              "firstName" : this.personaldata.firstName,
+              "mobileNumber" : this.personaldata.mobileNumber,
+              "lastName" : this.personaldata.lastName,
+              "salutation" : this.totalWorkerData.salutation,
+              "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
+              "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
+              "gender" : this.totalWorkerData.gender,
+              "martialStatus": this.totalWorkerData.martialStatus,
+              "nationality" : this.totalWorkerData.nationality,
+              "educationalQualification" : this.totalWorkerData.educationalQualification
+            })
+          }else{
+            this.personalDetailsForm.reset({
+              "firstName" : this.personaldata.firstName,
+              "mobileNumber" : this.personaldata.mobileNumber,
+              "lastName" : this.personaldata.lastName,
+            })
+          }
+        })
+      ).subscribe((res:any)=>{
+  
+      })
     }
 
 
@@ -199,4 +215,12 @@ export class PersonalDetailsComponent implements OnInit {
       }
     }
 
+}
+
+export function maxLengthValidator(context: {requiredLength: string}): string {
+  return `Maximum length — ${context.requiredLength}!`;
+}
+
+export function minLengthValidator(context: {requiredLength: string}): string {
+  return `Minimum length — ${context.requiredLength}!`;
 }

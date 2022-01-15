@@ -2,85 +2,84 @@
     <form class="w-4/12" [formGroup]="residenceDetailsForm">
         <label tuiLabel label="House No. *">
             <tui-input 
-                    class="mb-5"
                     tuiTextfieldSize="l"
                     formControlName="houseNo"
                     [tuiTextfieldLabelOutside]="true"
                 >
                     
                 </tui-input>
+                <tui-field-error class="mb-5" formControlName="houseNo"></tui-field-error>
         </label>
 
         <label tuiLabel label="Street/Lane/Area *">
             <tui-input 
-                    class="mb-5"
                     tuiTextfieldSize="l"
                     formControlName="street"
                     [tuiTextfieldLabelOutside]="true"
                 >
                     
                 </tui-input>
+                <tui-field-error class="mb-5" formControlName="street"></tui-field-error>
         </label>
 
         <label tuiLabel label="Landmark *">
             <tui-input 
-                    class="mb-5"
                     tuiTextfieldSize="l"
                     formControlName="landmark"
                     [tuiTextfieldLabelOutside]="true"
                 >
                     
                 </tui-input>
+                <tui-field-error class="mb-5" formControlName="landmark"></tui-field-error>
         </label>
 
         <label tuiLabel label="Pincode *">
             <tui-input 
-                    class="mb-5"
                     tuiTextfieldSize="l"
                     formControlName="pincode"
                     [tuiTextfieldLabelOutside]="true"
                 >
                     
                 </tui-input>
+                <tui-field-error class="mb-5" formControlName="pincode"></tui-field-error>
         </label>
 
         <label tuiLabel label="District *">
             <tui-input 
-                    class="mb-5"
                     tuiTextfieldSize="l"
                     formControlName="district"
                     [tuiTextfieldLabelOutside]="true"
                 >
                     
                 </tui-input>
+                <tui-field-error class="mb-5" formControlName="district"></tui-field-error>
         </label>
 
         <label tuiLabel label="State *">
             <tui-input 
-                    class="mb-5"
                     tuiTextfieldSize="l"
                     formControlName="state"
                     [tuiTextfieldLabelOutside]="true"
                 >
                     
                 </tui-input>
+                <tui-field-error class="mb-5" formControlName="state"></tui-field-error>
         </label>
 
         <label tuiLabel label="Residence Years *">
             <tui-input 
-                    class="mb-5"
                     tuiTextfieldSize="l"
                     formControlName="residenceYears"
                     [tuiTextfieldLabelOutside]="true"
                 >
                     
             </tui-input>
+            <tui-field-error class="mb-5" formControlName="residenceYears">Required</tui-field-error>
         </label>
 
        
         <label tuiLabel label="Ownership of the Residence *">
             <tui-select 
-                    class="mb-5"
                     tuiTextfieldSize="l"
                     formControlName="ownership"
                     [tuiTextfieldLabelOutside]="true"
@@ -90,6 +89,7 @@
                 [items]="ownership"
             ></tui-data-list-wrapper>
             </tui-select>
+            <tui-field-error class="mb-5" formControlName="ownership"></tui-field-error>
         </label>
         <button
             [disabled]="residenceDetailsForm.invalid"
