@@ -75,7 +75,7 @@
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'familyDetails'">
-                <personal-details (updatestep)="nextStep($event)"></personal-details>
+                <family-details (updatestep)="nextStep($event)"></family-details>
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'residenceDetails'">

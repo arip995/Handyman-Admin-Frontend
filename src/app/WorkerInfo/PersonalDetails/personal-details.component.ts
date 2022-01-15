@@ -24,6 +24,7 @@ import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
 export class PersonalDetailsComponent implements OnInit {
   @Output() updatestep: EventEmitter<any> = new EventEmitter<any>();
   totalWorkerData:any;
+  familyDetailsdata:any;
   personaldata:any;
   personalDetailsForm: FormGroup;
   workerId:any;
@@ -77,13 +78,14 @@ export class PersonalDetailsComponent implements OnInit {
         nationality              : new FormControl("",[Validators.required]),
     });
     this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
-      this.workerId = parseInt(this.workerId);
+    this.workerId = parseInt(this.workerId);
   }
     ngOnInit(): void {
         //Get the personal details
         this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`).pipe(
           tap((res:any)=>{
             this.totalWorkerData = res.personalDetails;
+            this.familyDetailsdata = res.familyDetails;
             console.log(this.totalWorkerData)
             this.date = this.totalWorkerData.dateOfBirth;
             this.date = this.date.split("-").map(Number);
@@ -126,10 +128,14 @@ export class PersonalDetailsComponent implements OnInit {
 
 
     update(){
+      if(this.personalDetailsForm.pristine){
+        this.updatestep.emit("familyDetails");
+        return;
+      }
       let updateDate:any = this.personalDetailsForm.get('dateOfBirth')?.value
       updateDate = updateDate.toString()
       updateDate = updateDate.replaceAll(".","-")
-      const data = {
+      let data:any = {
         "foreignId" : this.workerId,
         "personalDetails":{
             "salutation": this.personalDetailsForm.get('salutation')?.value,
@@ -139,6 +145,30 @@ export class PersonalDetailsComponent implements OnInit {
             "nationality": this.personalDetailsForm.get('nationality')?.value,
             "educationalQualification" : this.personalDetailsForm.get('educationalQualification')?.value,
             "martialStatus" : this.personalDetailsForm.get('martialStatus')?.value,
+        }
+      }
+      if(this.familyDetailsdata){
+        if(data.personalDetails.martialStatus != "Married"){
+          data = {
+            "foreignId" : this.workerId,
+            "personalDetails":{
+                "salutation": this.personalDetailsForm.get('salutation')?.value,
+                "alternateMobileNumber": this.personalDetailsForm.get('alternateMobileNumber')?.value,
+                "dateOfBirth": updateDate,
+                "gender": this.personalDetailsForm.get('gender')?.value,
+                "nationality": this.personalDetailsForm.get('nationality')?.value,
+                "educationalQualification" : this.personalDetailsForm.get('educationalQualification')?.value,
+                "martialStatus" : this.personalDetailsForm.get('martialStatus')?.value,
+            },
+            "familyDetails": {
+                "fatherFirstName" : this.familyDetailsdata.fatherFirstName,
+                "fatherLastName" : this.familyDetailsdata.fatherLastName,
+                "motherFirstName" : this.familyDetailsdata.motherFirstName,
+                "motherLastName" : this.familyDetailsdata.motherLastName,
+                "spouseFirstName" :null ,
+                "spouseLastName" : null,
+            },
+          }
         }
       }
       if(this.totalWorkerData){
