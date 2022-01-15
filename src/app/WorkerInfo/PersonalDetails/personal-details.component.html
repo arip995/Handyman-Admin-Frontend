@@ -4,7 +4,6 @@
             
             <label tuiLabel label="Salutation *">
                 <tui-select 
-                        class="mb-5"
                         tuiTextfieldSize="l"
                         formControlName="salutation"
                         [tuiTextfieldLabelOutside]="true"
@@ -14,7 +13,7 @@
                         [items]="salutation"
                     ></tui-data-list-wrapper>
                 </tui-select>
-                <tui-field-error formControlName="salutation"></tui-field-error>
+                <tui-field-error class="mb-5" formControlName="salutation"></tui-field-error>
             </label>
 
             <label tuiLabel label="First Name *">
@@ -66,18 +65,17 @@
 
             <label tuiLabel label="Date Of Birth *">
                 <tui-input-date 
-                        class="mb-5"
                         tuiTextfieldSize="l"
                         formControlName="dateOfBirth"
                         [tuiTextfieldLabelOutside]="true"
                     >
                         
                     </tui-input-date>
+                    <tui-field-error class="mb-5" formControlName="dateOfBirth"></tui-field-error>
             </label>
 
             <label tuiLabel label="Gender *">
                 <tui-select 
-                        class="mb-5"
                         tuiTextfieldSize="l"
                         formControlName="gender"
                         [tuiTextfieldLabelOutside]="true"
@@ -87,11 +85,11 @@
                         [items]="gender"
                     ></tui-data-list-wrapper>
                 </tui-select>
+                <tui-field-error class="mb-5" formControlName="gender"></tui-field-error>
             </label>
 
             <label tuiLabel label="Educational Qualification *">
                 <tui-select 
-                        class="mb-5"
                         tuiTextfieldSize="l"
                         formControlName="educationalQualification"
                         [tuiTextfieldLabelOutside]="true"
@@ -101,17 +99,18 @@
                         [items]="educationalQualification"
                     ></tui-data-list-wrapper>
                 </tui-select>
+                <tui-field-error class="mb-5" formControlName="educationalQualification"></tui-field-error>
             </label>
 
             <label tuiLabel label="Nationality *">
                 <tui-input 
-                        class="mb-5"
                         tuiTextfieldSize="l"
                         formControlName="nationality"
                         [tuiTextfieldLabelOutside]="true"
                     >
                         
                     </tui-input>
+                <tui-field-error class="mb-5" formControlName="nationality"></tui-field-error>
             </label>
             <button
             [disabled]="personalDetailsForm.invalid"

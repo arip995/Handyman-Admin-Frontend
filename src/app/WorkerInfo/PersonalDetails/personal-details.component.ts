@@ -132,17 +132,7 @@ export class PersonalDetailsComponent implements OnInit {
         }
       }
       if(this.totalWorkerData){
-        const totalData = {
-          "foreignId" : this.workerId,
-          "personalDetails" : data.personalDetails,
-          "familyDetails" : this.totalWorkerData?.familyDetails,
-          "residenceDetails" : this.totalWorkerData?.residenceDetails,
-          "workDetails" : this.totalWorkerData?.workDetails,
-          "kyc" : this.totalWorkerData?.kyc,
-          "bankDetails" : this.totalWorkerData?.bankDetails,
-        };
-        console.log(totalData);
-        this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,totalData)
+        this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
         .subscribe((res:any)=>{
           console.log(res)
         })
