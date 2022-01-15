@@ -41,9 +41,8 @@ export class InterceptorService implements HttpInterceptor {
             }
           },
           err => {
-            alert('error' + err);
             this.removeRequest(req);
-            observer.error(err);
+            observer.complete();
           },
           () => {
             this.removeRequest(req);

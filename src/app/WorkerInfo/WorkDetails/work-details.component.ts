@@ -118,6 +118,9 @@ export class WorkDetailsComponent implements OnInit {
     }
 
     checkToReset(){
+        this.workDetailsForm.reset({
+            workType    : this.personalData?.worktype,
+        })
         if(this.totalWorkerData?.workDetails?.ownShop === 'True'){
             this.isShopPresent = "True";
         }else if(this.totalWorkerData?.workDetails?.ownShop === 'False'){
@@ -131,7 +134,7 @@ export class WorkDetailsComponent implements OnInit {
                 experience  : this.totalWorkerData?.workDetails?.experience,
             })
         }
-        if(this.totalWorkerData.workDetails.shopDetails){
+        if(this.totalWorkerData?.workDetails?.shopDetails){
             this.shopDetailsForm.reset({
                 shopName       : this.totalWorkerData.workDetails.shopDetails.shopName,
                 landmark       : this.totalWorkerData.workDetails.shopDetails.landmark,

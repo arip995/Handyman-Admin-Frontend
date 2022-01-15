@@ -90,60 +90,48 @@ export class PersonalDetailsComponent implements OnInit {
     });
     this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
     this.workerId = parseInt(this.workerId);
-
-    //Get the personal details
-    this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`).pipe(
-      tap((res:any)=>{
-        if(res){
-          this._workerData.setWorkerData(res)
-        }
-        this.totalWorkerData = res.personalDetails;
-        this.familyDetailsdata = res.familyDetails;
-        console.log(this.totalWorkerData)
-        this.date = this.totalWorkerData.dateOfBirth;
-        this.date = this.date.split("-").map(Number);
-        if(this.totalWorkerData){
-          this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
-            tap((res:any)=>{
-              this.personaldata = res;
-              console.log(this.personaldata)
-              if(this.totalWorkerData){
-                this.personalDetailsForm.reset({
-                  "firstName" : this.personaldata.firstName,
-                  "mobileNumber" : this.personaldata.mobileNumber,
-                  "lastName" : this.personaldata.lastName,
-                  "salutation" : this.totalWorkerData.salutation,
-                  "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
-                  "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
-                  "gender" : this.totalWorkerData.gender,
-                  "martialStatus": this.totalWorkerData.martialStatus,
-                  "nationality" : this.totalWorkerData.nationality,
-                  "educationalQualification" : this.totalWorkerData.educationalQualification
-                })
-              }else{
-                this.personalDetailsForm.reset({
-                  "firstName" : this.personaldata.firstName,
-                  "mobileNumber" : this.personaldata.mobileNumber,
-                  "lastName" : this.personaldata.lastName,
-                })
-              }
-            })
-          ).subscribe((res:any)=>{
-      
-          })
-        }
-        
-        console.log(this.date)
-      }),catchError((error)=>{
-        throw new Error(error)
-      })
-    ).subscribe((res:any)=>{
-
-    })
     
   }
     ngOnInit(): void {
-      
+
+      this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
+        tap((res:any)=>{
+          this.personaldata = res;
+          this.personalDetailsForm.reset({
+            "firstName" : this.personaldata.firstName,
+            "mobileNumber" : this.personaldata.mobileNumber,
+            "lastName" : this.personaldata.lastName,
+          })
+          this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`).pipe(
+            tap((res:any)=>{
+              if(res){
+                this._workerData.setWorkerData(res)
+              }
+              this.totalWorkerData = res.personalDetails;
+              this.familyDetailsdata = res.familyDetails;
+              console.log(this.totalWorkerData)
+              this.date = this.totalWorkerData.dateOfBirth;
+              this.date = this.date.split("-").map(Number);
+              this.personalDetailsForm.reset({
+                "firstName" : this.personaldata.firstName,
+                "mobileNumber" : this.personaldata.mobileNumber,
+                "lastName" : this.personaldata.lastName,
+                "salutation" : this.totalWorkerData.salutation,
+                "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
+                "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
+                "gender" : this.totalWorkerData.gender,
+                "martialStatus": this.totalWorkerData.martialStatus,
+                "nationality" : this.totalWorkerData.nationality,
+                "educationalQualification" : this.totalWorkerData.educationalQualification
+              })
+            }),catchError((error)=>{
+              throw new Error(error)
+            })
+          ).subscribe((res:any)=>{
+          })
+        })
+      ).subscribe((res:any)=>{
+      })
     }
 
 
