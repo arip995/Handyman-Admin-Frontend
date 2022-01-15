@@ -50,7 +50,7 @@ export class FamilyDetailsComponent implements OnInit {
         this._workerData.getWorkerData()  
         .subscribe((res:any)=>{
             this.totalWorkerData = res;
-            if(this.totalWorkerData){
+            if(this.totalWorkerData.familyDetails){
                 this.familyDetailsForm.reset({
                     fatherFirstName               : this.totalWorkerData?.familyDetails.fatherFirstName,
                     fatherLastName                : this.totalWorkerData?.familyDetails.fatherLastName,
@@ -81,12 +81,10 @@ export class FamilyDetailsComponent implements OnInit {
                 "spouseLastName" : this.familyDetailsForm.get('spouseLastName')?.value,
             }
         }
-        if(this.totalWorkerData){
-            this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
-            .subscribe((res:any)=>{
-                this._workerData.setWorkerData(res)
-                this.updatestep.emit("residenceDetails");
-            })
-          }
+        this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
+        .subscribe((res:any)=>{
+            this._workerData.setWorkerData(res)
+            this.updatestep.emit("residenceDetails");
+        })
     }
 }

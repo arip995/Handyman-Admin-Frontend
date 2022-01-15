@@ -79,7 +79,7 @@
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'residenceDetails'">
-                <personal-details (updatestep)="nextStep($event)"></personal-details>
+                <residence-details (updatestep)="nextStep($event)"></residence-details>
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'workDetails'">
