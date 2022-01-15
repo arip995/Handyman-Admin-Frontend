@@ -5,7 +5,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class WorkerDataService {
-    public _allWorkerData$:any = new BehaviorSubject(null);  
+    public _allWorkerData$:any = new BehaviorSubject(null); 
+    public _personalWorkerData$ =  new BehaviorSubject(null); 
     constructor() {
 
     }
@@ -18,6 +19,16 @@ export class WorkerDataService {
 
     getWorkerData(){
         return this._allWorkerData$.asObservable()
+    }
+
+
+    setPersonalWorkerdata(data:any){
+        this._personalWorkerData$.next(data)
+    }
+
+
+    getPersonalWorkerdata(){
+        return this._personalWorkerData$.asObservable()
     }
 
     

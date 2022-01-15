@@ -7,7 +7,7 @@ import { switchMap,tap,catchError } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { TuiDay } from '@taiga-ui/cdk';
-import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
+import { TUI_DATE_FORMAT, TUI_DATE_SEPARATOR } from '@taiga-ui/cdk';
 import { WorkerDataService } from 'src/assets/Shared/workerData.service';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
@@ -103,11 +103,39 @@ export class PersonalDetailsComponent implements OnInit {
         this.date = this.totalWorkerData.dateOfBirth;
         this.date = this.date.split("-").map(Number);
         if(this.totalWorkerData){
-          this.getDetails()
+          this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
+            tap((res:any)=>{
+              this.personaldata = res;
+              console.log(this.personaldata)
+              if(this.totalWorkerData){
+                this.personalDetailsForm.reset({
+                  "firstName" : this.personaldata.firstName,
+                  "mobileNumber" : this.personaldata.mobileNumber,
+                  "lastName" : this.personaldata.lastName,
+                  "salutation" : this.totalWorkerData.salutation,
+                  "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
+                  "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
+                  "gender" : this.totalWorkerData.gender,
+                  "martialStatus": this.totalWorkerData.martialStatus,
+                  "nationality" : this.totalWorkerData.nationality,
+                  "educationalQualification" : this.totalWorkerData.educationalQualification
+                })
+              }else{
+                this.personalDetailsForm.reset({
+                  "firstName" : this.personaldata.firstName,
+                  "mobileNumber" : this.personaldata.mobileNumber,
+                  "lastName" : this.personaldata.lastName,
+                })
+              }
+            })
+          ).subscribe((res:any)=>{
+      
+          })
         }
         
         console.log(this.date)
       }),catchError((error)=>{
+        this.getDetails()
         throw new Error(error)
       })
     ).subscribe((res:any)=>{
@@ -116,38 +144,11 @@ export class PersonalDetailsComponent implements OnInit {
     
   }
     ngOnInit(): void {
-        
+      
     }
 
     getDetails(){
-      this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
-        tap((res:any)=>{
-          this.personaldata = res;
-          console.log(this.personaldata)
-          if(this.totalWorkerData){
-            this.personalDetailsForm.reset({
-              "firstName" : this.personaldata.firstName,
-              "mobileNumber" : this.personaldata.mobileNumber,
-              "lastName" : this.personaldata.lastName,
-              "salutation" : this.totalWorkerData.salutation,
-              "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
-              "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
-              "gender" : this.totalWorkerData.gender,
-              "martialStatus": this.totalWorkerData.martialStatus,
-              "nationality" : this.totalWorkerData.nationality,
-              "educationalQualification" : this.totalWorkerData.educationalQualification
-            })
-          }else{
-            this.personalDetailsForm.reset({
-              "firstName" : this.personaldata.firstName,
-              "mobileNumber" : this.personaldata.mobileNumber,
-              "lastName" : this.personaldata.lastName,
-            })
-          }
-        })
-      ).subscribe((res:any)=>{
-  
-      })
+      
     }
 
 
@@ -213,6 +214,10 @@ export class PersonalDetailsComponent implements OnInit {
           // })
         })
       }
+    }
+
+    dj(res:any){
+      console.log(res)
     }
 
 }
