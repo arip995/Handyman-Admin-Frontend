@@ -68,10 +68,6 @@ export class WorkDetailsComponent implements OnInit {
             ownershipYears      : ["",[Validators.required]],
         })
         
-        // this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`)
-        // .subscribe((res:any)=>{
-
-        // })
 
         this._workerData.getPersonalWorkerdata()
         .subscribe((res:any)=>{
@@ -80,18 +76,10 @@ export class WorkDetailsComponent implements OnInit {
                 this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`)
                 .subscribe((response:any)=>{
                     this.personalData = response;
-                    this._workerData.getWorkerData()
+                    this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
                     .subscribe((data:any)=>{
-                        if(data){
-                            this.totalWorkerData = data;
-                            this.checkToReset();
-                        }else{
-                            this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
-                            .subscribe((data:any)=>{
-                                this.totalWorkerData = data;
-                                this.checkToReset();
-                            })
-                        }
+                        this.totalWorkerData = data;
+                        this.checkToReset();
                     })
                 })
             }else{
@@ -123,6 +111,15 @@ export class WorkDetailsComponent implements OnInit {
                 ownShop     : this.totalWorkerData?.workDetails?.ownShop,
                 workType    : this.personalData?.worktype,
                 experience  : this.totalWorkerData?.workDetails?.experience,
+            })
+        }
+        if(this.totalWorkerData.workDetails.shopDetails){
+            this.shopDetailsForm.reset({
+                shopName       : this.totalWorkerData.workDetails.shopName,
+                landmark       : this.totalWorkerData.workDetails.landmark,
+                shopAddress    : this.totalWorkerData.workDetails.shopAddress,
+                pincode        : this.totalWorkerData.workDetails.pincode,
+                ownershipYears : this.totalWorkerData.workDetails.ownershipYears,
             })
         }
     }
