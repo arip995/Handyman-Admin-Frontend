@@ -96,10 +96,10 @@ export class ResidenceDetailsComponent implements OnInit {
                 "houseNo"          : this.residenceDetailsForm.get('houseNo')?.value,
                 "street"           : this.residenceDetailsForm.get('street')?.value,
                 "landmark"         : this.residenceDetailsForm.get('landmark')?.value,
-                "pincode"          : this.residenceDetailsForm.get('pincode')?.value,
+                "pincode"          : parseInt(this.residenceDetailsForm.get('pincode')?.value),
                 "district"         : this.residenceDetailsForm.get('district')?.value,
                 "state"            : this.residenceDetailsForm.get('state')?.value,
-                "residenceYears"   : this.residenceDetailsForm.get('residenceYears')?.value,
+                "residenceYears"   : parseInt(this.residenceDetailsForm.get('residenceYears')?.value),
                 "ownership"        : this.residenceDetailsForm.get('ownership')?.value,
             }
         }

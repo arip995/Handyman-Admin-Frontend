@@ -14,24 +14,31 @@
         </label>
 
         <label tuiLabel label="Ownership of shop *">
-            <tui-input 
+            <tui-select 
+                    [(ngModel)] = 'isShopPresent'
                     tuiTextfieldSize="l"
                     formControlName="ownShop"
                     [tuiTextfieldLabelOutside]="true"
                 >
-                    
-                </tui-input>
+                <tui-data-list-wrapper
+                    *tuiDataList
+                    [items]="ownership"
+                ></tui-data-list-wrapper>
+                </tui-select>
                 <tui-field-error class="mb-5" formControlName="ownShop"></tui-field-error>
         </label>
 
         <label tuiLabel label="Current Salary *">
-            <tui-input 
+            <tui-select 
                     tuiTextfieldSize="l"
                     formControlName="salary"
                     [tuiTextfieldLabelOutside]="true"
                 >
-                    
-                </tui-input>
+                <tui-data-list-wrapper
+                    *tuiDataList
+                    [items]="salary"
+                ></tui-data-list-wrapper>
+                </tui-select>
                 <tui-field-error class="mb-5" formControlName="salary"></tui-field-error>
         </label>
 
@@ -50,7 +57,7 @@
 </div>
 
 
-<div class="w-full m-4">
+<div *ngIf="this.isShopPresent === 'True'" class="w-full m-4">
     <div class="mb-6 mt-6 font-extrabold 2xl:text-3xl text-2xl font-mono tracking-wide text-blue-800">
         shop Details
     </div>
@@ -114,6 +121,8 @@
 </div>
 
 <button
+    *ngIf="this.isShopPresent === 'False'"
+    (click)="updateDetails()"
     [disabled]="workDetailsForm.invalid"
     class="mb-5 ml-4"
     tuiButton
@@ -122,11 +131,13 @@
     Update
 </button>
 
-<!-- <button
-    [disabled]="shopDetailsForm.invalid && workDetailsForm.invalid"
+<button
+    *ngIf="this.isShopPresent === 'True'"
+    (click)="updateShopDetails()"
+    [disabled]="shopDetailsForm.invalid || workDetailsForm.invalid"
     class="mb-5 ml-4"
     tuiButton
     type="submit"
     appearance="primary">
     Update
-</button> -->
+</button>

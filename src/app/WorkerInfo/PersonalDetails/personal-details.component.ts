@@ -159,7 +159,7 @@ export class PersonalDetailsComponent implements OnInit {
         "foreignId" : this.workerId,
         "personalDetails":{
             "salutation": this.personalDetailsForm.get('salutation')?.value,
-            "alternateMobileNumber": this.personalDetailsForm.get('alternateMobileNumber')?.value,
+            "alternateMobileNumber": parseInt(this.personalDetailsForm.get('alternateMobileNumber')?.value),
             "dateOfBirth": updateDate,
             "gender": this.personalDetailsForm.get('gender')?.value,
             "nationality": this.personalDetailsForm.get('nationality')?.value,
@@ -173,7 +173,7 @@ export class PersonalDetailsComponent implements OnInit {
             "foreignId" : this.workerId,
             "personalDetails":{
                 "salutation": this.personalDetailsForm.get('salutation')?.value,
-                "alternateMobileNumber": this.personalDetailsForm.get('alternateMobileNumber')?.value,
+                "alternateMobileNumber": parseInt(this.personalDetailsForm.get('alternateMobileNumber')?.value),
                 "dateOfBirth": updateDate,
                 "gender": this.personalDetailsForm.get('gender')?.value,
                 "nationality": this.personalDetailsForm.get('nationality')?.value,

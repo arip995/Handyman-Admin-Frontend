@@ -33,7 +33,20 @@ import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
 export class WorkDetailsComponent implements OnInit {
     @Output() updatestep: EventEmitter<any> = new EventEmitter<any>();
-    isShopPresent:Boolean = false;
+    isShopPresent:any = '';
+    ownership:any = [
+        "True",
+        "False"
+    ]
+    salary :any = [
+        "10-30 thousand",
+        "40-80 thousand",
+        "80-100 thousand",
+        "1-2 lakh",
+        "2-4 lakh",
+        "4-8 lakh",
+        "more than 8 lakh",
+    ]
     totalWorkerData:any;
     personalData:any;
     workDetailsForm: FormGroup;
@@ -63,7 +76,7 @@ export class WorkDetailsComponent implements OnInit {
         this.shopDetailsForm = this._formBuilder.group({
             shopName            : ["",[Validators.required]],
             shopAddress         : ["",[Validators.required]],
-            pincode             : ["",[Validators.required]],
+            pincode             : ["",[Validators.required,Validators.minLength(6),Validators.maxLength(6)]],
             landmark            : ["",[Validators.required]],
             ownershipYears      : ["",[Validators.required]],
         })
@@ -105,23 +118,69 @@ export class WorkDetailsComponent implements OnInit {
     }
 
     checkToReset(){
+        if(this.totalWorkerData?.workDetails?.ownShop === 'True'){
+            this.isShopPresent = "True";
+        }else if(this.totalWorkerData?.workDetails?.ownShop === 'False'){
+            this.isShopPresent = "False";
+        }
         if(this.totalWorkerData.workDetails){
             this.workDetailsForm.reset({
                 salary      : this.totalWorkerData?.workDetails?.salary,
-                ownShop     : this.totalWorkerData?.workDetails?.ownShop,
+                ownShop     : this.isShopPresent,
                 workType    : this.personalData?.worktype,
                 experience  : this.totalWorkerData?.workDetails?.experience,
             })
         }
         if(this.totalWorkerData.workDetails.shopDetails){
             this.shopDetailsForm.reset({
-                shopName       : this.totalWorkerData.workDetails.shopName,
-                landmark       : this.totalWorkerData.workDetails.landmark,
-                shopAddress    : this.totalWorkerData.workDetails.shopAddress,
-                pincode        : this.totalWorkerData.workDetails.pincode,
-                ownershipYears : this.totalWorkerData.workDetails.ownershipYears,
+                shopName       : this.totalWorkerData.workDetails.shopDetails.shopName,
+                landmark       : this.totalWorkerData.workDetails.shopDetails.landmark,
+                shopAddress    : this.totalWorkerData.workDetails.shopDetails.shopAddress,
+                pincode        : this.totalWorkerData.workDetails.shopDetails.pincode,
+                ownershipYears : this.totalWorkerData.workDetails.shopDetails.ownershipYears,
             })
         }
+        
+    }
+
+    updateDetails(){
+        const data:any = {
+            "foreignId" : this.workerId,
+            "workDetails":{
+                "salary": this.workDetailsForm.get('salary')?.value,
+                "ownShop": this.workDetailsForm.get('ownShop')?.value,
+                "experience": parseInt(this.workDetailsForm.get('experience')?.value),
+            }
+        }
+        this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
+        .subscribe((res:any)=>{
+            this._workerData.setWorkerData(res)
+            this.updatestep.emit("kyc");
+        })
+    }
+
+
+    updateShopDetails(){
+        const data:any = {
+            "foreignId" : this.workerId,
+            "workDetails":{
+                "salary": this.workDetailsForm.get('salary')?.value,
+                "ownShop": this.workDetailsForm.get('ownShop')?.value,
+                "experience": this.workDetailsForm.get('experience')?.value,
+                "shopDetails" : {
+                    "shopName": this.shopDetailsForm.get('shopName')?.value,
+                    "landmark": this.shopDetailsForm.get('landmark')?.value,
+                    "shopAddress": this.shopDetailsForm.get('shopAddress')?.value,
+                    "pincode": parseInt(this.shopDetailsForm.get('pincode')?.value),
+                    "ownershipYears": parseInt(this.shopDetailsForm.get('ownershipYears')?.value),
+                }
+            }
+        }
+        this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
+        .subscribe((res:any)=>{
+            this._workerData.setWorkerData(res)
+            this.updatestep.emit("kyc");
+        })
     }
 
 }
