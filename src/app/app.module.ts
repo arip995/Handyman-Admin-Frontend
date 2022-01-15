@@ -31,6 +31,9 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { WorkerInfoComponent } from "./WorkerInfo/view.component";
 import { PersonalDetailsComponent } from "./WorkerInfo/PersonalDetails/personal-details.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FamilyDetailsComponent } from './WorkerInfo/FamilyDetails/family-details.component';
+import { ResidenceDetailsComponent } from './WorkerInfo/ResidenceDetilas/residence-details.component';
+import { WorkDetailsComponent } from './WorkerInfo/WorkDetails/work-details.component';
 import {
   TUI_SANITIZER,
   TuiActiveZoneModule,
@@ -146,7 +149,10 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     DashboardComponent,
     workerComponent,
     WorkerInfoComponent,
-    PersonalDetailsComponent
+    PersonalDetailsComponent,
+    FamilyDetailsComponent,
+    ResidenceDetailsComponent,
+    WorkDetailsComponent
   ],
   imports: [
     BrowserModule,

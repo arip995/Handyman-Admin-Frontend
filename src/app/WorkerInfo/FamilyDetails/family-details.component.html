@@ -1,0 +1,101 @@
+<div class="w-full h-full">
+    <div class="w-9/12 m-5">
+        <div class="w-full">
+            <div class="mb-6 font-extrabold 2xl:text-3xl text-2xl font-mono tracking-wide text-blue-800">
+                Father Details
+            </div>
+            <form class="w-5/12" [formGroup]="familyDetailsForm">
+                <label tuiLabel label="Father's First Name *">
+                    <tui-input 
+                            tuiTextfieldSize="l"
+                            formControlName="fatherFirstName"
+                            [tuiTextfieldLabelOutside]="true"
+                        >
+                            
+                        </tui-input>
+                <tui-field-error class="mb-5" formControlName="fatherFirstName"></tui-field-error>
+                </label>
+
+                <label tuiLabel label="Father's Last Name *">
+                    <tui-input 
+                            tuiTextfieldSize="l"
+                            formControlName="fatherLastName"
+                            [tuiTextfieldLabelOutside]="true"
+                        >
+                            
+                        </tui-input>
+                <tui-field-error class="mb-5" formControlName="fatherLastName"></tui-field-error>
+                </label>
+            </form>
+        </div>
+
+        <div class="w-full">
+            <div class="mb-6 font-extrabold 2xl:text-3xl text-2xl font-mono tracking-wide text-blue-800">
+                Mother Details
+            </div>
+            <form class="w-5/12" [formGroup]="familyDetailsForm">
+                <label tuiLabel label="Mother's First Name *">
+                    <tui-input 
+                            tuiTextfieldSize="l"
+                            formControlName="motherFirstName"
+                            [tuiTextfieldLabelOutside]="true"
+                        >
+                            
+                        </tui-input>
+                <tui-field-error class="mb-5" formControlName="motherFirstName"></tui-field-error>
+                </label>
+
+                <label tuiLabel label="Mother's Last Name *">
+                    <tui-input 
+                            tuiTextfieldSize="l"
+                            formControlName="motherLastName"
+                            [tuiTextfieldLabelOutside]="true"
+                        >
+                            
+                        </tui-input>
+                <tui-field-error class="mb-5" formControlName="motherLastName"></tui-field-error>
+                </label>
+            </form>
+        </div>
+
+        <div class="w-full">
+            <div class="mb-6 font-extrabold 2xl:text-3xl text-2xl font-mono tracking-wide text-blue-800">
+                Spouse Details
+            </div>
+            <form class="w-5/12" [formGroup]="familyDetailsForm">
+                <label tuiLabel label="Spouse's First Name">
+                    <tui-input 
+                            class="mb-5"
+                            tuiTextfieldSize="l"
+                            formControlName="spouseFirstName"
+                            [tuiTextfieldLabelOutside]="true"
+                            [readOnly]="totalWorkerData.personalDetails.martialStatus != 'Married'"
+                        >
+                            
+                        </tui-input>
+                </label>
+
+                <label tuiLabel label="Spouse's Last Name">
+                    <tui-input 
+                            class="mb-5"
+                            tuiTextfieldSize="l"
+                            formControlName="spouseLastName"
+                            [tuiTextfieldLabelOutside]="true"
+                            [readOnly]="totalWorkerData.personalDetails.martialStatus != 'Married'"
+                        >
+                            
+                        </tui-input>
+                </label>
+            </form>
+            <button
+                [disabled]="familyDetailsForm.invalid"
+                (click)="update()"
+                class="mb-5"
+                tuiButton
+                type="submit"
+                appearance="primary">
+                Update
+            </button>
+        </div>
+    </div>
+</div>

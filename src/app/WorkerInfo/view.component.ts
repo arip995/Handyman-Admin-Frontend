@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { switchMap,tap,catchError } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { WorkerDataService } from 'src/assets/Shared/workerData.service';
 
 @Component({
   selector: 'view-worker-info',
@@ -25,7 +26,8 @@ export class WorkerInfoComponent implements OnInit {
 
     constructor(
       private _activatedRoute:ActivatedRoute,
-      private _httpClient:HttpClient
+      private _httpClient:HttpClient,
+      private _workerData:WorkerDataService
     ){
       this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
       this.workerId = parseInt(this.workerId);
@@ -37,6 +39,7 @@ export class WorkerInfoComponent implements OnInit {
           (switchMap(()=> this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`)
           .pipe(
             tap((res)=>{
+              this._workerData.setPersonalWorkerdata(res);
               this.workerDetail = res;
               console.log(res)
             }),
@@ -46,5 +49,11 @@ export class WorkerInfoComponent implements OnInit {
           )
           ))
         )
+    }
+
+
+    nextStep(nextStepValue:any){
+      console.log("HIIII");
+      this.authenticationSteps = nextStepValue;
     }
   }

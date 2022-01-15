@@ -1,0 +1,143 @@
+<div class="w-full m-4">
+    <form class="w-4/12" [formGroup]="workDetailsForm">
+
+        <label tuiLabel label="Work Type *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="workType"
+                    [tuiTextfieldLabelOutside]="true"
+                    [readOnly]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="workType"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="Ownership of shop *">
+            <tui-select 
+                    [(ngModel)] = 'isShopPresent'
+                    tuiTextfieldSize="l"
+                    formControlName="ownShop"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                <tui-data-list-wrapper
+                    *tuiDataList
+                    [items]="ownership"
+                ></tui-data-list-wrapper>
+                </tui-select>
+                <tui-field-error class="mb-5" formControlName="ownShop"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="Current Salary *">
+            <tui-select 
+                    tuiTextfieldSize="l"
+                    formControlName="salary"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                <tui-data-list-wrapper
+                    *tuiDataList
+                    [items]="salary"
+                ></tui-data-list-wrapper>
+                </tui-select>
+                <tui-field-error class="mb-5" formControlName="salary"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="Experience *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="experience"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="experience"></tui-field-error>
+        </label>
+
+    </form>
+</div>
+
+
+<div *ngIf="this.isShopPresent === 'True'" class="w-full m-4">
+    <div class="mb-6 mt-6 font-extrabold 2xl:text-3xl text-2xl font-mono tracking-wide text-blue-800">
+        shop Details
+    </div>
+    <form class="w-4/12" [formGroup]="shopDetailsForm">
+        <label tuiLabel label="Shop Name *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="shopName"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="shopName"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="Shop Address *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="shopAddress"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="shopAddress"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="Landmark *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="landmark"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="landmark"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="Pincode *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="pincode"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="pincode"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="Years of Ownership *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="ownershipYears"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="ownershipYears"></tui-field-error>
+        </label>
+        
+    </form>
+</div>
+
+<button
+    *ngIf="this.isShopPresent === 'False'"
+    (click)="updateDetails()"
+    [disabled]="workDetailsForm.invalid"
+    class="mb-5 ml-4"
+    tuiButton
+    type="submit"
+    appearance="primary">
+    Update
+</button>
+
+<button
+    *ngIf="this.isShopPresent === 'True'"
+    (click)="updateShopDetails()"
+    [disabled]="shopDetailsForm.invalid || workDetailsForm.invalid"
+    class="mb-5 ml-4"
+    tuiButton
+    type="submit"
+    appearance="primary">
+    Update
+</button>

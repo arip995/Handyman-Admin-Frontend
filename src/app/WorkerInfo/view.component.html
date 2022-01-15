@@ -70,8 +70,32 @@
             </ng-container>
 
             <!-- Authentication Steps -->
-            <ng-container>
-                <personal-details></personal-details>
+            <ng-container *ngIf="authenticationSteps === 'personalDetails'">
+                <personal-details (updatestep)="nextStep($event)"></personal-details>
+            </ng-container>
+
+            <ng-container *ngIf="authenticationSteps === 'familyDetails'">
+                <family-details (updatestep)="nextStep($event)"></family-details>
+            </ng-container>
+
+            <ng-container *ngIf="authenticationSteps === 'residenceDetails'">
+                <residence-details (updatestep)="nextStep($event)"></residence-details>
+            </ng-container>
+
+            <ng-container *ngIf="authenticationSteps === 'workDetails'">
+                <work-details (updatestep)="nextStep($event)"></work-details>
+            </ng-container>
+
+            <ng-container *ngIf="authenticationSteps === 'kyc'">
+                <personal-details (updatestep)="nextStep($event)"></personal-details>
+            </ng-container>
+
+            <ng-container *ngIf="authenticationSteps === 'bankDetails'">
+                <personal-details (updatestep)="nextStep($event)"></personal-details>
+            </ng-container>
+
+            <ng-container *ngIf="authenticationSteps === 'activate'">
+                <personal-details (updatestep)="nextStep($event)"></personal-details>
             </ng-container>
         </div>
     </div>
