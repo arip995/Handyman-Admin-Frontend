@@ -76,6 +76,10 @@ export class ResidenceDetailsComponent implements OnInit {
 
 
     update(){
+        if(this.residenceDetailsForm.pristine){
+            this.updatestep.emit("residenceDetails");
+            return
+        }
         const data = {
             "foreignId" : this.workerId,
             "residenceDetails" : {

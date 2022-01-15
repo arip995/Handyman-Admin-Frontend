@@ -93,6 +93,34 @@ export class PersonalDetailsComponent implements OnInit {
         console.log(this.totalWorkerData)
         this.date = this.totalWorkerData.dateOfBirth;
         this.date = this.date.split("-").map(Number);
+        this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
+          tap((res:any)=>{
+            this.personaldata = res;
+            console.log(this.personaldata)
+            if(this.totalWorkerData){
+              this.personalDetailsForm.reset({
+                "firstName" : this.personaldata.firstName,
+                "mobileNumber" : this.personaldata.mobileNumber,
+                "lastName" : this.personaldata.lastName,
+                "salutation" : this.totalWorkerData.salutation,
+                "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
+                "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
+                "gender" : this.totalWorkerData.gender,
+                "martialStatus": this.totalWorkerData.martialStatus,
+                "nationality" : this.totalWorkerData.nationality,
+                "educationalQualification" : this.totalWorkerData.educationalQualification
+              })
+            }else{
+              this.personalDetailsForm.reset({
+                "firstName" : this.personaldata.firstName,
+                "mobileNumber" : this.personaldata.mobileNumber,
+                "lastName" : this.personaldata.lastName,
+              })
+            }
+          })
+        ).subscribe((res:any)=>{
+    
+        })
         console.log(this.date)
       }),catchError((error)=>{
         throw new Error(error)
@@ -100,34 +128,7 @@ export class PersonalDetailsComponent implements OnInit {
     ).subscribe((res:any)=>{
 
     })
-    this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`).pipe(
-      tap((res:any)=>{
-        this.personaldata = res;
-        console.log(this.personaldata)
-        if(this.totalWorkerData){
-          this.personalDetailsForm.reset({
-            "firstName" : this.personaldata.firstName,
-            "mobileNumber" : this.personaldata.mobileNumber,
-            "lastName" : this.personaldata.lastName,
-            "salutation" : this.totalWorkerData.salutation,
-            "alternateMobileNumber" : this.totalWorkerData.alternateMobileNumber,
-            "dateOfBirth" : new TuiDay(this.date[2], this.date[1]-1, this.date[0]),
-            "gender" : this.totalWorkerData.gender,
-            "martialStatus": this.totalWorkerData.martialStatus,
-            "nationality" : this.totalWorkerData.nationality,
-            "educationalQualification" : this.totalWorkerData.educationalQualification
-          })
-        }else{
-          this.personalDetailsForm.reset({
-            "firstName" : this.personaldata.firstName,
-            "mobileNumber" : this.personaldata.mobileNumber,
-            "lastName" : this.personaldata.lastName,
-          })
-        }
-      })
-    ).subscribe((res:any)=>{
-
-    })
+    
   }
     ngOnInit(): void {
         

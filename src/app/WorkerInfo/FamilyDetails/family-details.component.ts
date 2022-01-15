@@ -70,6 +70,10 @@ export class FamilyDetailsComponent implements OnInit {
 
     update(){
 
+        if(this.familyDetailsForm.pristine){
+            this.updatestep.emit("residenceDetails");
+            return
+        }
         const data = {
             "foreignId" : this.workerId,
             "familyDetails" : {
