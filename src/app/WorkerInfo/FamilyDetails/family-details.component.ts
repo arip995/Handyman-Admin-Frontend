@@ -58,17 +58,35 @@ export class FamilyDetailsComponent implements OnInit {
         // this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
         this._workerData.getWorkerData()  
         .subscribe((res:any)=>{
-            this.totalWorkerData = res;
-            if(this.totalWorkerData.familyDetails){
-                this.familyDetailsForm.reset({
-                    fatherFirstName               : this.totalWorkerData?.familyDetails.fatherFirstName,
-                    fatherLastName                : this.totalWorkerData?.familyDetails.fatherLastName,
-                    motherFirstName               : this.totalWorkerData?.familyDetails.motherFirstName,
-                    motherLastName                : this.totalWorkerData?.familyDetails.motherLastName,
-                    spouseFirstName               : this.totalWorkerData?.familyDetails.spouseFirstName,
-                    spouseLastName                : this.totalWorkerData?.familyDetails.spouseLastName,
+            if(!res){
+                this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
+                .subscribe((res:any)=>{
+                    this.totalWorkerData = res.familyDetails;
+                    if(this.totalWorkerData.familyDetails){
+                        this.familyDetailsForm.reset({
+                            fatherFirstName               : this.totalWorkerData?.familyDetails.fatherFirstName,
+                            fatherLastName                : this.totalWorkerData?.familyDetails.fatherLastName,
+                            motherFirstName               : this.totalWorkerData?.familyDetails.motherFirstName,
+                            motherLastName                : this.totalWorkerData?.familyDetails.motherLastName,
+                            spouseFirstName               : this.totalWorkerData?.familyDetails.spouseFirstName,
+                            spouseLastName                : this.totalWorkerData?.familyDetails.spouseLastName,
+                        })
+                    }
                 })
+            }else{
+                this.totalWorkerData = res;
+                if(this.totalWorkerData.familyDetails){
+                    this.familyDetailsForm.reset({
+                        fatherFirstName               : this.totalWorkerData?.familyDetails.fatherFirstName,
+                        fatherLastName                : this.totalWorkerData?.familyDetails.fatherLastName,
+                        motherFirstName               : this.totalWorkerData?.familyDetails.motherFirstName,
+                        motherLastName                : this.totalWorkerData?.familyDetails.motherLastName,
+                        spouseFirstName               : this.totalWorkerData?.familyDetails.spouseFirstName,
+                        spouseLastName                : this.totalWorkerData?.familyDetails.spouseLastName,
+                    })
+                }
             }
+            
           })
     }
 

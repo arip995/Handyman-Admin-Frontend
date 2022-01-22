@@ -34,6 +34,12 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FamilyDetailsComponent } from './WorkerInfo/FamilyDetails/family-details.component';
 import { ResidenceDetailsComponent } from './WorkerInfo/ResidenceDetilas/residence-details.component';
 import { WorkDetailsComponent } from './WorkerInfo/WorkDetails/work-details.component';
+import { KycComponent } from './WorkerInfo/Kyc/kyc.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddKycComponent } from './WorkerInfo/Kyc/add-kyc/add-kyc.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
   TUI_SANITIZER,
   TuiActiveZoneModule,
@@ -152,7 +158,9 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     PersonalDetailsComponent,
     FamilyDetailsComponent,
     ResidenceDetailsComponent,
-    WorkDetailsComponent
+    WorkDetailsComponent,
+    KycComponent,
+    AddKycComponent
   ],
   imports: [
     BrowserModule,
@@ -168,6 +176,10 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     MatSidenavModule,
     MatIconModule,
     MatDividerModule,
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatCheckboxModule,
     TuiLineChartModule,
     TuiArcChartModule,
     TuiPieChartModule,

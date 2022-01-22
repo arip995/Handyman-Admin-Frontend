@@ -1,0 +1,51 @@
+<!-- Title -->
+<div class="flex items-center justify-between px-4 mb-4 border-b border-gray-200 py-4">
+    <div class="text-lg font-semibold text-blue-800">
+        Add Identifier
+    </div>
+    <button
+        mat-icon-button
+        matDialogClose>
+        <tui-svg src="tuiIconRemoveLarge" style="color: #9ca3af;" ></tui-svg>
+    </button>
+</div>
+
+<div class="w-full flex justify-center">
+    <div class="w-8/12">
+        <form class="w-full" [formGroup]="addkyc">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label required>Identifier Type</mat-label>
+                <mat-select required [formControlName]="'identifierType'">
+                  <mat-option *ngFor="let identifier of identifierType" [value]="identifier.id">
+                    {{identifier.value}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="checkError('required')">This is a required field!</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="outline" >
+                <mat-label>Unique ID #</mat-label>
+                <input required matInput type="text" [formControlName]="'uniqueId'">
+                <mat-error *ngIf="checkError('required')">Enter a valid ID.</mat-error>
+            </mat-form-field>
+            <div class="flex justify-between mb-4">
+                <mat-checkbox color="primary" formControlName="ageProof">Age Proof</mat-checkbox>
+                <mat-checkbox color="primary" formControlName="IdProof">ID Proof</mat-checkbox>
+                <mat-checkbox color="primary" formControlName="addressProof">Address Proof</mat-checkbox>
+            </div>
+            <div class="w-full flex justify-center mb-4">
+                <mat-checkbox required (click)="a($event)" [(ngModel)]="declare" color="primary" formControlName="declare">I declare the original document is seen and verified
+                </mat-checkbox>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="pt-4 border-t border-gray-200">
+    <button
+        (click)="save()"
+        [disabled]="declare === false"
+        tuiButton
+        type="submit"
+        appearance="primary">
+        Save
+    </button>
+</div>

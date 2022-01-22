@@ -87,7 +87,7 @@
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'kyc'">
-                <personal-details (updatestep)="nextStep($event)"></personal-details>
+                <kyc (updatestep)="nextStep($event)"></kyc>
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'bankDetails'">
