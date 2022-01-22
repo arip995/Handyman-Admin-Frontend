@@ -35,6 +35,8 @@ import { FamilyDetailsComponent } from './WorkerInfo/FamilyDetails/family-detail
 import { ResidenceDetailsComponent } from './WorkerInfo/ResidenceDetilas/residence-details.component';
 import { WorkDetailsComponent } from './WorkerInfo/WorkDetails/work-details.component';
 import { KycComponent } from './WorkerInfo/Kyc/kyc.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddKycComponent } from './WorkerInfo/Kyc/add-kyc/add-kyc.component';
 import {
   TUI_SANITIZER,
   TuiActiveZoneModule,
@@ -154,7 +156,8 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     FamilyDetailsComponent,
     ResidenceDetailsComponent,
     WorkDetailsComponent,
-    KycComponent
+    KycComponent,
+    AddKycComponent
   ],
   imports: [
     BrowserModule,
@@ -170,6 +173,7 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     MatSidenavModule,
     MatIconModule,
     MatDividerModule,
+    MatDialogModule,
     TuiLineChartModule,
     TuiArcChartModule,
     TuiPieChartModule,

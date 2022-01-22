@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy,Inject, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -10,14 +10,12 @@ import { TuiDay } from '@taiga-ui/cdk';
 import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
 import { WorkerDataService } from 'src/assets/Shared/workerData.service';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
-import { MatDialog } from '@angular/material/dialog';
-import { AddKycComponent } from './add-kyc/add-kyc.component';
-
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'kyc',
-  templateUrl: './kyc.component.html',
-  styleUrls: ['./kyc.component.scss'],
+  selector: 'add-kyc',
+  templateUrl: './add-kyc.component.html',
+  styleUrls: ['./add-kyc.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ {
     provide: TUI_VALIDATION_ERRORS,
@@ -31,16 +29,17 @@ import { AddKycComponent } from './add-kyc/add-kyc.component';
 ],
 })
 
-export class KycComponent implements OnInit {
+export class AddKycComponent implements OnInit {
 
     constructor(
+        public dialogRef: MatDialogRef<AddKycComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
         private _formBuilder: FormBuilder,
         private _httpClient: HttpClient,
         private _activatedRoute:ActivatedRoute,
         private _router: Router,
         private _datePipe: DatePipe,
-        private _workerData:WorkerDataService,
-        private _matDialog: MatDialog
+        private _workerData:WorkerDataService
     ){
 
     }
@@ -48,19 +47,5 @@ export class KycComponent implements OnInit {
 
     ngOnInit(): void {
         
-    }
-
-
-    addKyc(){
-        const dialogRef = this._matDialog.open(AddKycComponent, {
-            autoFocus : false,
-            panelClass: ['w-1/2', 'max-w-3xl'],
-            data: {
-            }
-        });
-
-        dialogRef.afterClosed().subscribe((result) => {
-            console.log(result);
-        });
     }
 }
