@@ -7,7 +7,7 @@ import { switchMap,tap,catchError } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { TuiDay } from '@taiga-ui/cdk';
-import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
+import { TUI_DATE_FORMAT, TUI_DATE_SEPARATOR } from '@taiga-ui/cdk';
 import { WorkerDataService } from 'src/assets/Shared/workerData.service';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -30,6 +30,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 
 export class AddKycComponent implements OnInit {
+    addkyc:FormGroup;
+    declare:boolean = false;
+    identifierType:any = [
+        "PAN",
+        "Passport",
+        "Voter Id",
+        "Aadhar",
+    ]
 
     constructor(
         public dialogRef: MatDialogRef<AddKycComponent>,
@@ -41,11 +49,32 @@ export class AddKycComponent implements OnInit {
         private _datePipe: DatePipe,
         private _workerData:WorkerDataService
     ){
-
+        this.addkyc = this._formBuilder.group({
+            identifierType : new FormControl("",[Validators.required]),
+            uniqueId       : new FormControl("",[Validators.required]),
+            ageProof       : new FormControl("",[]),
+            IdProof        : new FormControl("",[]),
+            addressProof   : new FormControl("",[]),
+            declaration    : new FormControl("",[]),
+        })
     }
 
 
     ngOnInit(): void {
         
     }
+
+    a(event:any){
+        this.declare = !this.declare;
+    }
+
+    checkError(errorName:any){
+  
+        return()=>{
+          this.addkyc.controls['identifierType'].hasError(errorName);
+          this.addkyc.controls['uniqueId'].hasError(errorName);
+          this.addkyc.controls['declaration'].hasError(errorName);
+        } 
+    
+      }
 }

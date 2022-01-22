@@ -37,6 +37,9 @@ import { WorkDetailsComponent } from './WorkerInfo/WorkDetails/work-details.comp
 import { KycComponent } from './WorkerInfo/Kyc/kyc.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddKycComponent } from './WorkerInfo/Kyc/add-kyc/add-kyc.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
   TUI_SANITIZER,
   TuiActiveZoneModule,
@@ -174,6 +177,9 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     MatIconModule,
     MatDividerModule,
     MatDialogModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatCheckboxModule,
     TuiLineChartModule,
     TuiArcChartModule,
     TuiPieChartModule,
