@@ -33,11 +33,24 @@ export class AddKycComponent implements OnInit {
     addkyc:FormGroup;
     declare:boolean = false;
     identifierType:any = [
-        "PAN",
-        "Passport",
-        "Voter Id",
-        "Aadhar",
+        {
+            id: 'panID',
+            value : 'Pan ID',
+        },
+        {
+            id: 'voterID',
+            value : 'Voter ID',
+        },
+        {
+            id: 'aadharID',
+            value : 'Aadhar ID',
+        },
+        {
+            id: 'passport',
+            value : 'Passport',
+        },
     ]
+    workerId: any;
 
     constructor(
         public dialogRef: MatDialogRef<AddKycComponent>,
@@ -77,4 +90,50 @@ export class AddKycComponent implements OnInit {
         } 
     
       }
+
+    save(){
+        const identifier =  this.addkyc?.get('identifierType')?.value;
+        this._workerData.getWorkerData()
+        .subscribe((res:any)=>{
+            // console.log(res.kyc)
+            if(res.kyc){
+                let a = res.kyc;
+                a = res.kyc;
+                const data = {
+                    "foreignId" : this.data.workerId,
+                    "kyc": a
+                }
+                data.kyc[identifier] = { 
+                    [identifier]     : this.addkyc?.get('uniqueId')?.value,
+                    ageProof         : this.addkyc?.get('ageProof')?.value,
+                    IdProof          : this.addkyc?.get('IdProof')?.value,
+                    addressProof     : this.addkyc?.get('addressProof')?.value,
+                }
+                console.log(data)
+                this._httpClient.put(`${environment.workerBasePath}/update/information/${this.data.workerId}/`,data)
+                .subscribe((res:any)=>{
+                    console.log(res)
+                    // this._workerData.setWorkerData(res)
+                })
+            }else{
+                const data = {
+                    "foreignId" : this.data.workerId,
+                    "kyc":{
+                        [identifier] :{
+                            [identifier]     : this.addkyc?.get('uniqueId')?.value,
+                            ageProof         : this.addkyc?.get('ageProof')?.value,
+                            IdProof          : this.addkyc?.get('IdProof')?.value,
+                            addressProof     : this.addkyc?.get('addressProof')?.value,
+                        }
+                    }
+                }
+                console.log(data)
+                this._httpClient.put(`${environment.workerBasePath}/update/information/${this.data.workerId}/`,data)
+                .subscribe((res:any)=>{
+                    console.log(res)
+                    this._workerData.setWorkerData(res)
+                })
+            }
+        })
+    }
 }

@@ -32,6 +32,7 @@ import { AddKycComponent } from './add-kyc/add-kyc.component';
 })
 
 export class KycComponent implements OnInit {
+    workerId: any;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -42,7 +43,8 @@ export class KycComponent implements OnInit {
         private _workerData:WorkerDataService,
         private _matDialog: MatDialog
     ){
-
+        this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
+        this.workerId = parseInt(this.workerId);
     }
 
 
@@ -56,6 +58,7 @@ export class KycComponent implements OnInit {
             autoFocus : false,
             panelClass: ['w-1/2', 'max-w-3xl'],
             data: {
+                workerId : this.workerId
             }
         });
 
