@@ -104,6 +104,7 @@ export class AddKycComponent implements OnInit {
                     "kyc": a
                 }
                 data.kyc[identifier] = { 
+                    type             : identifier,
                     id               : this.addkyc?.get('uniqueId')?.value,
                     ageProof         : this.addkyc?.get('ageProof')?.value,
                     IdProof          : this.addkyc?.get('IdProof')?.value,
@@ -132,6 +133,7 @@ export class AddKycComponent implements OnInit {
                         IdProof          : this.addkyc?.get('IdProof')?.value,
                         addressProof     : this.addkyc?.get('addressProof')?.value,
                         [identifier] :{
+                            type             : identifier,
                             id               : this.addkyc?.get('uniqueId')?.value,
                             ageProof         : this.addkyc?.get('ageProof')?.value,
                             IdProof          : this.addkyc?.get('IdProof')?.value,
@@ -143,7 +145,7 @@ export class AddKycComponent implements OnInit {
                 this._httpClient.put(`${environment.workerBasePath}/update/information/${this.data.workerId}/`,data)
                 .subscribe((res:any)=>{
                     console.log(res)
-                    this._workerData.setWorkerData(res)
+                    // this._workerData.setWorkerData(res)
                 })
             }
         })

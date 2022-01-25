@@ -36,6 +36,25 @@ export class KycComponent implements OnInit {
     public _refreshToken$:any = new BehaviorSubject(null);
     public kycData$: any;
     kycData:any;
+    proof:any = [];
+    identifierType:any = [
+        {
+            id: 'panID',
+            value : 'Pan ID',
+        },
+        {
+            id: 'voterID',
+            value : 'Voter ID',
+        },
+        {
+            id: 'aadharID',
+            value : 'Aadhar ID',
+        },
+        {
+            id: 'passport',
+            value : 'Passport',
+        },
+    ]
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -52,8 +71,22 @@ export class KycComponent implements OnInit {
             (switchMap(() => this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
                     .pipe(
                         tap((res: any) => {
+                            let dataArray = [];
                             this.kycData = res.kyc;
-                            console.log(this.kycData);
+                            for(let a in this.kycData){
+                                let b = this.kycData[a];
+                                dataArray.push(b)
+                                // console.log(dataArray)
+                            }
+                            // console.log(dataArray)
+                            if(dataArray){
+                                for(let i=0;i<dataArray.length;i++){
+                                    if(typeof(dataArray[i]) === "object"){
+                                        this.proof.push(dataArray[i])
+                                    }
+                                }
+                            }
+                            console.log(this.proof)
                         })
                     )
             ))
