@@ -48,31 +48,31 @@ export class KycComponent implements OnInit {
     ){
         this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
         this.workerId = parseInt(this.workerId);
+        this.kycData$ = this._refreshToken$.pipe(
+            (switchMap(() => this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
+                    .pipe(
+                        tap((res: any) => {
+                            this.kycData = res.kyc;
+                            console.log(this.kycData);
+                        })
+                    )
+            ))
+        )
     }
 
 
     ngOnInit(): void {
-        this.kycData$ = this._refreshToken$.pipe(
-            (switchMap(async () => this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
-                    .pipe(
-                        tap((res: any) => {
-                            // console.log(res);
-                        })
-                    ).subscribe((res:any)=>{
-                        this.kycData = res.kyc;
-                        console.log(res);
-                    })
-            ))
-        )        
+                
     }
 
-
+    
     addKyc(){
         const dialogRef = this._matDialog.open(AddKycComponent, {
             autoFocus : false,
             panelClass: ['w-1/2', 'max-w-3xl'],
             data: {
-                workerId : this.workerId
+                workerId : this.workerId,
+                kycData  : this.kycData
             }
         });
 

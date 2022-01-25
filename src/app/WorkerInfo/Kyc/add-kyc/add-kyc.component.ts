@@ -104,7 +104,7 @@ export class AddKycComponent implements OnInit {
                     "kyc": a
                 }
                 data.kyc[identifier] = { 
-                    [identifier]     : this.addkyc?.get('uniqueId')?.value,
+                    id               : this.addkyc?.get('uniqueId')?.value,
                     ageProof         : this.addkyc?.get('ageProof')?.value,
                     IdProof          : this.addkyc?.get('IdProof')?.value,
                     addressProof     : this.addkyc?.get('addressProof')?.value,
@@ -132,7 +132,7 @@ export class AddKycComponent implements OnInit {
                         IdProof          : this.addkyc?.get('IdProof')?.value,
                         addressProof     : this.addkyc?.get('addressProof')?.value,
                         [identifier] :{
-                            [identifier]     : this.addkyc?.get('uniqueId')?.value,
+                            id               : this.addkyc?.get('uniqueId')?.value,
                             ageProof         : this.addkyc?.get('ageProof')?.value,
                             IdProof          : this.addkyc?.get('IdProof')?.value,
                             addressProof     : this.addkyc?.get('addressProof')?.value,
