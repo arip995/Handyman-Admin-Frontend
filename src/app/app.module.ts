@@ -41,6 +41,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BankDetailsComponent } from './WorkerInfo/BankDetails/bank-details.component';
+import { AddBankDetailsComponent } from './WorkerInfo/BankDetails/AddBankAccount/add-bank-account.component';
 import {
   TUI_SANITIZER,
   TuiActiveZoneModule,
@@ -162,7 +163,8 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     WorkDetailsComponent,
     KycComponent,
     AddKycComponent,
-    BankDetailsComponent
+    BankDetailsComponent,
+    AddBankDetailsComponent
   ],
   imports: [
     BrowserModule,
