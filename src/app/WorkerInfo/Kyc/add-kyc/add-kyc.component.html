@@ -28,12 +28,12 @@
                 <mat-error *ngIf="checkError('required')">Enter a valid ID.</mat-error>
             </mat-form-field>
             <div class="flex justify-between mb-4">
-                <mat-checkbox color="primary" formControlName="ageProof">Age Proof</mat-checkbox>
-                <mat-checkbox color="primary" formControlName="IdProof">ID Proof</mat-checkbox>
-                <mat-checkbox color="primary" formControlName="addressProof">Address Proof</mat-checkbox>
+                <mat-checkbox [disabled]="data.kycData?.ageProof === true" color="primary" formControlName="ageProof">Age Proof</mat-checkbox>
+                <mat-checkbox [disabled]="data.kycData?.IdProof === true" color="primary" formControlName="IdProof">ID Proof</mat-checkbox>
+                <mat-checkbox [disabled]="data.kycData?.addressProof === true" color="primary" formControlName="addressProof">Address Proof</mat-checkbox>
             </div>
             <div class="w-full flex justify-center mb-4">
-                <mat-checkbox required (click)="a($event)" [(ngModel)]="declare" color="primary" formControlName="declare">I declare the original document is seen and verified
+                <mat-checkbox required (click)="a($event)" [(ngModel)]="declare" color="primary" formControlName="declare">I declare the original document is seen and verified *
                 </mat-checkbox>
             </div>
         </form>

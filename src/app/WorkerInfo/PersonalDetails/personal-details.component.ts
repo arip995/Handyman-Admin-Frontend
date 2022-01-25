@@ -90,7 +90,7 @@ export class PersonalDetailsComponent implements OnInit {
     });
     this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
     this.workerId = parseInt(this.workerId);
-    
+    this.personalDetailsForm.reset()
   }
     ngOnInit(): void {
 
