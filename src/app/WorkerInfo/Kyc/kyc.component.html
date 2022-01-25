@@ -1,18 +1,22 @@
 <!-- <div class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-blue-100 rounded-2xl text-blue-600 text-xs flex ml-4 items-center"><span class="p-1 bg-blue-500 rounded-full mr-2"></span> VERIFIED</div></div>
 <div class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-red-100 rounded-2xl text-red-600 text-xs flex ml-4 items-center"><span class="p-1 bg-red-500 rounded-full mr-2"></span> PENDING</div></div>
 <div class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-green-100 rounded-2xl text-green-700 text-xs flex ml-4 items-center"><span class="p-1 bg-green-600 rounded-full mr-2"></span> COMPLETED</div></div> -->
-<ng-container>
+<ng-container *ngIf="(kycData$ |async)">
     <div class="ml-4 flex w-8/12 mb-4 border-b border-gray-200 pb-2">
         <div class="w-3/12 mb-6 font-medium text-4xl tracking-normal text-blue-800">
             KYC Process
         </div>
-        <div class="ml-5 mb-3 w-full font-semibold text-xl flex items-center">
+        <div *ngIf="(kycData?.kyc?.ageProof === true && kycData?.kyc?.IdProof === true) && kycData?.kyc?.addressProof === true;else completed" class="ml-5 mb-3 w-full font-semibold text-xl flex items-center">
             <div class="w-auto px-4 py-1 bg-red-100 rounded-2xl text-red-600 text-xs flex ml-4 items-center">
                 <span class="p-1 bg-red-500 rounded-full mr-2">
 
                 </span> PENDING
             </div>
         </div>
+
+        <ng-template #completed>
+            <div class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-green-100 rounded-2xl text-green-700 text-xs flex ml-4 items-center"><span class="p-1 bg-green-600 rounded-full mr-2"></span> COMPLETED</div></div>
+        </ng-template>
         <button
             (click)="addKyc()"
             class="mr-6"
@@ -24,31 +28,36 @@
     </div>
 
 
-    <div class="flex mb-4">
+    <div class="flex mb-4" *ngIf="kycData?.kyc?.ageProof === true;else age">
         <tui-svg class="ml-4 mr-2" src="tuiIconCancelCircleLarge" style="color: red;" ></tui-svg>
         <div class="mt-1">Age Proof</div>
     </div>
-    <div class="flex mb-4">
+    <div class="flex mb-4" *ngIf="kycData?.kyc?.IdProof === true;else idp">
         <tui-svg class="ml-4 mr-2" src="tuiIconCancelCircleLarge" style="color: red;" ></tui-svg>
         <div class="mt-1">ID Proof</div>
     </div>
-    <div class="flex mb-4">
+    <div class="flex mb-4" *ngIf="kycData?.kyc?.addressProof === true;else address">
         <tui-svg class="ml-4 mr-2" src="tuiIconCancelCircleLarge" style="color: red;" ></tui-svg>
         <div class="mt-1">Address Proof</div>
     </div>
 
-    <!-- <div class="flex mb-4">
-        <tui-svg class="ml-4 mr-2" src="tuiIconCheckCircleLarge" style="color: blue;" ></tui-svg>
-        <div class="mt-1">Age Proof</div>
-    </div>
-    <div class="flex mb-4">
-        <tui-svg class="ml-4 mr-2" src="tuiIconCheckCircleLarge" style="color: blue;" ></tui-svg>
-        <div class="mt-1">ID Proof</div>
-    </div>
-    <div class="flex mb-4">
-        <tui-svg class="ml-4 mr-2" src="tuiIconCheckCircleLarge" style="color: blue;" ></tui-svg>
-        <div class="mt-1">Address Proof</div>
-    </div> -->
 
-    
+    <ng-template #age>
+        <div class="flex mb-4">
+            <tui-svg class="ml-4 mr-2" src="tuiIconCheckCircleLarge" style="color: blue;" ></tui-svg>
+            <div class="mt-1">Age Proof</div>
+        </div>
+    </ng-template>
+    <ng-template #idp>
+        <div class="flex mb-4">
+            <tui-svg class="ml-4 mr-2" src="tuiIconCheckCircleLarge" style="color: blue;" ></tui-svg>
+            <div class="mt-1">ID Proof</div>
+        </div>
+    </ng-template>
+    <ng-template #address>
+        <div class="flex mb-4">
+            <tui-svg class="ml-4 mr-2" src="tuiIconCheckCircleLarge" style="color: blue;" ></tui-svg>
+            <div class="mt-1">Address Proof</div>
+        </div>
+    </ng-template>
 </ng-container>

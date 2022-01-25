@@ -33,6 +33,9 @@ import { AddKycComponent } from './add-kyc/add-kyc.component';
 
 export class KycComponent implements OnInit {
     workerId: any;
+    public _refreshToken$:any = new BehaviorSubject(null);
+    public kycData$: any;
+    kycData:any;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -49,7 +52,18 @@ export class KycComponent implements OnInit {
 
 
     ngOnInit(): void {
-        
+        this.kycData$ = this._refreshToken$.pipe(
+            (switchMap(async () => this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
+                    .pipe(
+                        tap((res: any) => {
+                            // console.log(res);
+                        })
+                    ).subscribe((res:any)=>{
+                        this.kycData = res.kyc;
+                        console.log(res);
+                    })
+            ))
+        )        
     }
 
 
