@@ -11,6 +11,7 @@ import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR} from '@taiga-ui/cdk';
 import { WorkerDataService } from 'src/assets/Shared/workerData.service';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 import { MatDialog } from '@angular/material/dialog';
+import { AddBankDetailsComponent } from './AddBankAccount/add-bank-account.component';
 
 
 @Component({
@@ -31,7 +32,37 @@ import { MatDialog } from '@angular/material/dialog';
 })
 
 export class BankDetailsComponent implements OnInit {
+    workerId: any;
+
+    constructor(
+        private _formBuilder: FormBuilder,
+        private _httpClient: HttpClient,
+        private _activatedRoute:ActivatedRoute,
+        private _router: Router,
+        private _datePipe: DatePipe,
+        private _workerData:WorkerDataService,
+        private _matDialog: MatDialog
+    ){
+        this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
+        this.workerId = parseInt(this.workerId);
+    }
     ngOnInit(): void {
         
+    }
+
+    addBankDetails(){
+        const dialogRef = this._matDialog.open(AddBankDetailsComponent, {
+            autoFocus : false,
+            panelClass: ['w-1/2', 'max-w-3xl','h-1/2','max-h-3xl'],
+            data: {
+                workerId : this.workerId,
+            }
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if(result === "change"){
+            }
+            console.log(result);
+        });
     }
 }
