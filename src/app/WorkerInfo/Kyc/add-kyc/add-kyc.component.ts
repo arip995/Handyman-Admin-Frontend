@@ -122,6 +122,7 @@ export class AddKycComponent implements OnInit {
                 console.log(data)
                 this._httpClient.put(`${environment.workerBasePath}/update/information/${this.data.workerId}/`,data)
                 .subscribe((res:any)=>{
+                    this.dialogRef.close("change")
                     console.log(res)
                     // this._workerData.setWorkerData(res)
                 })
@@ -144,6 +145,7 @@ export class AddKycComponent implements OnInit {
                 console.log(data)
                 this._httpClient.put(`${environment.workerBasePath}/update/information/${this.data.workerId}/`,data)
                 .subscribe((res:any)=>{
+                    this.dialogRef.close("change")
                     console.log(res)
                     // this._workerData.setWorkerData(res)
                 })

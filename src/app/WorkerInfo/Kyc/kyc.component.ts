@@ -71,6 +71,7 @@ export class KycComponent implements OnInit {
             (switchMap(() => this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
                     .pipe(
                         tap((res: any) => {
+                            this.proof = [];
                             let dataArray = [];
                             this.kycData = res.kyc;
                             for(let a in this.kycData){
@@ -110,7 +111,35 @@ export class KycComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe((result) => {
+            if(result === "change"){
+                this._refreshToken$.next();
+            }
             console.log(result);
         });
+    }
+
+
+    delete(type:any){
+        console.log(this.kycData)
+        if(this.kycData[type].ageProof === true){
+            this.kycData.ageProof = false
+        }
+        if(this.kycData[type].IdProof === true){
+            this.kycData.IdProof = false
+        }
+        if(this.kycData[type].addressProof === true){
+            this.kycData.addressProof = false
+        }
+        delete this.kycData[type];
+        const data = {
+            foreignId : this.workerId,
+            kyc       : this.kycData
+        }
+        console.log(data)
+        this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
+        .subscribe((res:any)=>{
+            this._refreshToken$.next();
+            console.log(res)
+        })
     }
 }

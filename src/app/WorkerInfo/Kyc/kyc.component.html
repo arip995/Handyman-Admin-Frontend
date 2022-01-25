@@ -80,11 +80,39 @@
                             {{(identity.id === content.type) ? identity.value : ""}}
                         </ng-container>
                     </div>
-                    <div class="hover:text-red-600 cursor-pointer">
+                    <div (click)="delete(content.type)" class="hover:text-red-600 cursor-pointer">
                         <tui-svg class="" src="tuiIconTrashLarge" ></tui-svg>
                     </div>
                 </div>
-                
+                <div class="flex mt-2">
+                    <ng-container *ngIf="content.ageProof === true">
+                        <tui-badge
+                            size="m"
+                            value="Age Proof"
+                            class="tui-space_right-2"
+                            [hoverable]="true"
+                        ></tui-badge>
+                    </ng-container>
+                    <ng-container *ngIf="content.IdProof === true">
+                        <tui-badge
+                            size="m"
+                            value="ID Proof"
+                            class="tui-space_right-2"
+                            [hoverable]="true"
+                        ></tui-badge>
+                    </ng-container>
+                    <ng-container *ngIf="content.addressProof === true">
+                        <tui-badge
+                            size="m"
+                            value="Address Proof"
+                            class="tui-space_right-2"
+                            [hoverable]="true"
+                        ></tui-badge>
+                    </ng-container>
+                </div>
+                <div class="text-lg mt-2 font-light tracking-normal">
+                    ID:- {{content.id}}
+                </div>
             </div>
         </div>
     </div>
