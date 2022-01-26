@@ -121,7 +121,7 @@ export class HomeComponent implements OnInit {
     if(this.dataFlow){
       this.content = this.dataFlow;
     }else{
-      this._adminDataService.setAdminData('Dashboard');
+      this._adminDataService.setAdminData("Dashboard");
     }
   }
 
@@ -130,8 +130,10 @@ readonly stringify = TUI_DEFAULT_STRINGIFY;
 
     contentChange(value:any){
       this.content = value;
-      this._adminDataService.setAdminData(value);
-      this.dataFlow = this._adminDataService.getDataFlow();
+      this._adminDataService.setDataFlow(value);
+      this._adminDataService.getDataFlow().subscribe((res:any)=>{
+        this.dataFlow = res;
+      });
       console.log(this.dataFlow)
     }
     
