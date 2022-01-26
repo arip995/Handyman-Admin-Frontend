@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ceil } from '@taiga-ui/cdk';
 import { TUI_DEFAULT_STRINGIFY } from '@taiga-ui/cdk';
 import { Router,ActivatedRoute } from '@angular/router';
@@ -6,6 +6,10 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap,tap,catchError } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
+import { AdminDataService } from 'src/assets/Shared/adminData.service';
+import { LoaderService } from '../Loader/loader.service';
+import { NgZone } from '@angular/core';
+
 
 @Component({
   selector: 'view-home',
@@ -14,17 +18,21 @@ import { DatePipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public _refreshToken$:any = new BehaviorSubject(null);
   public user$: any;
-  userData:any;
+  userData:any = null;
   currentDate:any = new Date();
   adminDate: any;
+  adminData:any;
+  dataFlow: any;
   constructor(
     private _datePipe: DatePipe,
     private _router:Router,
     private _activatedRoute: ActivatedRoute,
-    private _httpClient:HttpClient
+    private _httpClient:HttpClient,
+    private _adminDataService:AdminDataService,
+    private _ngZone:NgZone
   ){
     // this.currentDate = this._datePipe.transform(this.currentDate, 'yyyy-MM-dd');
     // this.adminDate = localStorage.getItem("adminDate");
@@ -38,25 +46,46 @@ export class HomeComponent {
     //   this._router.navigate(['../sign-in'],{relativeTo : this._activatedRoute})
     // }
     // console.log(Days)
+    
     const adminAccessToken:any = localStorage.getItem('adminAccessToken');
     const data = {
       "accessToken" : adminAccessToken
     }
-    this.user$ = this._refreshToken$.pipe(
-      (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
-      .pipe(
-        tap((res:any)=>{
-          if(!res){
-          }
+    // this._adminDataService.setAdminData(data.accessToken).subscribe((res:any)=>{
+    //   this.userData = res;
+    //   console.log(this.userData)
+    // })
+    this._adminDataService.getAdminData().subscribe((res:any)=>{
+      if(res){
+        this._ngZone.run( () => {
           this.userData = res;
-          console.log(res)
+        });
+      }else{
+        this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
+        .subscribe((res:any)=>{
+          this._ngZone.run( () => {
+            this.userData = res;
+          });
+          this._adminDataService.setAdminData(res)
         })
-        ,catchError((error)=>{
-          alert("please logout and sign in again")
-          throw new Error(error);
-        })
-      )))
-    )
+        // this.user$ = this._refreshToken$.pipe(
+        //   (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
+          // .pipe(
+          //   tap((res:any)=>{
+          //     if(!res){
+          //     }
+          //     this.userData = res;
+          //     console.log(res)
+          //   })
+        //     ,catchError((error)=>{
+        //       alert("please logout and sign in again")
+        //       throw new Error(error);
+        //     })
+        //   )))
+        // )
+      }
+    })
+    
   }
     content: 'Dashboard'| 'Customers' | 'Workers' | 'Analytics' | 'Products' | 'Reports' = "Dashboard";
     readonly value = [40, 30, 20, 10];
@@ -84,11 +113,28 @@ export class HomeComponent {
     [350, 90],
   ];
 
+  ngOnInit(): void {
+    this._adminDataService.getDataFlow().subscribe((res:any)=>{
+      this.dataFlow = res;
+    });
+    console.log(this.dataFlow)
+    if(this.dataFlow){
+      this.content = this.dataFlow;
+    }else{
+      this._adminDataService.setAdminData("Dashboard");
+    }
+  }
+
 readonly stringify = TUI_DEFAULT_STRINGIFY;
 
 
     contentChange(value:any){
       this.content = value;
+      this._adminDataService.setDataFlow(value);
+      this._adminDataService.getDataFlow().subscribe((res:any)=>{
+        this.dataFlow = res;
+      });
+      console.log(this.dataFlow)
     }
     
     
