@@ -1,0 +1,64 @@
+<!-- Title -->
+<div class="flex items-center justify-between px-4 mb-4 border-b border-gray-200 pb-4">
+    <div class="text-lg font-semibold text-blue-800">
+        Add Bank Details
+    </div>
+    <button
+        mat-icon-button
+        matDialogClose>
+        <tui-svg src="tuiIconRemoveLarge" style="color: #9ca3af;" ></tui-svg>
+    </button>
+</div>
+
+
+<div class="flex justify-center w-full">
+    <form class="w-9/12" [formGroup]="bankDetailsForm">
+        <label tuiLabel label="Account Holder's Name *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="accountHolderName"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="accountHolderName"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="Account Number *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="accountNumber"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="accountNumber"></tui-field-error>
+        </label>
+
+        <label tuiLabel label="IFSC Code *">
+            <tui-input 
+                    tuiTextfieldSize="l"
+                    formControlName="ifscCode"
+                    [tuiTextfieldLabelOutside]="true"
+                >
+                    
+                </tui-input>
+                <tui-field-error class="mb-5" formControlName="ifscCode"></tui-field-error>
+        </label>
+    </form>
+</div>
+
+<div style="margin-top: auto;" class="flex items-center justify-between px-4 mb-4 border-b border-gray-200 pb-4">
+    <div class="text-lg font-semibold text-blue-800">
+    </div>
+    <button
+        [disabled]="bankDetailsForm.invalid"
+        (click)="addBankDetails()"
+        class="mr-6"
+        tuiButton
+        type="submit"  
+        appearance="primary"
+        >
+        Add Bank Details    
+    </button>
+</div>

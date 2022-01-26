@@ -10,7 +10,7 @@ import { TuiDay } from '@taiga-ui/cdk';
 import { TUI_DATE_FORMAT, TUI_DATE_SEPARATOR } from '@taiga-ui/cdk';
 import { WorkerDataService } from 'src/assets/Shared/workerData.service';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'add-bank',
@@ -30,7 +30,42 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 
 export class AddBankDetailsComponent implements OnInit {
+  bankDetailsForm:FormGroup;
+  constructor(
+    public dialogRef: MatDialogRef<AddBankDetailsComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private _formBuilder: FormBuilder,
+        private _httpClient: HttpClient,
+        private _activatedRoute:ActivatedRoute,
+        private _router: Router,
+        private _datePipe: DatePipe,
+        private _workerData:WorkerDataService
+    ){
+      this.bankDetailsForm = this._formBuilder.group({
+        accountHolderName : new FormControl("",[Validators.required]),
+        accountNumber     : new FormControl("",[Validators.required]),
+        ifscCode          : new FormControl("",[Validators.required]),
+      })
+    }
     ngOnInit(): void {
         
+    }
+
+    addBankDetails(){
+      const data = {
+        foreignId    : this.data.workerId,
+        bankDetails  : {
+          ifscCode            : this.bankDetailsForm.get('ifscCode')?.value,
+          accountHolderName   : this.bankDetailsForm.get('accountHolderName')?.value,
+          accountNumber       : this.bankDetailsForm.get('accountNumber')?.value,
+        }
+      }
+      console.log(data)
+      this._httpClient.put(`${environment.workerBasePath}/update/information/${this.data.workerId}/`,data)
+        .subscribe((res:any)=>{
+            this.dialogRef.close("change")
+            console.log(res)
+            // this._workerData.setWorkerData(res)
+        })
     }
 }
