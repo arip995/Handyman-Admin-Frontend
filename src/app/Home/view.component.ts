@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ceil } from '@taiga-ui/cdk';
 import { TUI_DEFAULT_STRINGIFY } from '@taiga-ui/cdk';
 import { Router,ActivatedRoute } from '@angular/router';
@@ -18,13 +18,14 @@ import { NgZone } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public _refreshToken$:any = new BehaviorSubject(null);
   public user$: any;
   userData:any = null;
   currentDate:any = new Date();
   adminDate: any;
   adminData:any;
+  dataFlow: any;
   constructor(
     private _datePipe: DatePipe,
     private _router:Router,
@@ -45,6 +46,7 @@ export class HomeComponent {
     //   this._router.navigate(['../sign-in'],{relativeTo : this._activatedRoute})
     // }
     // console.log(Days)
+    
     const adminAccessToken:any = localStorage.getItem('adminAccessToken');
     const data = {
       "accessToken" : adminAccessToken
@@ -111,11 +113,24 @@ export class HomeComponent {
     [350, 90],
   ];
 
+  ngOnInit(): void {
+    this.dataFlow = this._adminDataService.getDataFlow();
+    console.log(this.dataFlow)
+    if(this.dataFlow){
+      this.content = this.dataFlow;
+    }else{
+      this._adminDataService.setAdminData('Dashboard');
+    }
+  }
+
 readonly stringify = TUI_DEFAULT_STRINGIFY;
 
 
     contentChange(value:any){
       this.content = value;
+      this._adminDataService.setAdminData(value);
+      this.dataFlow = this._adminDataService.getDataFlow();
+      console.log(this.dataFlow)
     }
     
     
