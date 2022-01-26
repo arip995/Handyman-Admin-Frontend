@@ -9,6 +9,14 @@ export const environment = {
   production: false
 };
 
+
+      // "engines": {
+      //   "node": "^12.14.1 || >=14.0.0",
+      //   "npm": "^6.11.0 || ^7.5.6",
+      //   "yarn": ">= 1.13.0"
+      // }
+      // ,
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
