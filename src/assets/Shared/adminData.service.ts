@@ -16,7 +16,6 @@ export class AdminDataService {
     }
 
     setDataFlow(data:any){
-        console.log(data)
         this._dataflowValue$.next(data);
     }
 
