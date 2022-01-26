@@ -1,25 +1,61 @@
-<div class="ml-4 flex w-8/12 mb-4 border-b border-gray-200 pb-2">
-    <div class="w-3/12 mb-6 font-medium text-4xl tracking-normal text-blue-800">
-        Bank Details
+
+
+
+<ng-container *ngIf="(bankDetails$ | async);else loading">
+    <div class="ml-4 flex w-8/12 mb-4 border-b border-gray-200 pb-2">
+        <div class="w-3/12 mb-6 font-medium text-4xl tracking-normal text-blue-800">
+            Bank Details
+        </div>
+    
+        <ng-container *ngIf="(bankDetails);else completed" >
+            <div class="ml-5 mb-3 w-full font-semibold text-xl flex items-center">
+                <div class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-blue-100 rounded-2xl text-blue-600 text-xs flex ml-4 items-center"><span class="p-1 bg-blue-500 rounded-full mr-2"></span> VERIFIED</div></div>
+            </div>
+        </ng-container>
+    
+        <ng-template #completed>
+            <div class="ml-5 mb-3 w-full font-semibold text-xl flex items-center">
+                <div class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-red-100 rounded-2xl text-red-600 text-xs flex ml-4 items-center"><span class="p-1 bg-red-500 rounded-full mr-2"></span> PENDING</div></div>
+            </div>
+        </ng-template>
+        <button
+            [disabled]="bankDetails"
+            (click)="addBankDetails()"
+            class="mr-6"
+            tuiButton
+            type="submit"  
+            appearance="primary">
+            Add bank Account
+        </button>
     </div>
 
-    <!-- <ng-container *ngIf="(kycData?.ageProof === true && kycData?.IdProof === true) && kycData?.addressProof === true;else completed" >
-        <div class="ml-5 mb-3 w-full font-semibold text-xl flex items-center">
-            <div class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-blue-100 rounded-2xl text-blue-600 text-xs flex ml-4 items-center"><span class="p-1 bg-blue-500 rounded-full mr-2"></span> VERIFIED</div></div>
-        </div>
-    </ng-container> -->
 
-    <!-- <ng-template #completed> -->
-        <div class="ml-5 mb-3 w-full font-semibold text-xl flex items-center">
-            <div class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-green-100 rounded-2xl text-green-700 text-xs flex ml-4 items-center"><span class="p-1 bg-green-600 rounded-full mr-2"></span> COMPLETED</div></div>
+
+    <div *ngIf="bankDetails" class="ml-4">
+            <div class="w-4/12 border border-sky-500 p-4">
+                <div class="flex justify-between">
+                    <div (click)="addBankDetails()" class="cursor-pointer text-2xl font-medium tracking-normal text-blue-800">
+                        <!-- <ng-container *ngFor="let identity of identifierType"> -->
+                            {{bankDetails?.accountHolderName}}
+                        <!-- </ng-container> -->
+                    </div>
+                    <div (click)="delete()" class="hover:text-red-600 cursor-pointer">
+                        <tui-svg class="" src="tuiIconTrashLarge" ></tui-svg>
+                    </div>
+                </div>
+                <div class="text-lg mt-2 font-light tracking-normal">
+                    Account Number:- {{bankDetails.accountNumber}}
+                </div>
+                <div class="text-lg mt-2 font-light tracking-normal">
+                    IFSC Code:- {{bankDetails.ifscCode}}
+                </div>
+            </div>
         </div>
-    <!-- </ng-template> -->
-    <button
-        (click)="addBankDetails()"
-        class="mr-6"
-        tuiButton
-        type="submit"  
-        appearance="primary">
-        Add bank Account
-    </button>
-</div>
+</ng-container>
+
+
+<ng-template #loading>
+    <div style="position: fixed;" class="col-span-5 h-screen w-full flex text-gray-400 justify-center items-center">
+        Loading...
+    </div>
+</ng-template>

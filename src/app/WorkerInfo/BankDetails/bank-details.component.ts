@@ -33,6 +33,10 @@ import { AddBankDetailsComponent } from './AddBankAccount/add-bank-account.compo
 
 export class BankDetailsComponent implements OnInit {
     workerId: any;
+    bankDetails$:any;
+    bankDetails:any;
+    public _refreshToken$:any = new BehaviorSubject(null);
+
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -47,7 +51,14 @@ export class BankDetailsComponent implements OnInit {
         this.workerId = parseInt(this.workerId);
     }
     ngOnInit(): void {
-        
+        this.bankDetails$ = this._refreshToken$.pipe(
+            (switchMap(()=>this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
+            .pipe(
+                tap((res:any)=>{
+                    this.bankDetails = res.bankDetails;
+                })
+            ))
+        ))
     }
 
     addBankDetails(){
@@ -55,14 +66,28 @@ export class BankDetailsComponent implements OnInit {
             autoFocus : false,
             panelClass: ['w-1/2', 'max-w-3xl','h-1/2','max-h-3xl'],
             data: {
+                bankDetails:this.bankDetails,
                 workerId : this.workerId,
             }
         });
 
         dialogRef.afterClosed().subscribe((result) => {
             if(result === "change"){
+                this._refreshToken$.next();
             }
             console.log(result);
         });
+    }
+
+    delete(){
+        const data = {
+            foreignId : this.workerId,
+            bankDetails:""
+        }
+        this._httpClient.put(`${environment.workerBasePath}/update/information/${this.workerId}/`,data)
+        .subscribe((res:any)=>{
+            this._refreshToken$.next();
+            console.log(res)
+        })
     }
 }
