@@ -87,7 +87,7 @@ export class ResidenceDetailsComponent implements OnInit {
 
     update(){
         if(this.residenceDetailsForm.pristine){
-            this.updatestep.emit("residenceDetails");
+            this.updatestep.emit("workDetails");
             return
         }
         const data = {
