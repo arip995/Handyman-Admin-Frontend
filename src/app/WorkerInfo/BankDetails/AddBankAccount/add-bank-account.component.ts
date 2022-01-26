@@ -48,7 +48,13 @@ export class AddBankDetailsComponent implements OnInit {
       })
     }
     ngOnInit(): void {
-        
+        if(this.data.bankDetails){
+          this.bankDetailsForm.reset({
+            accountHolderName  :this.data.bankDetails.accountHolderName,
+            accountNumber      :this.data.bankDetails.accountNumber,
+            ifscCode           :this.data.bankDetails.ifscCode
+          })
+        }
     }
 
     addBankDetails(){
