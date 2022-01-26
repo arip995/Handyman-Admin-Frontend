@@ -114,7 +114,9 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.dataFlow = this._adminDataService.getDataFlow();
+    this._adminDataService.getDataFlow().subscribe((res:any)=>{
+      this.dataFlow = res;
+    });
     console.log(this.dataFlow)
     if(this.dataFlow){
       this.content = this.dataFlow;

@@ -21,8 +21,7 @@ export class AdminDataService {
     }
 
     getDataFlow(){
-        const value = this._dataflowValue$.getValue();
-        return value
+        return this._dataflowValue$.asObservable()
     }
 
 
