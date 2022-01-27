@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
 import { TuiDay } from '@taiga-ui/cdk';
 import { TUI_DATE_FORMAT, TUI_DATE_SEPARATOR } from '@taiga-ui/cdk';
 import { WorkerDataService } from 'src/assets/Shared/workerData.service';
-import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -30,7 +31,8 @@ export class ActivateComponent implements OnInit {
         private _activatedRoute:ActivatedRoute,
         private _router: Router,
         private _datePipe: DatePipe,
-        private _workerData:WorkerDataService
+        private _workerData:WorkerDataService,
+        private _snackBar: MatSnackBar
     ){
         this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
         this.workerId = parseInt(this.workerId);
@@ -64,7 +66,10 @@ export class ActivateComponent implements OnInit {
 
     statusChange(){
         if((this.allData.kyc.ageProof == false || this.allData.kyc.IdProof == false) || this.allData.kyc.addressProof == false){
-            alert('Complete the KYC first!')
+            // alert('Complete the KYC first!')
+            this._snackBar.open("Complete the KYC first!", "OK",{
+                duration: 5000
+            });
             return;
         }
         const data = {
