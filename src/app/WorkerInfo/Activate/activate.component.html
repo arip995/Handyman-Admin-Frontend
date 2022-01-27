@@ -9,6 +9,8 @@
     </ng-template>
     
     <button
+        *ngIf="(user$ | async)"
+        [disabled]="(allData?.kyc?.IdProof == false || allData?.kyc?.ageProof == false) || allData?.kyc?.addressProof == false"
         (click)="statusChange()"
         class="m-5 w-3/12 "
         tuiButton

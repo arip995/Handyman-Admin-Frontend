@@ -19,8 +19,11 @@ import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 })
 
 export class ActivateComponent implements OnInit {
+    public _refreshToken$:any = new BehaviorSubject(null);
+    public user$: any;
     isActivated:boolean = false;
     workerId: any;
+    allData:any;
     constructor(
         private _formBuilder: FormBuilder,
         private _httpClient: HttpClient,
@@ -31,6 +34,17 @@ export class ActivateComponent implements OnInit {
     ){
         this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
         this.workerId = parseInt(this.workerId);
+        
+        this.user$ = this._refreshToken$.pipe(
+            (switchMap(() => this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
+                    .pipe(
+                        tap((res: any) => {
+                            this.allData = res;
+                        })
+                    )
+            ))
+        )
+            
     }
     ngOnInit(): void {
         this._workerData.getPersonalWorkerdata()
