@@ -1,14 +1,15 @@
 <div class="m-4 w-full">
-    <div *ngIf="isActivated;else deactivate" class="w-3/12 font-medium text-4xl tracking-normal text-blue-800">
+    <div *ngIf="isActivated;else deactivate" class="w-3/12 font-medium ml-5 text-4xl tracking-normal text-blue-800">
         Deactivate the Worker
     </div>
     <ng-template #deactivate>
-        <div class="font-medium text-4xl tracking-normal text-blue-800">
+        <div class="font-medium ml-5 text-4xl tracking-normal text-blue-800">
             Activate the Worker
         </div>
     </ng-template>
     
     <button
+        (click)="statusChange()"
         class="m-5 w-3/12 "
         tuiButton
         type="submit"
