@@ -22,7 +22,7 @@ import { MatTableDataSource } from '@angular/material/table';
     tableDatasource:any;
     worker$:any;
     dataSource = new MatTableDataSource();
-    displayedColumns: string[] = ['Username', 'Name', 'Worktype', 'Status', 'CreatedOn'];
+    displayedColumns: string[] = ['Username', 'Name', 'MobileNumber', 'Worktype', 'Status', 'CreatedOn'];
     public _refresh:any = new BehaviorSubject(null);
 
 

@@ -14,6 +14,12 @@
                     <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Name </th>
                     <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user">{{user.firstName}} {{user.lastName}}</td>
                 </ng-container>
+
+                <!-- Name -->
+                <ng-container class="w-1/6" matColumnDef="MobileNumber">
+                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Mobile Number </th>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user">{{user.mobileNumber}}</td>
+                </ng-container>
     
                 <!-- Work Type -->
                 <ng-container class="w-1/6" matColumnDef="Worktype">
