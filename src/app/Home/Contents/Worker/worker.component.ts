@@ -22,7 +22,7 @@ import { MatTableDataSource } from '@angular/material/table';
     tableDatasource:any;
     worker$:any;
     dataSource = new MatTableDataSource();
-    displayedColumns: string[] = ['Username', 'Name', 'MobileNumber', 'Worktype', 'Status', 'CreatedOn'];
+    displayedColumns: string[] = ['CreatedOn', 'Username', 'Name', 'MobileNumber', 'Worktype', 'Status'];
     public _refresh:any = new BehaviorSubject(null);
 
 
@@ -56,4 +56,5 @@ import { MatTableDataSource } from '@angular/material/table';
     workerProfile(id:any){
         this._router.navigate(['../workerinfo/',id],{relativeTo: this._activatedRoute})
     }
+
   }

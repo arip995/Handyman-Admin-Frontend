@@ -19,7 +19,7 @@ import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 })
 
 export class ActivateComponent implements OnInit {
-    isActivated:any;
+    isActivated:boolean = false;
     workerId: any;
     constructor(
         private _formBuilder: FormBuilder,
@@ -36,7 +36,9 @@ export class ActivateComponent implements OnInit {
         this._workerData.getPersonalWorkerdata()
         .subscribe((res:any)=>{
             if(res){
-                this.isActivated = res.isActivated;
+                if(res.isActivated){
+                    this.isActivated = res.isActivated;
+                }
             }else{
                 this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`)
                 .subscribe((res:any)=>{
