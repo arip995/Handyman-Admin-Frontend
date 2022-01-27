@@ -87,12 +87,12 @@
                     {{content}}
                 </div>
                 <div class="ml-auto flex">
-                    <div class="">
+                    <div *ngIf="(user$ | async)" class="">
                         <div class="text-medium font-semibold mt-2 mr-2 text-base font-roboto tracking-tight">
-                            {{userData.name}}
+                            {{userData?.name}}
                         </div>
                         <div class="text-right text-light mr-2 text-xs font-roboto tracking-tight">
-                            {{userData.username}}
+                            {{userData?.username}}
                         </div>
                     </div>
                     <div [matMenuTriggerFor]="menu" class="cursor-pointer ml-2 h-9 w-9 mr-2 mt-3 border-2 border-gray-400 rounded-full">

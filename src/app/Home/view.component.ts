@@ -55,39 +55,36 @@ export class HomeComponent implements OnInit {
     //   this.userData = res;
     //   console.log(this.userData)
     // })
-    this._adminDataService.getAdminData().subscribe((res:any)=>{
-      if(res){
-        this._ngZone.run( () => {
+    this.user$ = this._refreshToken$.pipe(
+      (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
+      .pipe(
+        tap((res:any)=>{
+          if(!res){
+          }
           this.userData = res;
-        });
-      }else{
-        this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
-        .subscribe((res:any)=>{
-          this._ngZone.run( () => {
-            this.userData = res;
-          });
-          this._adminDataService.setAdminData(res)
+          console.log(res)
         })
-        // this.user$ = this._refreshToken$.pipe(
-        //   (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
-          // .pipe(
-          //   tap((res:any)=>{
-          //     if(!res){
-          //     }
-          //     this.userData = res;
-          //     console.log(res)
-          //   })
-        //     ,catchError((error)=>{
-        //       alert("please logout and sign in again")
-        //       throw new Error(error);
-        //     })
-        //   )))
-        // )
-      }
-    })
+        ,catchError((error)=>{
+          alert("please logout and sign in again")
+          throw new Error(error);
+        })
+      )))
+    )
+    // this._adminDataService.getAdminData().subscribe((res:any)=>{
+    //   if(res){
+    //     this.userData = res;
+    //   }else{
+    //     this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
+    //     .subscribe((res:any)=>{
+    //       this.userData = res;
+    //       console.log(this.userData)
+    //       this._adminDataService.setAdminData(res)
+    //     })
+    //   }
+    // })
     
   }
-    content: 'Dashboard'| 'Customers' | 'Workers' | 'Analytics' | 'Products' | 'Reports' = "Dashboard";
+    content: 'Dashboard'| 'Customers' | 'Workers' | 'Analytics' | 'Products' | 'Reports' = 'Dashboard';
     readonly value = [40, 30, 20, 10];
     readonly values = [
       [3660, 8281, 1069, 9034, 5797, 6918, 8495, 3234, 6204, 1392, 2088, 8637, 8779],
