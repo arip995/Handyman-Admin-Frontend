@@ -63,6 +63,10 @@ export class ActivateComponent implements OnInit {
     }
 
     statusChange(){
+        if((this.allData.kyc.ageProof == false || this.allData.kyc.IdProof == false) || this.allData.kyc.addressProof == false){
+            alert('Complete the KYC first!')
+            return;
+        }
         const data = {
             isActivated : !this.isActivated  
         }
