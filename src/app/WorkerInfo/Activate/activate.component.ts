@@ -50,7 +50,7 @@ export class ActivateComponent implements OnInit {
         const data = {
             isActivated : !this.isActivated  
         }
-        this._httpClient.patch(`${environment.workerBasePath}/update/info/${this.workerId}/`,data)
+        this._httpClient.put(`${environment.workerBasePath}/update/info/${this.workerId}/`,data)
         .subscribe((res:any)=>{
             console.log(res)
             this.isActivated = res.isActivated;
