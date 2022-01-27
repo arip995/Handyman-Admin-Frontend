@@ -31,7 +31,6 @@ export class WorkerInfoComponent implements OnInit {
     ){
       this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
       this.workerId = parseInt(this.workerId);
-      console.log(this.workerId)
     }
 
     ngOnInit(): void {
@@ -53,7 +52,6 @@ export class WorkerInfoComponent implements OnInit {
 
 
     nextStep(nextStepValue:any){
-      console.log("HIIII");
       this.authenticationSteps = nextStepValue;
     }
   }

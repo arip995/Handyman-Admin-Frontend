@@ -95,7 +95,7 @@
             </ng-container>
 
             <ng-container *ngIf="authenticationSteps === 'activate'">
-                <personal-details (updatestep)="nextStep($event)"></personal-details>
+                <activate (updatestep)="nextStep($event)"></activate>
             </ng-container>
         </div>
     </div>
