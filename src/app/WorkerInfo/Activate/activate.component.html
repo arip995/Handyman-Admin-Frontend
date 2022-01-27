@@ -1,10 +1,10 @@
 <div class="m-4 w-full">
-    <div *ngIf="isActivated;else deactivate" class="underline font-medium ml-5 text-4xl tracking-normal text-blue-800">
-        Deactivate the Worker
+    <div *ngIf="isActivated;else deactivate" class="font-medium ml-5 text-4xl tracking-normal text-blue-800">
+        Worker is Active, Deactivate the Worker!
     </div>
     <ng-template #deactivate>
-        <div class="underline font-medium ml-5 text-4xl tracking-normal text-blue-800">
-            Activate the Worker
+        <div class="font-medium ml-5 text-4xl tracking-normal text-blue-800">
+            Activate the Worker!
         </div>
     </ng-template>
     
