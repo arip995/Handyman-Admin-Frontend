@@ -87,16 +87,17 @@
                     {{content}}
                 </div>
                 <div class="ml-auto flex">
-                    <div class="">
+                    <div *ngIf="(user$ | async)" class="">
                         <div class="text-medium font-semibold mt-2 mr-2 text-base font-roboto tracking-tight">
-                            {{userData.name}}
+                            {{userData?.name}}
                         </div>
                         <div class="text-right text-light mr-2 text-xs font-roboto tracking-tight">
-                            {{userData.username}}
+                            {{userData?.username}}
                         </div>
                     </div>
                     <div [matMenuTriggerFor]="menu" class="cursor-pointer ml-2 h-9 w-9 mr-2 mt-3 border-2 border-gray-400 rounded-full">
-                        <mat-icon style="color: #9ca3af;" class="icon">person_outline</mat-icon>
+                        <img src="https://www.hotstar.com/assets/c724e71754181298e3f835e46ade0517.svg"/>
+                        <!-- <mat-icon style="color: #9ca3af;" class="icon">person_outline</mat-icon> -->
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item>Profile
                                 <mat-icon style="color: #9ca3af;" class="ml-5 hover:text-red-600 icon">person_outline</mat-icon>

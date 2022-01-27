@@ -2,6 +2,12 @@
     <div class="mt-12 mb-12 flex w-10/12 justify-center">
         <div class="w-full">
             <table class="w-full" mat-table [dataSource]="tableDatasource">
+                
+                <!-- Created On -->
+                <ng-container class="w-1/6" matColumnDef="CreatedOn">
+                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Created On </th>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> {{user.createdOn}} </td>
+                </ng-container>
 
                 <!-- Username -->
                 <ng-container class="w-1/6" matColumnDef="Username">
@@ -14,23 +20,27 @@
                     <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Name </th>
                     <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user">{{user.firstName}} {{user.lastName}}</td>
                 </ng-container>
+
+                <!-- Name -->
+                <ng-container class="w-1/6" matColumnDef="MobileNumber">
+                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Mobile Number </th>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user">{{user.mobileNumber}}</td>
+                </ng-container>
     
                 <!-- Work Type -->
                 <ng-container class="w-1/6" matColumnDef="Worktype">
                     <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Work Type </th>
                     <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> {{user.worktype}} </td>
                 </ng-container>
-    
+                
                 <!-- Status -->
                 <ng-container class="w-1/6" matColumnDef="Status">
                     <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Status </th>
-                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> {{user.status ? user.status : "Created"}} </td>
-                </ng-container>
-    
-                <!-- Created On -->
-                <ng-container class="w-1/6" matColumnDef="CreatedOn">
-                    <th style="text-align: start; background-color: #f3f9fd;" class="pl-4 text-xl font-semibold font-mono tracking-tight border-b-4 border-slate-500 text-slate-500" *matHeaderCellDef> Created On </th>
-                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> {{user.createdOn}} </td>
+                    <td (click)="workerProfile(user.id)" class="pl-4 cursor-pointer" *matCellDef="let user"> <div class="w-full font-bold text-2xl flex items-center">
+                        <div *ngIf="user.isActivated==true" class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-green-100 rounded-2xl text-green-700 text-xs flex ml-4 items-center"><span class="p-1 bg-green-600 rounded-full mr-2"></span> ACTIVATED</div></div>
+                        <div *ngIf="user.isActivated==null" class="w-auto px-4 py-1 bg-blue-100 rounded-2xl text-blue-600 text-xs flex ml-4 items-center"><span class="p-1 bg-blue-500 rounded-full mr-2"></span> CREATED</div></div> 
+                        <div *ngIf="user.isActivated==false" class="w-full font-bold text-2xl flex items-center"><div class="w-auto px-4 py-1 bg-red-100 rounded-2xl text-red-600 text-xs flex ml-4 items-center"><span class="p-1 bg-red-500 rounded-full mr-2"></span> REJECTED</div></div>
+                    </td>
                 </ng-container>
     
                 <!-- Define what the rows will look like -->
