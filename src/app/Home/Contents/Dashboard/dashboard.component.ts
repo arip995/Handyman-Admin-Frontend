@@ -6,7 +6,7 @@ import { TUI_DEFAULT_STRINGIFY } from '@taiga-ui/cdk';
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
     content: 'Dashboard'| 'Customers' | 'Workers' | 'Analytics' | 'Products' | 'Reports' = "Dashboard";

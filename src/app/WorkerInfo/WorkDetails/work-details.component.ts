@@ -16,7 +16,7 @@ import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
   selector: 'work-details',
   templateUrl: './work-details.component.html',
   styleUrls: ['./work-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+//   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ {
     provide: TUI_VALIDATION_ERRORS,
     useValue: {
