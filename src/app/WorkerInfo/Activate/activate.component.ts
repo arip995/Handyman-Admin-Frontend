@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'activate',
   templateUrl: './activate.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+//   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ActivateComponent implements OnInit {
@@ -76,9 +76,12 @@ export class ActivateComponent implements OnInit {
             isActivated : !this.isActivated  
         }
         this._httpClient.put(`${environment.workerBasePath}/update/info/${this.workerId}/`,data)
+        .pipe(
+            tap((res:any)=>{
+                this.isActivated = res.isActivated;
+            })
+        )
         .subscribe((res:any)=>{
-            console.log(res)
-            this.isActivated = res.isActivated;
         })
     }
 }

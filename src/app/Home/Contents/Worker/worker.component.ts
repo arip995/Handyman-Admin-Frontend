@@ -14,7 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
     selector: 'worker',
     templateUrl: './worker.component.html',
     styleUrls: ['./worker.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
   })
   
   export class workerComponent implements OnInit {

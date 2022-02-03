@@ -15,7 +15,7 @@ import { NgZone } from '@angular/core';
   selector: 'view-home',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class HomeComponent implements OnInit {
@@ -55,33 +55,33 @@ export class HomeComponent implements OnInit {
     //   this.userData = res;
     //   console.log(this.userData)
     // })
-    this.user$ = this._refreshToken$.pipe(
-      (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
-      .pipe(
-        tap((res:any)=>{
-          if(!res){
-          }
-          this.userData = res;
-          console.log(res)
-        })
-        ,catchError((error)=>{
-          alert("please logout and sign in again")
-          throw new Error(error);
-        })
-      )))
-    )
-    // this._adminDataService.getAdminData().subscribe((res:any)=>{
-    //   if(res){
-    //     this.userData = res;
-    //   }else{
-    //     this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
-    //     .subscribe((res:any)=>{
+    // this.user$ = this._refreshToken$.pipe(
+    //   (switchMap (()=> this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
+    //   .pipe(
+    //     tap((res:any)=>{
+    //       if(!res){
+    //       }
     //       this.userData = res;
-    //       console.log(this.userData)
-    //       this._adminDataService.setAdminData(res)
+    //       console.log(res)
     //     })
-    //   }
-    // })
+    //     ,catchError((error)=>{
+    //       alert("please logout and sign in again")
+    //       throw new Error(error);
+    //     })
+    //   )))
+    // )
+    this._adminDataService.getAdminData().subscribe((res:any)=>{
+      if(res){
+        this.userData = res;
+      }else{
+        this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
+        .subscribe((res:any)=>{
+          this.userData = res;
+          console.log(this.userData)
+          this._adminDataService.setAdminData(res)
+        })
+      }
+    })
     
   }
     content: 'Dashboard'| 'Customers' | 'Workers' | 'Analytics' | 'Products' | 'Reports' = 'Dashboard';
