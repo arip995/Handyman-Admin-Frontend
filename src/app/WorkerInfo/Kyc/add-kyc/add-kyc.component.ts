@@ -16,7 +16,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   selector: 'add-kyc',
   templateUrl: './add-kyc.component.html',
   styleUrls: ['./add-kyc.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+//   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ {
     provide: TUI_VALIDATION_ERRORS,
     useValue: {

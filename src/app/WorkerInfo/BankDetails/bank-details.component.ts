@@ -18,7 +18,7 @@ import { AddBankDetailsComponent } from './AddBankAccount/add-bank-account.compo
   selector: 'bank-details',
   templateUrl: './bank-details.component.html',
   styleUrls: ['./bank-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+//   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ {
     provide: TUI_VALIDATION_ERRORS,
     useValue: {

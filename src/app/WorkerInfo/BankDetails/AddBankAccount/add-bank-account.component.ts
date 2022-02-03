@@ -16,7 +16,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   selector: 'add-bank',
   templateUrl: './add-bank-account.component.html',
 //   styleUrls: ['./add-bank.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ {
     provide: TUI_VALIDATION_ERRORS,
     useValue: {

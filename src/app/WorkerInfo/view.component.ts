@@ -11,7 +11,7 @@ import { WorkerDataService } from 'src/assets/Shared/workerData.service';
   selector: 'view-worker-info',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class WorkerInfoComponent implements OnInit {

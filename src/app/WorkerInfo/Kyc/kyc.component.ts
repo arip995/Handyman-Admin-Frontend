@@ -18,7 +18,7 @@ import { AddKycComponent } from './add-kyc/add-kyc.component';
   selector: 'kyc',
   templateUrl: './kyc.component.html',
   styleUrls: ['./kyc.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+//   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ {
     provide: TUI_VALIDATION_ERRORS,
     useValue: {
