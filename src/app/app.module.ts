@@ -44,6 +44,7 @@ import { BankDetailsComponent } from './WorkerInfo/BankDetails/bank-details.comp
 import { AddBankDetailsComponent } from './WorkerInfo/BankDetails/AddBankAccount/add-bank-account.component';
 import { ActivateComponent } from './WorkerInfo/Activate/activate.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProductComponent } from './Home/Contents/Product/product.component';
 import {
   TUI_SANITIZER,
   TuiActiveZoneModule,
@@ -167,7 +168,8 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     AddKycComponent,
     BankDetailsComponent,
     AddBankDetailsComponent,
-    ActivateComponent
+    ActivateComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
