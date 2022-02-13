@@ -144,6 +144,7 @@ import {
   TuiTagModule,
   TuiTextAreaModule,
   TuiToggleModule,
+  TuiCarouselModule
 } from '@taiga-ui/kit';
 
 
@@ -301,6 +302,7 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     TuiMapperPipeModule,
     TuiProjectClassModule,
     TuiFilterByInputPipeModule,
+    TuiCarouselModule,
     RouterModule.forRoot([])
 ],
 // ,schemas: [
