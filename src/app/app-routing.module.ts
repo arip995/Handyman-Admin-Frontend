@@ -17,7 +17,6 @@ const routes: Routes = [
   {
     path             : 'admin/sign-up',
     pathMatch        : 'full',
-    canActivate      : [AuthenticationGuard],
     component        : SignUpComponent,
   },
   {
