@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { Router,ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { switchMap,tap,catchError } from 'rxjs/operators';
+import { switchMap, tap, catchError } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { TuiDay } from '@taiga-ui/cdk';
@@ -14,74 +14,77 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
-  selector: 'activate',
-  templateUrl: './activate.component.html',
-//   changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'activate',
+    templateUrl: './activate.component.html',
+    //   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ActivateComponent implements OnInit {
-    public _refreshToken$:any = new BehaviorSubject(null);
+    public _refreshToken$: any = new BehaviorSubject(null);
     public user$: any;
-    isActivated:boolean = false;
+    isActivated: boolean = false;
     workerId: any;
-    allData:any;
+    allData: any;
     constructor(
         private _formBuilder: FormBuilder,
         private _httpClient: HttpClient,
-        private _activatedRoute:ActivatedRoute,
+        private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _datePipe: DatePipe,
-        private _workerData:WorkerDataService,
-        private _snackBar: MatSnackBar
-    ){
+        private _workerData: WorkerDataService,
+        private _snackBar: MatSnackBar,
+        private _activeRoute: ActivatedRoute,
+
+    ) {
         this.workerId = this._activatedRoute.snapshot.paramMap.get('id');
         this.workerId = parseInt(this.workerId);
-        
+
         this.user$ = this._refreshToken$.pipe(
             (switchMap(() => this._httpClient.get(`${environment.workerBasePath}/update/information/${this.workerId}/`)
-                    .pipe(
-                        tap((res: any) => {
-                            this.allData = res;
-                        })
-                    )
+                .pipe(
+                    tap((res: any) => {
+                        this.allData = res;
+                    })
+                )
             ))
         )
-            
+
     }
     ngOnInit(): void {
         this._workerData.getPersonalWorkerdata()
-        .subscribe((res:any)=>{
-            if(res){
-                if(res.isActivated){
-                    this.isActivated = res.isActivated;
+            .subscribe((res: any) => {
+                if (res) {
+                    if (res.isActivated) {
+                        this.isActivated = res.isActivated;
+                    }
+                } else {
+                    this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`)
+                        .subscribe((res: any) => {
+                            this.isActivated = res.isActivated;
+                        })
                 }
-            }else{
-                this._httpClient.get(`${environment.workerBasePath}/detail/${this.workerId}/`)
-                .subscribe((res:any)=>{
-                    this.isActivated = res.isActivated;
-                })
-            }
-        })
+            })
     }
 
-    statusChange(){
-        if((this.allData.kyc.ageProof == false || this.allData.kyc.IdProof == false) || this.allData.kyc.addressProof == false){
+    statusChange() {
+        if ((this.allData.kyc.ageProof == false || this.allData.kyc.IdProof == false) || this.allData.kyc.addressProof == false) {
             // alert('Complete the KYC first!')
-            this._snackBar.open("Complete the KYC first!", "OK",{
+            this._snackBar.open("Complete the KYC first!", "OK", {
                 duration: 5000
             });
             return;
         }
         const data = {
-            isActivated : !this.isActivated  
+            isActivated: !this.isActivated
         }
-        this._httpClient.put(`${environment.workerBasePath}/update/info/${this.workerId}/`,data)
-        .pipe(
-            tap((res:any)=>{
-                this.isActivated = res.isActivated;
+        this._httpClient.put(`${environment.workerBasePath}/update/info/${this.workerId}/`, data)
+            .pipe(
+                tap((res: any) => {
+                    this.isActivated = res.isActivated;
+                    this._router.navigate(['../../home'], { relativeTo: this._activeRoute });
+                })
+            )
+            .subscribe((res: any) => {
             })
-        )
-        .subscribe((res:any)=>{
-        })
     }
 }

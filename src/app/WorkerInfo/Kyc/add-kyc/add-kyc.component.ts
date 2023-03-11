@@ -99,6 +99,7 @@ export class AddKycComponent implements OnInit {
             if(res.kyc){
                 let a = res.kyc;
                 a = res.kyc;
+                console.log(a)
                 const data = {
                     "foreignId" : this.data.workerId,
                     "kyc": a
