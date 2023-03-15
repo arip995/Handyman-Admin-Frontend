@@ -145,4 +145,8 @@ readonly stringify = TUI_DEFAULT_STRINGIFY;
     this._router.navigate(['../sign-in'],{relativeTo: this._activatedRoute})
   }
 
+  profile() {
+    this._router.navigate(['../profile'],{relativeTo: this._activatedRoute})
+  }
+
 }

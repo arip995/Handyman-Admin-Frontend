@@ -6,6 +6,7 @@ import { HomeComponent } from './Home/view.component';
 import { AuthenticationGuard } from './Authentication/AuthGuard/authentication.guard';
 import { EntryAuthenticationGuard } from './Authentication/AuthGuard/entry.guard';
 import { WorkerInfoComponent } from "./WorkerInfo/view.component";
+import { Profilecomponent } from './Home/Contents/Profile/profile.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
     canActivate      : [AuthenticationGuard],
     canActivateChild : [AuthenticationGuard],
     component        : HomeComponent,
+  },{
+    path             : 'admin/profile',
+    pathMatch        : 'full',
+    canActivate      : [AuthenticationGuard],
+    component        : Profilecomponent,
   },{
     path             : 'admin/workerinfo/:id',
     pathMatch        : 'full',

@@ -45,6 +45,7 @@ import { AddBankDetailsComponent } from './WorkerInfo/BankDetails/AddBankAccount
 import { ActivateComponent } from './WorkerInfo/Activate/activate.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProductComponent } from './Home/Contents/Product/product.component';
+import { Profilecomponent } from './Home/Contents/Profile/profile.component';
 import {
   TUI_SANITIZER,
   TuiActiveZoneModule,
@@ -170,7 +171,8 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     BankDetailsComponent,
     AddBankDetailsComponent,
     ActivateComponent,
-    ProductComponent
+    ProductComponent,
+    Profilecomponent
   ],
   imports: [
     BrowserModule,
