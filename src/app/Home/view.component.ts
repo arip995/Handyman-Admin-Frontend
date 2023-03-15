@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
       if(res){
         this.userData = res;
       }else{
-        this._httpClient.get(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/${adminAccessToken}/`)
+        this._httpClient.post(`http://127.0.0.1:8000/handymanadmin/signinaccesstoken/`, data)
         .subscribe((res:any)=>{
           this.userData = res;
           console.log(this.userData)

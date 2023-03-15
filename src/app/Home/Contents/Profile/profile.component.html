@@ -11,8 +11,11 @@
     <!-- Profile Photo -->
     <div class="w-full flex justify-center">
         <div class="relative">
-            <img class="w-36 h-36 mt-6 p-1 rounded-full border-2 border-black-100 mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
-            <button style="color: aliceblue;background-color: rgb(1, 85, 241);" class="rounded-full cursor-pointer absolute bottom-2 right-1 w-8 h-8 min-h-8"><mat-icon style="font-size: 15px;display: flex;align-items: center;justify-content: center;margin-left: 4px;">edit</mat-icon></button>
+            <img class="w-36 h-36 mt-6 p-1 rounded-full border-2 border-black-100 mat-elevation-z8"
+                src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+            <button style="color: aliceblue;background-color: rgb(1, 85, 241);"
+                class="rounded-full cursor-pointer absolute bottom-2 right-1 w-8 h-8 min-h-8"><mat-icon
+                    style="font-size: 15px;display: flex;align-items: center;justify-content: center;margin-left: 4px;">edit</mat-icon></button>
             <!-- <mat-icon class="bg-blue-200 rounded-full cursor-pointer color-red">edit</mat-icon> -->
         </div>
     </div>
@@ -27,22 +30,22 @@
 
             <!-- Name -->
             <!-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-4"> -->
-                <!-- First Name -->
-                <div>
-                    <mat-form-field class="w-full mr-2" appearance="outline">
-                        <mat-label >Name</mat-label>
-                        <input required matInput type="text" [formControlName]="'name'">
+            <!-- First Name -->
+            <div>
+                <mat-form-field class="w-full mr-2" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input readonly required matInput type="text" [formControlName]="'name'">
                     <mat-error *ngIf="checkError('required')">Required</mat-error>
-                    </mat-form-field>
-                </div>
-                    
+                </mat-form-field>
+            </div>
 
 
-                <!-- Last Name -->
-                <!-- <div>
+
+            <!-- Last Name -->
+            <!-- <div>
                     <mat-form-field class="w-full mr-2" appearance="outline">
                         <mat-label>Last Name</mat-label>
-                        <input required matInput type="text" [formControlName]="'lastname'">
+                        <input readonly required matInput type="text" [formControlName]="'lastname'">
                     <mat-error *ngIf="checkError('required')">Required</mat-error>
                     </mat-form-field>
                 </div> -->
@@ -51,81 +54,92 @@
 
             <!-- Mobile Number -->
             <div>
-                <mat-form-field class="w-full" appearance="outline" >
+                <mat-form-field class="w-full" appearance="outline">
                     <mat-label>Mobile Number</mat-label>
-                    <input required matInput type="number" [formControlName]="'mobileNumber'">
+                    <input readonly required matInput type="number" [formControlName]="'mobileNumber'">
                     <mat-error *ngIf="checkError('min')">Enter a valid Mobile Number</mat-error>
                 </mat-form-field>
             </div>
 
 
             <!-- Email -->
-            <div>
-                <mat-form-field class="w-full" appearance="outline" >
+            <!-- <div>
+                <mat-form-field class="w-full" appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input required matInput type="text" [formControlName]="'email'">
+                    <input readonly required matInput type="text" [formControlName]="'email'">
                     <mat-error *ngIf="checkError('required')">Required</mat-error>
                 </mat-form-field>
-            </div>
+            </div> -->
 
 
             <!-- Username -->
             <div>
-                <mat-form-field class="w-full" appearance="outline" >
+                <mat-form-field class="w-full" appearance="outline">
                     <mat-label>Username</mat-label>
-                    <input required matInput type="text" [formControlName]="'username'">
-                    <mat-error *ngIf="checkError('minLength') || checkError('maxLength')">Username must have 6 to 10 characters</mat-error>
+                    <input readonly required matInput type="text" [formControlName]="'username'">
+                    <mat-error *ngIf="checkError('minLength') || checkError('maxLength')">Username must have 6 to 10
+                        characters</mat-error>
                 </mat-form-field>
             </div>
 
             <!-- Address -->
-            <div>
+            <!-- <div>
                 <mat-form-field class="w-full" appearance="outline" >
                     <mat-label>Address</mat-label>
-                    <input required matInput type="text" [formControlName]="'address'">
+                    <input readonly required matInput type="text" [formControlName]="'address'">
                     <mat-error *ngIf="checkError('required') || checkError('maxLength')">Required</mat-error>
                 </mat-form-field>
-            </div>
+            </div> -->
 
             <!-- Pincode -->
             <div>
-                <mat-form-field class="w-full" appearance="outline" >
+                <mat-form-field class="w-full" appearance="outline">
                     <mat-label>Pincode</mat-label>
-                    <input required matInput type="number" [formControlName]="'pincode'">
-                    <mat-error *ngIf="checkError('minLength') || checkError('maxLength')">Enter a valid Pincode</mat-error>
+                    <input readonly required matInput type="number" [formControlName]="'pincode'">
+                    <mat-error *ngIf="checkError('minLength') || checkError('maxLength')">Enter a valid
+                        Pincode</mat-error>
                 </mat-form-field>
             </div>
 
 
-            <!-- Location -->
+            <!-- State -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <!-- State -->
                 <div>
                     <mat-form-field class="w-full mr-2" appearance="outline">
-                        <mat-label >State</mat-label>
-                        <input required matInput type="text" [formControlName]="'state'">
-                    <mat-error *ngIf="checkError('required')">Required</mat-error>
+                        <mat-label>State</mat-label>
+                        <input readonly required matInput type="text" [formControlName]="'state'">
+                        <mat-error *ngIf="checkError('required')">Required</mat-error>
                     </mat-form-field>
                 </div>
-                    
+
 
                 <!-- City -->
                 <div>
                     <mat-form-field class="w-full mr-2" appearance="outline">
                         <mat-label>City</mat-label>
-                        <input required matInput type="text" [formControlName]="'city'">
-                    <mat-error *ngIf="checkError('required')">Required</mat-error>
+                        <input readonly required matInput type="text" [formControlName]="'city'">
+                        <mat-error *ngIf="checkError('required')">Required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- Country -->
+                <div>
+                    <mat-form-field class="w-full mr-2" appearance="outline">
+                        <mat-label>Country</mat-label>
+                        <input readonly required matInput type="text" [formControlName]="'country'">
+                        <mat-error *ngIf="checkError('required')">Required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
 
 
-        <!-- Submit -->
-        <div>
-            <button style="color: white; background-color: rgb(1, 85, 241);" type="submit" mat-raised-button class="w-2/12 mt-6 mb-6 rounded-md" >Save</button>
-        </div>
+            <!-- Submit -->
+            <div>
+                <button style="color: white; background-color: rgb(1, 85, 241);" type="submit" mat-raised-button
+                    class="w-2/12 mt-6 mb-6 rounded-md">Save</button>
+            </div>
         </form>
     </div>
-    
-</div>
 
+</div>
