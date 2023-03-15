@@ -41,7 +41,7 @@ export class Profilecomponent implements OnInit {
           "mobileNumber": res.mobileNumber,
           "username": res.username,
           "state": res.stateName,
-          "city": res.stateName,
+          "city": res.cityName,
           "country": res.country
         })
         console.log(res)
