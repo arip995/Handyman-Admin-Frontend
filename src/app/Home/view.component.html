@@ -1,87 +1,107 @@
 <ng-container>
-    <div class="w-full h-screen grid grid-cols-6 gap-4 ">
+    <div class="w-full h-screen grid grid-cols-7 gap-4" style="background-color: #F5F5F9;">
         <!-- [style.background-color]="'rgba(1,1,1,1)'" -->
         <!-- [style.background-color]="'#000300'" -->
         <!-- [ngClass]="{'border-l-4 border-indigo-500' : content==='Dashboard'}" -->
         <!-- [style.background-color]="'black' -->
-        
+
         <!-- Sidenav -->
-        <div style="position: fixed;" class="h-screen left-nav col-span-1" >
+        <div style="position: fixed; background-color: #FFFFFF;" class="h-screen left-nav col-span-">
             <div class="flex justify-center mt-2 font-semibold text-4xl font-mono tracking-wide text-blue-600">
                 HANDYMAN
             </div>
 
             <!-- Sidenav contents -->
             <div class="mt-12">
-                <div (click)="contentChange('Dashboard')"  class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Dashboard')"
+                    class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <tui-svg [style.color]="content==='Dashboard' ? '#1e40af' : ''" class="" src="tuiIconStructureLarge"></tui-svg>
+                        <tui-svg [style.color]="content==='Dashboard' ? '#1e40af' : ''" class=""
+                            src="tuiIconStructureLarge"></tui-svg>
                     </div>
-                    <span [ngClass]="{'text-blue-800' : content==='Dashboard'}" class="content-text text-center font-light text-lg">Dashboard</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Dashboard'}"
+                        class="content-text text-center font-light text-lg">Dashboard</span>
                 </div>
             </div>
 
             <div class="mt-6">
-                <div (click)="contentChange('Customers')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Customers')"
+                    class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Customers' ? '#1e40af' : ''" class="icon" >people_outline</mat-icon>
+                        <mat-icon [style.color]="content==='Customers' ? '#1e40af' : ''"
+                            class="icon">people_outline</mat-icon>
                     </div>
-                    <span [ngClass]="{'text-blue-800' : content==='Customers'}" class="content-text text-center font-light text-lg">Customers</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Customers'}"
+                        class="content-text text-center font-light text-lg">Customers</span>
                 </div>
             </div>
 
             <div class="mt-6">
-                <div (click)="contentChange('Workers')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Workers')"
+                    class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <mat-icon [style.color]="content==='Workers' ? '#1e40af' : ''" class="icon" >people_outline</mat-icon>
+                        <mat-icon [style.color]="content==='Workers' ? '#1e40af' : ''"
+                            class="icon">people_outline</mat-icon>
                     </div>
-                    <span [ngClass]="{'text-blue-800' : content==='Workers'}" class="content-text text-center font-light text-lg">Workers</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Workers'}"
+                        class="content-text text-center font-light text-lg">Workers</span>
                 </div>
             </div>
 
             <div class="mt-6">
-                <div (click)="contentChange('Analytics')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Analytics')"
+                    class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <tui-svg [style.color]="content==='Analytics' ? '#1e40af' : ''" class="" src="tuiIconChartLineLarge" ></tui-svg>
+                        <tui-svg [style.color]="content==='Analytics' ? '#1e40af' : ''" class=""
+                            src="tuiIconChartLineLarge"></tui-svg>
                     </div>
-                    <span [ngClass]="{'text-blue-800' : content==='Analytics'}" class="content-text text-center font-light text-lg">Analytics</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Analytics'}"
+                        class="content-text text-center font-light text-lg">Analytics</span>
                 </div>
             </div>
 
             <div class="mt-6">
-                <div (click)="contentChange('Products')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Products')"
+                    class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <tui-svg [style.color]="content==='Products' ? '#1e40af' : ''" class="" src="tuiIconCompanyLarge" ></tui-svg>
+                        <tui-svg [style.color]="content==='Products' ? '#1e40af' : ''" class=""
+                            src="tuiIconCompanyLarge"></tui-svg>
                     </div>
-                    <span [ngClass]="{'text-blue-800' : content==='Products'}" class="content-text text-center font-light text-lg">Products</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Products'}"
+                        class="content-text text-center font-light text-lg">Products</span>
                 </div>
             </div>
 
             <div class="mt-6">
-                <div (click)="contentChange('Reports')" class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="contentChange('Reports')"
+                    class="side-content flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <tui-svg [style.color]="content==='Reports' ? '#1e40af' : ''" src="tuiIconAlertCircleLarge" class="" ></tui-svg>
+                        <tui-svg [style.color]="content==='Reports' ? '#1e40af' : ''" src="tuiIconAlertCircleLarge"
+                            class=""></tui-svg>
                     </div>
-                    <span [ngClass]="{'text-blue-800' : content==='Reports'}" class="content-text text-center font-light text-lg">Reports</span>
+                    <span [ngClass]="{'text-blue-800' : content==='Reports'}"
+                        class="content-text text-center font-light text-lg">Reports</span>
                 </div>
             </div>
 
             <div class="logout ml-2">
-                <div (click)="logout()" class="flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
+                <div (click)="logout()"
+                    class="flex justify-center ml-2 mr-2 2xl:ml-5 2xl:mr-5 pt-4 pb-4 cursor-pointer">
                     <div class="">
-                        <tui-svg class="out" src="tuiIconLoginLarge" ></tui-svg>
+                        <tui-svg class="out" src="tuiIconLoginLarge"></tui-svg>
                     </div>
                     <span class="ml-6 font-light text-lg">Logout</span>
                 </div>
             </div>
         </div>
 
-        <div class="col-span-1">
+        <div style="background-color: #FFFFFF; box-shadow: 0px 1px 3px 2px rgba(50, 71, 92, 0.06), 0px 2px 5px 1px rgba(50, 71, 92, 0.04), 0px 1px 3px 2px rgba(50, 71, 92, 0.02);
+        " class="col-span-1">
         </div>
 
 
 
-        <div class="col-span-5">
+        <div class="col-span-6">
             <div class="flex">
                 <!-- <div class="mt-2 ml-2 font-bold text-4xl font-mono tracking-tight text-slate-500">
                     {{content}}
@@ -95,18 +115,22 @@
                             {{userData?.username}}
                         </div>
                     </div>
-                    <div [matMenuTriggerFor]="menu" class="cursor-pointer ml-2 h-9 w-9 mr-2 mt-3 border-2 border-gray-400 rounded-full">
-                        <img src="https://www.hotstar.com/assets/c724e71754181298e3f835e46ade0517.svg"/>
+                    <div [matMenuTriggerFor]="menu"
+                        class="cursor-pointer ml-2 h-9 w-9 mr-2 mt-3 border-2 border-gray-400 rounded-full">
+                        <img src="https://www.hotstar.com/assets/c724e71754181298e3f835e46ade0517.svg" />
                         <!-- <mat-icon style="color: #9ca3af;" class="icon">person_outline</mat-icon> -->
                         <mat-menu #menu="matMenu">
                             <button (click)="profile()" mat-menu-item>Profile
-                                <mat-icon style="color: #9ca3af;" class="ml-5 hover:text-red-600 icon">person_outline</mat-icon>
+                                <mat-icon style="color: #9ca3af;"
+                                    class="ml-5 hover:text-red-600 icon">person_outline</mat-icon>
                             </button>
                             <button mat-menu-item>Users
-                                <mat-icon style="color: #9ca3af;" class="ml-6 hover:text-red-600 icon">people_outline</mat-icon>
+                                <mat-icon style="color: #9ca3af;"
+                                    class="ml-6 hover:text-red-600 icon">people_outline</mat-icon>
                             </button>
                             <button mat-menu-item>Settings
-                                <tui-svg class="ml-3 hover:text-red-600" src="tuiIconSettingsLarge" style="color: #9ca3af;" ></tui-svg>
+                                <tui-svg class="ml-3 hover:text-red-600" src="tuiIconSettingsLarge"
+                                    style="color: #9ca3af;"></tui-svg>
                             </button>
                         </mat-menu>
                     </div>
@@ -128,8 +152,6 @@
             </div>
         </ng-template>
     </div>
-    
-    
+
+
 </ng-container>
-
-
